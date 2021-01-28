@@ -1,0 +1,2543 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DTTUtils</name>
+    </assembly>
+    <members>
+        <member name="T:nl.DTT.Utils.Attributes.EnumFlags">
+            <summary>
+            Field-Attribute for displaying Flag-Setter in Inspector (Enum-Dropdown with multi-selection)
+            <para>
+                Made by: Frank van Hoof
+            </para>
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Attributes.EnumFlags.#ctor">
+            <summary>
+            Constructor for an Enum-Flag
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Attributes.PowerOfTwo">
+            <summary>
+            Field-Attribute for limiting values to PowerOfTwo only
+            <para>
+                Made by: Frank van Hoof
+            </para>
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Attributes.PowerOfTwo.Range">
+            <summary>
+            Range for value (Inclusive)
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Attributes.PowerOfTwo.AllowNegative">
+            <summary>
+            Allow negative values (i.e. -1 * 2^x)
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Attributes.PowerOfTwo.#ctor">
+            <summary>
+            Constructor without Parameters
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Attributes.PowerOfTwo.#ctor(UnityEngine.Vector2Int,System.Boolean)">
+            <summary>
+            Constructor with Range-Parameter (Vector2) (Inclusive)
+            </summary>
+            <param name="range">Minimum (X) (inclusive) and Maximum (Y) (inclusive) for value</param>
+            <param name="allowNegative">Allow negative values (i.e. -1 * 2^x)</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Attributes.PowerOfTwo.#ctor(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Constructor with Range-Parameters (integer Min and Max (inclusive))
+            </summary>
+            <param name="minValue">Minimum for Value (inclusive)</param>
+            <param name="maxValue">Maximum for Value (inclusive)</param>
+            <param name="allowNegative">Allow negative values (i.e. -1 * 2^x)</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Attributes.FloatRangeSliderAttribute.#ctor(System.Single,System.Single,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="min">Inclusive</param>
+            <param name="max">Inclusive</param>
+            <param name="minDecimals"></param>
+            <param name="maxDecimals"></param>
+        </member>
+        <member name="M:nl.DTT.Utils.Attributes.IntRangeSliderAttribute.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="min">Inclusive</param>
+            <param name="max">Inclusive</param>
+            <param name="minDecimals"></param>
+            <param name="maxDecimals"></param>
+        </member>
+        <member name="T:nl.DTT.Utils.Attributes.TagSelect">
+            <summary>
+            Attribute for displaying TagSelection (Dropdown in inspecter with all Tags)
+            <para>
+                Made by: Frank van Hoof
+            </para>
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.Attributes.TagSelect.UseDefaultTagFieldDrawer">
+            <summary>
+            Whether to use default Drawer (or Custom one)
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Attributes.TagSelect.#ctor">
+            <summary>
+            Constructor without Parameter
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Attributes.TagSelect.#ctor(System.Boolean)">
+            <summary>
+            Constructor with DefaultDrawer-Parameter
+            </summary>
+            <param name="useDefaultDrawer">Set true to use Default PropertyDrawer (instead of Custom one)</param>
+        </member>
+        <member name="T:nl.DTT.Utils.Behaviours.AutoDisableBehaviour">
+            <summary>
+            AutoDisableBehaviour automatically disables the GameObject it is on after
+            disableTime (set in Editor) has passed. 
+            <para>
+                This functionality is repeated every time the GameObject is enabled
+            </para>
+            <para>
+                Made by: Frank van Hoof
+            </para>
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Behaviours.AutoDisableBehaviour.disableTime">
+            <summary>
+            <b>Editor</b>: Time (in seconds) after which to disable the GameObject
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Behaviours.AutoDisableBehaviour.enableTime">
+            <summary>
+            <b>Private</b>: Moment in time when GameObject was Enabled (last)
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Behaviours.AutoDisableBehaviour.OnEnable">
+            <summary>
+            Called when Object is Enabled. Sets enableTime
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Behaviours.AutoDisableBehaviour.Update">
+            <summary>
+            Disables GameObject if disableTime has passed since script was last enabled
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Behaviours.CachedBehaviour`1">
+            <summary>
+            CachedBehaviour can be used to create Scene-wide 'Singleton-like'-Objects
+            <para>
+                These Objects are Unique, meaning that duplicate instances of Scripts will automatically get destroyed (script, not object).
+                Unlike Singletons, these Objects are destroyed if the Scene they are in is unloaded.
+            </para>
+            <para>
+                Usage: <c>public class MyClass : CachedBehaviour&lt;MyClass&gt; {  }</c>
+            </para>
+            <para>
+                Made by: Frank van Hoof
+            </para>
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.Behaviours.CachedBehaviour`1.Exists">
+            <summary>
+            Whether an Instance Exists (Instance != NULL)
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.Behaviours.CachedBehaviour`1.Instance">
+            <summary>
+            Instance from BehaviourCache (can be NULL)
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Behaviours.CachedBehaviour`1.forceCacheReplace">
+            <summary>
+            <b>Editor</b>: Whether to override previously Cached Object of same Type in Awake,
+            instead of destroying Script if Cached Object exists.
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Behaviours.CachedBehaviour`1.Awake">
+            <summary>
+            Registers Object to Cache, or destroys it if it already exists (and forceCacheReplace is not set to true)
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Behaviours.KeepLossyScaleBehaviour">
+            <summary>
+            Automatically rescales Transform, to preserve its Lossy- (World-)Scale
+            <para>
+                Does not work well if the Transform is rotated with regards to its parent(s)
+            </para>
+            <para>
+                Made by: Frank van Hoof
+            </para>
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Behaviours.KeepLossyScaleBehaviour.skippedAxes">
+            <summary>
+            <b>Editor</b>: Axes to skip when resizing
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Behaviours.KeepLossyScaleBehaviour.scale">
+            <summary>
+            <b>Private</b>: (Lossy) Scale to keep
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Behaviours.KeepLossyScaleBehaviour.Awake">
+            <summary>
+            Grabs Lossy scale from Transform
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Behaviours.KeepLossyScaleBehaviour.Update">
+            <summary>
+            Rescales Transform is LossyScale is incorrect
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Behaviours.RotateBehaviour">
+            <summary>
+            Rotates a Transform by a set angle every FixedUpdate (in a set Space)
+            <para>
+                Made by: Frank van Hoof
+            </para>
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Behaviours.RotateBehaviour.rotationSpeed">
+            <summary>
+            <b>Editor</b>: Speed to rotate over for each axis
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Behaviours.RotateBehaviour.space">
+            <summary>
+            <b>Editor</b>: The Space in which to operate
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Behaviours.RotateBehaviour.FixedUpdate">
+            <summary>
+            Rotates Object
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Behaviours.RotateBehaviour.SetVariables(UnityEngine.Vector3,UnityEngine.Space)">
+            <summary>
+            Updates variables for this Behaviour
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Behaviours.ScaleWithViewportBehaviour">
+            <summary>
+            Scales object with Viewport
+            <para>
+                Scales relative to distance to Camera
+            </para>
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.Behaviours.ScaleWithViewportBehaviour.VectorToCamera">
+            <summary>
+            The vector from this gizmo to the main camera.
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.Behaviours.ScaleWithViewportBehaviour.DistanceToCamera">
+            <summary>
+            The distance from this gizmo to the main camera.
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Behaviours.ScaleWithViewportBehaviour.scalar">
+            <summary>
+            Base scalar for the size, i.e. size when distance between the gizmo and camera is 1.
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Behaviours.ScaleWithViewportBehaviour.cam">
+            <summary>
+            Camera to use for this Behaviour. Set null to use MainCamera
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.Behaviours.ScaleWithViewportBehaviour.myCamera">
+            <summary>
+            Camera to use
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Behaviours.ScaleWithViewportBehaviour.Start">
+            <summary>
+            Runs first Update of Size
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Behaviours.ScaleWithViewportBehaviour.Update">
+            <summary>
+            Updates Size every Frame
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Behaviours.ScaleWithViewportBehaviour.UpdateSize">
+            <summary>
+            Updates the size of this object based on the distance from the camera. 
+            Thie ensures that the object always has the same size in screen space.
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Behaviours.SingletonBehaviour`1">
+            <summary>
+            Turns any MonoBehaviour into a Singleton (Static Instance-Reference)
+            <para>
+                Usage: <c>public class MyClass : SingletonBehaviour&lt;MyClass&gt; {  }</c>
+            </para>
+            <para>
+                Made by: Frank van Hoof
+            </para>
+            </summary>
+            <typeparam name="T">Class to create Singleton for (must inherit MonoBehaviour)</typeparam>
+        </member>
+        <member name="P:nl.DTT.Utils.Behaviours.SingletonBehaviour`1.Exists">
+            <summary>
+            Whether an instance exists
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.Behaviours.SingletonBehaviour`1.Instance">
+            <summary>
+            Singleton-Reference
+            Auto-Creates GameObject if it does not exist
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.Behaviours.SingletonBehaviour`1.instance">
+            <summary>
+            Internal Singleton-Reference
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Behaviours.SingletonBehaviour`1.hasRootObject">
+            <summary>
+            Whether this Singleton has a Root-Object. If true, root-Object will be added to DontDestroyOnLoad instead
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Behaviours.SingletonBehaviour`1.Awake">
+            <summary>
+            Singleton-Setup
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Behaviours.SingletonBehaviour`1.OnDestroy">
+            <summary>
+            Singleton-Destruction
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Comparers.Vector.ListVector3Comparer">
+            <summary>
+            Compares two Lists of Vector3 Objects
+            <para>
+                Made by: Frank van Hoof
+            </para>
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.Comparers.Vector.ListVector3Comparer.Instance">
+            <summary>
+            Static instance of ListVector3Comparer
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Comparers.Vector.ListVector3Comparer.Equals(System.Collections.Generic.List{UnityEngine.Vector3},System.Collections.Generic.List{UnityEngine.Vector3})">
+            <summary>
+            Checks whether two Lists are equal (same objects in same order)
+            </summary>
+            <param name="x">List 1</param>
+            <param name="y">List 2</param>
+            <returns>True if Lists have same Objects in same order</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Comparers.Vector.ListVector3Comparer.GetHashCode(System.Collections.Generic.List{UnityEngine.Vector3})">
+            <summary>
+            Returns HashCode for List (based on Objects in List)
+            </summary>
+            <param name="obj">List</param>
+            <returns>HashCode for <paramref name="obj"/> based on contents</returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Comparers.Vector.StackVector3Comparer">
+            <summary>
+            Compares two Stacks of Vector3 Objects
+            <para>
+                Made by: Frank van Hoof
+            </para>
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Comparers.Vector.StackVector3Comparer.sort">
+            <summary>
+            Whether to Sort the Stacks before Comparing
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Comparers.Vector.StackVector3Comparer.#ctor(System.Boolean)">
+            <summary>
+            Constructor for a StackVector3Comparer
+            </summary>
+            <param name="checkSorted">Whether to Sort the Stacks before Comparing</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Comparers.Vector.StackVector3Comparer.Equals(System.Collections.Generic.Stack{UnityEngine.Vector3},System.Collections.Generic.Stack{UnityEngine.Vector3})">
+            <summary>
+            Checks whether two Stacks are equal (same objects in same order)
+            </summary>
+            <param name="x">List 1</param>
+            <param name="y">List 2</param>
+            <returns>True if Lists have the same Objects in the same order</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Comparers.Vector.StackVector3Comparer.GetHashCode(System.Collections.Generic.Stack{UnityEngine.Vector3})">
+            <summary>
+            Returns HashCode for List (based on Objects in List)
+            </summary>
+            <param name="obj">List</param>
+            <returns>HashCode for <paramref name="obj"/> based on contents</returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Comparers.Vector.Vector3Comparer">
+            <summary>
+            Compares Vector3 Instances (using ==)
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.Comparers.Vector.Vector3Comparer.Instance">
+            <summary>
+            Static instance of Vector3Comparer
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Comparers.Vector.Vector3Comparer.Equals(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary>
+            Checks whether 2 Vector3-Objects are equal (<b>uses ==</b>)
+            </summary>
+            <param name="a">Vector 1</param>
+            <param name="b">Vector 2</param>
+            <returns>True if <paramref name="a"/> == <paramref name="b"/></returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Comparers.Vector.Vector3Comparer.GetHashCode(UnityEngine.Vector3)">
+            <summary>
+            Returns HashCode for Object
+            </summary>
+            <param name="obj">Object to get HashCode for</param>
+            <returns>HashCode for <paramref name="obj"/></returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Comparers.Vector.Vector3Comparer.System#Collections#Generic#IComparer{UnityEngine#Vector3}#Compare(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary>
+            Compares two Vector3 Objects (by Magnitude, then coordinates)
+            </summary>
+            <param name="a">Vector 1</param>
+            <param name="b">Vector 2</param>
+            <returns>0 if <paramref name="a"/>.Equals(b), <paramref name="a"/>.magnitude.CompareTo(<paramref name="b"/>) otherwise</returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Containers.BehaviourCache">
+            <summary>
+            BehaviourCache holds the cache of (Unique) CachedBehaviours by their Type
+            <para>
+                BehaviourCache can also be used manually to cache and retrieve any MonoBehaviour
+            </para>
+            <para>
+                Made by: Frank van Hoof
+            </para>
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Containers.BehaviourCache.Cache">
+            <summary>
+            <b>Private</b>: Cache of Monobehaviours by Type
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Containers.BehaviourCache.FindBehaviourOfType``1">
+            <summary>
+            Returns (Cached) Behaviour of Type <typeparamref name="T"/>
+            <para>
+                Returns FindObjectOfType&lt;<typeparamref name="T"/>&gt; if it is not currently in Cache
+            </para>
+            </summary>
+            <typeparam name="T">Type of Behaviour to return</typeparam>
+            <returns>(Cached) Behaviour of Type <typeparamref name="T"/>, or NULL if none can be found</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Containers.BehaviourCache.Register``1(``0,System.Boolean)">
+            <summary>
+            Registers a MonoBehaviour to the Cache by its Type <typeparamref name="T"/>
+            </summary>
+            <param name="behaviour">Behaviour to Register</param>
+            <param name="forceReplace">Whether to force overriding existing Behaviours of same Type</param>
+            <typeparam name="T">Type of Behaviour to Register</typeparam>
+            <returns>True if registration is successfull</returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Containers.CoroutineWithData`1">
+            <summary>
+            Container for a Coroutine that holds Return-Data (of type <typeparamref name="T"/>)
+            <para>
+                Made by: Frank van Hoof
+            </para>
+            </summary>
+            <typeparam name="T">Type of Return-Data</typeparam>
+        </member>
+        <member name="F:nl.DTT.Utils.Containers.CoroutineWithData`1.Coroutine">
+            <summary>
+            Coroutine that is run
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Containers.CoroutineWithData`1.Target">
+            <summary>
+            Target IEnumerator
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.Containers.CoroutineWithData`1.Result">
+            <summary>
+            Result (type <typeparamref name="T"/>) from Coroutine
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Containers.CoroutineWithData`1.#ctor(UnityEngine.MonoBehaviour,System.Collections.IEnumerator)">
+            <summary>
+            Constructor for CoroutineWithData
+            </summary>
+            <param name="owner">Owner of Coroutine (MonoBehaviour that runs it)</param>
+            <param name="target">Target-Routine</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Containers.CoroutineWithData`1.Run">
+            <summary>
+            Runs the Coroutine and stores its result in Result
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Containers.SerializableVector">
+            <summary>
+            Vector3-Object without recursive functions, such that it can be Serialized
+            <para>
+                Made by: Frank van Hoof
+            </para>
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Containers.SerializableVector.X">
+            <summary>
+            X-Coordinate
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Containers.SerializableVector.Y">
+            <summary>
+            Y-Coordinate
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Containers.SerializableVector.Z">
+            <summary>
+            Z-Coordinate
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Containers.SerializableVector.#ctor(System.Single,System.Single,System.Single)">
+            <summary>
+            Constructor for a Serializable Vector from the Coordinates
+            </summary>
+            <param name="vecX">X-Coordinate</param>
+            <param name="vecY">Y-Coordinate</param>
+            <param name="vecZ">Z-Coordinate</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Containers.SerializableVector.#ctor(UnityEngine.Vector2)">
+            <summary>
+            Constructor for a Serializable Vector from a Vector2-Instance
+            </summary>
+            <param name="vec">Vector2-Instance</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Containers.SerializableVector.#ctor(UnityEngine.Vector3)">
+            <summary>
+            Constructor for a Serializable Vector from a Vector3-Instance
+            </summary>
+            <param name="vec">Vector3-Instance</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Containers.SerializableVector.ToVector2">
+            <summary>
+            Creates a new Vector2-Instance from the Coordinates in this SerializableVector
+            </summary>
+            <returns>New Vector2-Instance with the Coordinates of this SerializableVector</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Containers.SerializableVector.ToVector3">
+            <summary>
+            Creates a new Vector2-Instance from the Coordinates in this SerializableVector
+            </summary>
+            <returns>New Vector2-Instance with the Coordinates of this SerializableVector</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Containers.SerializableVector.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructor for Serialized Vector (During Serialization)
+            </summary>
+            <param name="info">SerializationInfo of Vector</param>
+            <param name="context">StreamingConteXt of Vector</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Containers.SerializableVector.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Gets data of Serialized Vector (During Serialization)
+            </summary>
+            <param name="info">SerializationInfo for Vector</param>
+            <param name="context">SerializationConteXt for Vector</param>
+        </member>
+        <member name="T:nl.DTT.Utils.Containers.CallBackResponse`1">
+            <summary>
+            Container with Data (of type <typeparamref name="T"/>) that can be used for Callbacks
+            <para>
+                This Container has a LoadingState which can be used to tell if 
+                a response has been obtained, and whether the call was successfull
+            </para>
+            <para>
+                Made by:
+            </para>
+            </summary>
+            <typeparam name="T">Data-Type for response</typeparam>
+        </member>
+        <member name="F:nl.DTT.Utils.Containers.CallBackResponse`1.LoadingState">
+            <summary>
+            LoadingState for Callback
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Containers.CallBackResponse`1.Data">
+            <summary>
+            Data from Callback
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.Containers.CallBackResponse`1.HasSucceeded">
+            <summary>
+            Whether the Call is Finished and has Data
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.Containers.CallBackResponse`1.HasFailed">
+            <summary>
+            Whether the Call has Failed
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.Containers.CallBackResponse`1.HasError">
+            <summary>
+            Whether the Response contains an Error
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.Containers.CallBackResponse`1.HasData">
+            <summary>
+            Whether this Response has any Data
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.Containers.CallBackResponse`1.HasFinished">
+            <summary>
+            Whether this Response has Finished
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Containers.CallBackResponse`1.Error">
+            <summary>
+            Error for this CallbackResponse, if there was one
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Containers.CallBackResponse`1.#ctor(nl.DTT.Utils.Enums.LoadingState,`0)">
+            <summary>
+            Constructor for a CallBackResponse with a set LoadingState and Data
+            </summary>
+            <param name="state">LoadingState to set</param>
+            <param name="data">Data (of type <typeparamref name="T"/>) to set</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Containers.CallBackResponse`1.#ctor(nl.DTT.Utils.Enums.LoadingState)">
+            <summary>
+            Constructor for a CallBackResponse with a set LoadingState
+            <para>
+                Data = default(<typeparamref name="T"/>)
+            </para>
+            </summary>
+            <param name="state">LoadingState to set</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Containers.CallBackResponse`1.#ctor(`0)">
+            <summary>
+            Constructor for a CallBackResponse with set Data 
+            <para>
+                LoadingState = Finished
+            </para>
+            </summary>
+            <param name="data">Data (of type <typeparamref name="T"/>) to set</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Containers.CallBackResponse`1.#ctor(nl.DTT.Utils.Exceptions.CallBackError)">
+            <summary>
+            Constructor for a CallBackResponse with an Error
+            <para>
+                LoadingState = Request_Failed
+            </para>
+            </summary>
+            <param name="error">Error to Set</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Containers.CallBackResponse`1.#ctor(nl.DTT.Utils.Enums.LoadingState,nl.DTT.Utils.Exceptions.CallBackError)">
+            <summary>
+            Constructor for a CallBackResponse with an Error
+            </summary>
+            <param name="state">LoadingState to Set</param>
+            <param name="error">Error to Set</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Containers.CallBackResponse`1.#ctor(`0,nl.DTT.Utils.Enums.LoadingState,nl.DTT.Utils.Exceptions.CallBackError)">
+            <summary>
+            Constructor for a CallBackResponse with an Error
+            </summary>
+            <param name="data">(Possibly Corrupted) Data for this CallBackResponse</param>
+            <param name="state">LoadingState to Set</param>
+            <param name="error">Error to Set</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Containers.CallBackResponse`1.ToString">
+            <summary>
+            String-Representation of Callback
+            <para>
+                [CallbackResponse: LoadingState=[State], HasData=[HasData], Data=[Data], ErrorCode=[ErrorCode]]
+            </para>
+            </summary>
+            <returns>String-Representation of Callback</returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Enums.Axis">
+            <summary>
+            Axes in a 3D environment
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.Axis.None">
+            <summary>
+            None (-1)
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.Axis.Horizontal">
+            <summary>
+            Horizontal Axis (X)
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.Axis.Vertical">
+            <summary>
+            Vertical Axis (Y)
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.Axis.Depth">
+            <summary>
+            Forward Axis (Z)
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.Axis.X">
+            <summary>
+            Horizontal Axis (X)
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.Axis.Y">
+            <summary>
+            Vertical Axis (Y)
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.Axis.Z">
+            <summary>
+            Forward Axis (Z)
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Enums.Direction">
+            <summary>
+            Direction in 3D Space
+            <para>
+                Values are based on Unity's base axes, where: 
+                Right = East = X+,
+                Up = Y+,
+                Forward = North = Z+
+            </para>
+            <para>
+                Values are (+/-)(Vector3index + 1)
+            </para>
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.Direction.None">
+            <summary>
+            Default value
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.Direction.North">
+            <summary>
+            North, Forward, Z+
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.Direction.East">
+            <summary>
+            East, Right, X+
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.Direction.Up">
+            <summary>
+            Up, Y+
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.Direction.Forward">
+            <summary>
+            Forward, North, Z+
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.Direction.Right">
+            <summary>
+            Right, East, X+
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.Direction.South">
+            <summary>
+            South, Backward, Z-
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.Direction.West">
+            <summary>
+            West, Left, X-
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.Direction.Down">
+            <summary>
+            Down, Y-
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.Direction.Backward">
+            <summary>
+            Backward, South, Z-
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.Direction.Left">
+            <summary>
+            Left, West, X-
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Enums.MouseButton">
+            <summary>
+            Mouse-Buttons
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.MouseButton.Left">
+            <summary>
+            Left-MouseButton (Primary Button)
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.MouseButton.Right">
+            <summary>
+            Right-MouseButton (Secondary Button)
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.MouseButton.Middle">
+            <summary>
+            Middle-MouseButton
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Enums.APITypes">
+            <summary>
+            Different types for web API
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.APITypes.INT">
+            <summary>
+            Integer
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.APITypes.STRING">
+            <summary>
+            String
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.APITypes.UNDEFINED">
+            <summary>
+            Undefined Type
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Enums.APIMethods">
+            <summary>
+            Different methods for web API 
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.APIMethods.GET">
+            <summary>
+            HTTP GET
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.APIMethods.POST">
+            <summary>
+            HTTP POST
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.APIMethods.PUT">
+            <summary>
+            HTTP PUT
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.APIMethods.DELETE">
+            <summary>
+            HTTP DELETE
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.APIMethods.PATCH">
+            <summary>
+            HTTP PATCH
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Enums.Language">
+            <summary>
+            Languages
+            <para>
+                Contains all SystemLanguages for Unity
+            </para>
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Enums.ISOCode639">
+            <summary>
+            ISO-Codes for languages
+            <para>
+                Int-Value equal to Language-Enum
+            </para>
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Enums.LoadingState">
+            <summary>
+            LoadingState for File/API-Loading and Parsing
+            <para>
+                The LoadingState 0 (BUILDING) is the first, the LoadingState 12 (FINISHED) is the last
+                When a LoadingState is set it means that the preceding LoadingStates succeeded
+            </para>
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.LoadingState.INPUT_PARSING">
+            <summary>
+            Input parameters are being parsed
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.LoadingState.INPUT_PARSING_FAILED">
+            <summary>
+            Parsing of the input parameters failed
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.LoadingState.INPUT_PARSING_SUCCEED">
+            <summary>
+            Parsing of the input parameters succeeded
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.LoadingState.REQUESTED">
+            <summary>
+            A request has been made
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.LoadingState.REQUEST_FAILED">
+            <summary>
+            The request failed
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.LoadingState.REQUEST_SUCCEED">
+            <summary>
+            The request succeeded
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.LoadingState.OUTPUT_PARSING">
+            <summary>
+            Output is being parsed
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.LoadingState.OUTPUT_PARSING_FAILED">
+            <summary>
+            The parsing of the output failed
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.LoadingState.OUTPUT_PARSING_SUCCEED">
+            <summary>
+            The parsing of the output succeeded
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.LoadingState.FINISHED">
+            <summary>
+            The request is finished (and has succeeded)
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Enums.LoggingLevel">
+            <summary>
+            Logging level
+            <para>
+                LogAmount increases with value, starting at 0 (None/Error)
+            </para>
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.LoggingLevel.Error">
+            <summary>
+            Log Errors only
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.LoggingLevel.Warning">
+            <summary>
+            Log Warnings and Errors
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.LoggingLevel.Info">
+            <summary>
+            Log Info, Warnings and Errors
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.LoggingLevel.Debug">
+            <summary>
+            Log Debug, Info, Warnings and Errors
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Enums.LoggingLevel.Development">
+            <summary>
+            Log Development, Debug, Info, Warnings and Errors
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Exceptions.CallBackError">
+            <summary>
+            Struct for storing Error Messages (including their Code)
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Exceptions.CallBackError.ErrorCode">
+            <summary>
+            [READONLY] Code for this Error
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Exceptions.CallBackError.ErrorMessage">
+            <summary>
+            [READONLY] Message for this Error
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Exceptions.CallBackError.#ctor(System.Int64,System.String)">
+            <summary>
+            Constructor for a CallbackError
+            </summary>
+            <param name="errorCode"></param>
+            <param name="errorMessage"></param>
+        </member>
+        <member name="M:nl.DTT.Utils.Exceptions.CallBackError.ToString">
+            <summary>
+            Presents Error as a String: (Error [CODE]: MESSAGE)
+            </summary>
+            <returns>String-Representation of Error</returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Exceptions.NoIntersectionException">
+            <summary>
+            Exception thrown when no Intersection between two lines could be found
+            <para>
+                Made by: Frank van Hoof
+            </para>
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Exceptions.NoIntersectionException.#ctor">
+            <summary>
+            Constructor for a NoIntersectionException without a Message
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Exceptions.NoIntersectionException.#ctor(System.String)">
+            <summary>
+            Constructor for a NoIntersectionException with a Message
+            </summary>
+            <param name="message">Message for Exception</param>
+        </member>
+        <member name="T:nl.DTT.Utils.Extensions.CanvasExtensions">
+            <summary>
+            Extension-Methods for Unitys Canvas-Class
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.CanvasExtensions.FindCanvas(UnityEngine.RenderMode)">
+            <summary>
+            DOES <b>NOT</b> CURRENTLY WORK
+            <para>
+                Finds the First Canvas of a specific type
+            </para>
+            </summary>
+            <param name="canvasType">RenderMode for Canvas to Find</param>
+            <returns>DEFECTIVE: First Canvas of Type, or null if none can be round</returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Extensions.DictionaryExtensions">
+            <summary>
+            Extension-Methods for the Dictionary-Class
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.DictionaryExtensions.ReplaceKey``2(System.Collections.Generic.IDictionary{``0,``1},``0,``0)">
+            <summary>
+            Replaces a Key in a Dictionary
+            </summary>
+            <typeparam name="TKey">Key-Type of Dictionary</typeparam>
+            <typeparam name="TValue">Value-Type of Dictionary</typeparam>
+            <param name="dict">Dictionary to replace in</param>
+            <param name="oldKey">Key to replace</param>
+            <param name="newKey">New key to set</param>
+            <returns>True if succesfull (<paramref name="newKey"/> does not exist, <paramref name="oldKey"/> does exist)</returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Extensions.ComponentExtensions">
+            <summary>
+            Extension-Methods for Unity Components
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.ComponentExtensions.SetSerializedField(UnityEngine.Component,System.String,System.Object)">
+            <summary>
+            Set field through reflection
+            <para>
+                Should <b>NOT</b> be used at RunTime
+            </para>
+            </summary>
+            <param name="component">Component to set Field on</param>
+            <param name="fieldName">Name of Field</param>
+            <param name="value">Value to set</param>
+            <exception cref="T:System.InvalidOperationException">Thrown if Field cannot be found</exception>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.ComponentExtensions.GetSerializedField``1(UnityEngine.Component,System.String)">
+            <summary>
+            Get field-value through reflection
+            <para>
+                Should <b>NOT</b> be used at RunTime
+            </para>
+            </summary>
+            <param name="component">Component to get Field-Value on</param>
+            <param name="fieldName">Name of Field</param>
+            <exception cref="T:System.InvalidOperationException">Thrown if Field cannot be found</exception>
+            <typeparam name="T">Data-Type for Field</typeparam>
+            <returns>Value of (private) field</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.ComponentExtensions.CallPrivateMethod(UnityEngine.Component,System.String,System.Object[])">
+            <summary>
+            Calls method through reflection
+            <para>
+                Should <b>NOT</b> be used at RunTime
+            </para>
+            </summary>
+            <param name="component">Component to call Method on</param>
+            <param name="methodName">Name of Method to call</param>
+            <param name="methodParameters">Paramters for Methods (in order)</param>
+            <exception cref="T:System.InvalidOperationException">Thrown if Field cannot be found</exception>
+            <returns>result of Method (null for void)</returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Extensions.EnumExtensions">
+            <summary>
+            Extension-Methods (Generic) for Enum
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.EnumExtensions.Description(System.Enum)">
+            <summary>
+            Text from [Description]-Attribute on Value
+            </summary>
+            <param name="enumVal">Value to get Description for</param>
+            <returns>Description for Value</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.EnumExtensions.HasFlag(System.Enum,System.Enum)">
+            <summary>
+            Whether this instance has a specific Flag set
+            </summary>
+            <param name="enumVal">Value to check</param>
+            <param name="flag">Flag to check for</param>
+            <exception cref="T:System.InvalidOperationException">Thrown if Enum does not have Flags-Attribute</exception>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="flag"/> does not have a proper value</exception>
+            <returns>True if <paramref name="flag"/> is set in <paramref name="enumVal"/></returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Extensions.Enums.DirectionExtensions">
+            <summary>
+            Extension-Class for Direction-Enum
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.Enums.DirectionExtensions.GetVector3Index(nl.DTT.Utils.Enums.Direction)">
+            <summary>
+            Returns index in Vector3 for Direction (0, 1, or 2)
+            </summary>
+            <param name="direction">Direction to parse index for</param>
+            <returns>Index in Vector3 for <paramref name="direction"/></returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.Enums.DirectionExtensions.GetWorldDirection(nl.DTT.Utils.Enums.Direction)">
+            <summary>
+            Returns World-Direction (Vector3) for Direction (e.g. Direction.Up == Vector3.up)
+            </summary>
+            <param name="direction">Direction to get World-Direction for</param>
+            <returns>Vector3 for <paramref name="direction"/> (e.g. Direction.Up == Vector3.up)</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.Enums.DirectionExtensions.GetTransformDirection(nl.DTT.Utils.Enums.Direction,UnityEngine.Transform)">
+            <summary>
+            Returns Transform-Direction (Vector3) for Direction (e.g. Direction.Up == transform.up)
+            </summary>
+            <param name="direction">Direction to get Transform-Direction for</param>
+            <param name="transform">Transform to get Direction (up and forward) from</param>
+            <returns>Vector3 for <paramref name="direction"/> (e.g. Direction.Up == Vector3.up)</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.Enums.DirectionExtensions.GetRotatedDirection(nl.DTT.Utils.Enums.Direction,UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary>
+            Returns Rotated Direction (Vector3) for Direction (e.g. Direction.Up == Rotation.up)
+            </summary>
+            <param name="direction">Direction to get Rotated Direction for</param>
+            <param name="forward">Forward-Vector for Rotation</param>
+            <param name="up">Up-Vector for Rotation</param>
+            <returns>Vector3 for <paramref name="direction"/> (e.g. Direction.Up == Rotation.up)</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.Enums.DirectionExtensions.GetRotatedDirection(nl.DTT.Utils.Enums.Direction,UnityEngine.Quaternion)">
+            <summary>
+            Returns Rotated Direction (Vector3) for Direction (e.g. Direction.Up == Rotation.up)
+            </summary>
+            <param name="direction">Direction to get Rotated Direction for</param>
+            <param name="rotation">Rotation to get Direction from (up and forward)</param>
+            <returns>Vector3 for <paramref name="direction"/> (e.g. Direction.Up == Rotation.up)</returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Extensions.Enums.LanguageExtensions">
+            <summary>
+            Extension-Methods for Language-Enums
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.Enums.LanguageExtensions.GetLanguage(nl.DTT.Utils.Enums.ISOCode639)">
+            <summary>
+            Returns the Language for a specific ISO-Code
+            </summary>
+            <param name="code">ISO-Code to get Language for</param>
+            <returns>Language corresponding to <paramref name="code"/>. Language.Unknown if conversion fails</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.Enums.LanguageExtensions.GetLanguage(UnityEngine.SystemLanguage)">
+            <summary>
+            Returns the Language for a specific SystemLanguage
+            </summary>
+            <param name="systemLanguage">SystemLanguage to get Language for</param>
+            <returns>Language corresponding to <paramref name="systemLanguage"/>. Language.Unknown if conversion fails</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.Enums.LanguageExtensions.GetISOCode(nl.DTT.Utils.Enums.Language)">
+            <summary>
+            Returns the ISO-Code (ISO 639-1) for a specific Language
+            </summary>
+            <param name="language">Language to get ISO-Code for</param>
+            <returns>ISO-Code corresponding to <paramref name="language"/>. ISOCode639.UNK if conversion fails</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.Enums.LanguageExtensions.GetISOCode(UnityEngine.SystemLanguage)">
+            <summary>
+            Returns the ISO-Code (ISO 639-1) for a specific SystemLanguage
+            </summary>
+            <param name="systemLanguage">SystemLanguage to get ISO-Code for</param>
+            <returns>ISO-Code corresponding to <paramref name="systemLanguage"/>. ISOCode639.UNK if conversion fails</returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Extensions.Enums.LogExtensions">
+            <summary>
+            Extension-Methods for LoggingLevel-Enum
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.Enums.LogExtensions.Log(nl.DTT.Utils.Enums.LoggingLevel,System.String,nl.DTT.Utils.Enums.LoggingLevel,UnityEngine.Object,System.Boolean)">
+            <summary>
+            Logs a message, but only if UserLevel is high enough
+            <para>
+                Logging of Levels higher than Info is automatically disabled in a non-development environment
+            </para>
+            </summary>
+            <param name="level">LogLevel of Message</param>
+            <param name="msg">Message to Log</param>
+            <param name="usrLevel">User-LogLevel</param>
+            <param name="context">Context for <paramref name="msg"/></param>
+            <param name="useLogging">Whether User is using Logging (if False, <paramref name="usrLevel"/> is set to ErrorOnly)</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.Enums.LogExtensions.LogAlways(nl.DTT.Utils.Enums.LoggingLevel,System.String,UnityEngine.Object)">
+            <summary>
+            Logs a message, even if the UserLevel is too low
+            <para>
+                Logging of Levels higher than Info is automatically disabled in a non-development environment
+            </para>
+            </summary>
+            <param name="level">LogLevel of Message</param>
+            <param name="msg">Message to Log</param>
+            <param name="context">Context for <paramref name="msg"/></param>
+        </member>
+        <member name="T:nl.DTT.Utils.Extensions.GameObjectExtensions">
+            <summary>
+            Extension-Methods for Unitys GameObject-Class
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.GameObjectExtensions.AddComponentIfNotExists``1(UnityEngine.GameObject)">
+            <summary>
+            Adds a new Component if the GameObject does not have a Component of that Type (<typeparamref name="T"/>) yet
+            <para>
+                Runs GetComponent first, to check if Component already exist on the GameObject
+            </para>
+            </summary>
+            <typeparam name="T">Type of Component to Add</typeparam>
+            <param name="obj">GameObject to Add Component to</param>
+            <returns>The (new) Component on the GameObject</returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Extensions.IEnumerableExtensions">
+            <summary>
+            Extension-Methods for IEnumerable
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.IEnumerableExtensions.ToHashSet``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Returns a new hashset from the current IEnumerable
+            </summary>
+            <typeparam name="T">Type of the hashset collection</typeparam>
+            <param name="source">The IEnumerable collection</param>
+            <param name="comparer">The Equality comparer. Is not required</param>
+            <returns>Hashset with same results as the IEnumerable</returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Extensions.Matrix4x4Extensions">
+            <summary>
+            Extension-Methods for a 4x4 Matrix
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.Matrix4x4Extensions.ExtractTranslationFromMatrix(UnityEngine.Matrix4x4)">
+            <summary>
+            Extract translation from transform matrix.
+            </summary>
+            <param name="matrix">Transform matrix</param>
+            <returns>
+            Translation offset.
+            </returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.Matrix4x4Extensions.ExtractRotationFromMatrix(UnityEngine.Matrix4x4)">
+            <summary>
+            Extract rotation quaternion from transform matrix.
+            </summary>
+            <param name="matrix">Transform matrix</param>
+            <returns>
+            Quaternion representation of rotation transform.
+            </returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.Matrix4x4Extensions.ExtractScaleFromMatrix(UnityEngine.Matrix4x4)">
+            <summary>
+            Extract scale from transform matrix.
+            </summary>
+            <param name="matrix">Transform matrix</param>
+            <returns>
+            Scale vector
+            </returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Extensions.ScriptableObjectExtensions">
+            <summary>
+            Extension-Methods for Unitys ScriptableObject-Class
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.ScriptableObjectExtensions.SetSerializedField(UnityEngine.ScriptableObject,System.String,System.Object)">
+            <summary>
+            Set field through reflection
+            <para>
+                Should <b>NOT</b> be used at RunTime
+            </para>
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Thrown if Field cannot be found</exception>
+            <param name="obj">ScriptableObject to set Field on</param>
+            <param name="fieldName">Name of Field to set value to</param>
+            <param name="value">Value to set</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.ScriptableObjectExtensions.GetSerializedField``1(UnityEngine.ScriptableObject,System.String)">
+            <summary>
+            Get field through reflection
+            <para>
+                Should <b>NOT</b> be used at RunTime
+            </para>
+            </summary>
+            <typeparam name="T">Data-Type for Field</typeparam>
+            <exception cref="T:System.InvalidOperationException">Thrown if Field cannot be found</exception>
+            <param name="obj">ScriptableObject to get Field from</param>
+            <param name="fieldName">Name of Field to get value of</param>
+            <returns>Value of Field</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.ScriptableObjectExtensions.CallPrivateMethod(UnityEngine.ScriptableObject,System.String,System.Object[])">
+            <summary>
+            Calls method through reflection
+            <para>
+                Should <b>NOT</b> be used at RunTime
+            </para>
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Thrown if Method cannot be found</exception>
+            <param name="obj">ScriptableObject to get Field from</param>
+            <param name="methodName">Name of Method to call</param>
+            <param name="methodParameters">Parameters for Method (in order)</param>
+            <returns>result of Method (NULL for void)</returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Extensions.StructExtensions">
+            <summary>
+            Extension-Methods for Structs
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.StructExtensions.IsDefault``1(``0)">
+            <summary>
+            Checks whether struct equals default(<typeparamref name="T"/>)
+            </summary>
+            <typeparam name="T">Type of struct</typeparam>
+            <param name="value">struct to check</param>
+            <returns><paramref name="value"/>.Equals(default(<typeparamref name="T"/>))</returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Extensions.TransformExtensions">
+            <summary>
+            Extensions-Methods for Unitys Transform-Class
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.TransformExtensions.SetLossyScale(UnityEngine.Transform,UnityEngine.Vector3)">
+            <summary>
+            Sets local scale by lossy scale
+            <para>
+                Behaves erratically if rotations have been applied
+            </para>
+            </summary>
+            <param name="t">Transform to set to</param>
+            <param name="lossyScale">LossyScale to set</param>
+        </member>
+        <member name="T:nl.DTT.Utils.Extensions.VectorExtensions">
+            <summary>
+            Extension-Methods for the Vector-Classes (Vector2, Vector3)
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.VectorExtensions.IsValid(UnityEngine.Vector2)">
+            <summary>
+            Checks whether Vector contains NaN at any of its coordinates
+            </summary>
+            <param name="vector">Vector to check</param>
+            <returns>True if none of the Coordinates are NaN</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.VectorExtensions.IsValid(UnityEngine.Vector3)">
+            <summary>
+            Checks whether Vector contains NaN at any of its coordinates
+            </summary>
+            <param name="vector">Vector to check</param>
+            <returns>True if none of the Coordinates are NaN</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.VectorExtensions.IsFinite(UnityEngine.Vector2)">
+            <summary>
+            Checks whether Vector contains Infinite at any of its coordinates
+            </summary>
+            <param name="vector">Vector to check</param>
+            <returns>True if none of the Coordinates are Infinite</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.VectorExtensions.IsFinite(UnityEngine.Vector3)">
+            <summary>
+            Checks whether Vector contains Infinite at any of its coordinates
+            </summary>
+            <param name="vector">Vector to check</param>
+            <returns>True if none of the Coordinates are Infinite</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.VectorExtensions.IsNearlyEqual(UnityEngine.Vector3,UnityEngine.Vector3,System.Single)">
+            <summary>
+            Checks if two vectors are nearly equal to each other with a difference tolerance (exclusive).
+            </summary>
+            <param name="a">Vector 1</param>
+            <param name="b">Vector 2</param>
+            <param name="tolerance">Tolerance for Equality</param>
+            <returns>True if nearly equal (Distance is less than <paramref name="tolerance"/>)</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.VectorExtensions.Abs(UnityEngine.Vector2)">
+            <summary>
+            Returns absolute values for Vector (each Coordinate)
+            </summary>
+            <param name="vector">Vector to get Abs for</param>
+            <returns><paramref name="vector"/> where x, y and z are > 0</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.VectorExtensions.Abs(UnityEngine.Vector3)">
+            <summary>
+            Returns absolute values for Vector (each Coordinate)
+            </summary>
+            <param name="vector">Vector to get Abs for</param>
+            <returns><paramref name="vector"/> where x, y and z are > 0</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.VectorExtensions.RoundToDecimals(UnityEngine.Vector2,System.Int32)">
+            <summary>
+            Rounds a Vector to a specified amount of decimals (each coordinate)
+            </summary>
+            <param name="toRound">Vector to round</param>
+            <param name="decimals">Amount of decimals to round to</param>
+            <returns><paramref name="toRound"/> rounded to <paramref name="decimals"/></returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.VectorExtensions.RoundToDecimals(UnityEngine.Vector3,System.Int32)">
+            <summary>
+            Rounds a Vector to a specified amount of decimals (each coordinate)
+            </summary>
+            <param name="toRound">Vector to round</param>
+            <param name="decimals">Amount of decimals to round to</param>
+            <returns><paramref name="toRound"/> rounded to <paramref name="decimals"/></returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.VectorExtensions.RoundToMultiple(UnityEngine.Vector2,System.Single)">
+            <summary>
+            Returns point on a 2D-Grid
+            <para>
+                Grid centers around Vector3.Zero with Vector2.Zero being the bottom left corner of the center-most tile
+            </para>
+            <para>
+                Rounds EVERY coordinate to multiple seperately
+            </para>
+            </summary>
+            <param name="toRound">Position to check from</param>
+            <param name="multiple">Size of 1 tile in the Grid</param>
+            <returns><paramref name="toRound"/> rounded (each coordinate) to a GridPosition</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.VectorExtensions.RoundToMultiple(UnityEngine.Vector3,System.Single)">
+            <summary>
+            Returns point on a 3D-Grid
+            <para>
+                Grid centers around Vector3.Zero with Vector2.Zero being the bottom left corner of the center-most tile
+            </para>
+            <para>
+                Rounds EVERY coordinate to multiple seperately
+            </para>
+            </summary>
+            <param name="toRound">Position to check from</param>
+            <param name="multiple">Size of 1 tile in the Grid</param>
+            <returns><paramref name="toRound"/> rounded (each coordinate) to a GridPosition</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.VectorExtensions.RoundMagnitudeToMultiple(UnityEngine.Vector2,System.Single)">
+            <summary>
+            Rounds a Vectors Magnitude to the closest multiple of a value
+            </summary>
+            <param name="toRound">Vector to round Magnitude for</param>
+            <param name="multiple">Multiple to round Magnitude to</param>
+            <returns><paramref name="toRound"/> with its Magnitude rounded to multiple of <paramref name="multiple"/></returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.VectorExtensions.RoundMagnitudeToMultiple(UnityEngine.Vector3,System.Single)">
+            <summary>
+            Rounds a Vectors Magnitude to the closest multiple of a value
+            </summary>
+            <param name="toRound">Vector to round Magnitude for</param>
+            <param name="multiple">Multiple to round Magnitude to</param>
+            <returns><paramref name="toRound"/> with its Magnitude rounded to multiple of <paramref name="multiple"/></returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.VectorExtensions.SquaredDistance(UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary>
+            Calculates Squared Distance between two Vector3-Positions
+            <para>
+                Cheaper to calculate than non-squared Distance
+            </para>
+            </summary>
+            <param name="start">First Vector3-Position</param>
+            <param name="end">Second Vector3-Position</param>
+            <returns>Squared Distance between Vector3-Positions</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.VectorExtensions.SquaredDistance(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary>
+            Calculates Squared Distance between two Vector2-Positions
+            <para>
+                Cheaper to calculate than non-squared Distance
+            </para>
+            </summary>
+            <param name="start">First Vector2-Position</param>
+            <param name="end">Second Vector2-Position</param>
+            <returns>Squared Distance between Vector2-Positions</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.VectorExtensions.ToVector2(UnityEngine.Vector3,nl.DTT.Utils.Enums.Axis,nl.DTT.Utils.Enums.Axis)">
+            <summary>
+            Returns a Vector2-Instance of a Vector3
+            </summary>
+            <param name="toParse">Vector to Parse</param>
+            <param name="x">Which Axis (in <paramref name="toParse"/>) to set returnVal.X to (Default: X)</param>
+            <param name="y">Which Axis (in <paramref name="toParse"/>) to set returnVal.Y to (Default: Y)</param>
+            <returns>new Vector2(<paramref name="toParse"/>.x, <paramref name="toParse"/>.y) (for <paramref name="x"/> = Axis.X, <paramref name="y"/> = Axis.y)</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.VectorExtensions.ToVector3(UnityEngine.Vector2,nl.DTT.Utils.Enums.Axis,nl.DTT.Utils.Enums.Axis)">
+            <summary>
+            Returns a Vector3-Instance of a Vector2 (Z is 0)
+            </summary>
+            <param name="toParse">Vector to Parse</param>
+            <param name="x">Which Axis to set <paramref name="toParse"/>.x to</param>
+            <param name="y">Which Axis to set <paramref name="toParse"/>.y to</param>
+            <returns>new Vector3(<paramref name="toParse"/>.x, <paramref name="toParse"/>.y, 0) (for <paramref name="x"/> = Axis.X, <paramref name="y"/> = Axis.y)</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.VectorExtensions.ToLogString(UnityEngine.Vector2,System.Int32)">
+            <summary>
+            ToString with a set amount of decimals
+            </summary>
+            <param name="vec">Vector to stringify</param>
+            <param name="decimals">Amount of decimals for each coordinate (Default: 3)</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown if <paramref name="decimals"/> &lt; 0</exception>
+            <returns>String representation of <paramref name="vec"/>, with set amount of Decimals</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Extensions.VectorExtensions.ToLogString(UnityEngine.Vector3,System.Int32)">
+            <summary>
+            ToString with a set amount of decimals
+            </summary>
+            <param name="vec">Vector to stringify</param>
+            <param name="decimals">Amount of decimals for each coordinate (Default: 3)</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown if <paramref name="decimals"/> &lt; 0</exception>
+            <returns>String representation of <paramref name="vec"/>, with set amount of Decimals</returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Functions.AppInfo">
+            <summary>
+            AppInfo provides AppStore-References (links) for Apple and Google 
+            <para>
+                Made by:
+            </para>
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Functions.AppInfo.AndroidStoreURL">
+            <summary>
+            Base URL for android Play Store links
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Functions.AppInfo.iOSStoreURL">
+            <summary>
+            Base URL for iOS App Store links
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.AppInfo.GetAndroidStoreURL(System.String)">
+            <summary>
+            Return the AndroidStore link of the application
+            </summary>
+            <param name="appID">The id of the application for Android</param>
+            <returns>The AndroidStore link of the application</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.AppInfo.GetAppleStoreURL(System.String,System.String)">
+            <summary>
+            Return the AppleStore link of the application
+            </summary>
+            <param name="appStoreName">The name of the app that is used in the store (e.g. osr-star-finder)</param>
+            <param name="identifier">The Application-Identifier. If null, Application.identifier is used instead</param>
+            <returns>The AppleStore link of the application</returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Functions.Coroutines">
+            <summary>
+            Functions related to Coroutines
+            <para>
+                Made by: Frank van Hoof
+            </para>
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.Coroutines.Wait(System.Int32)">
+            <summary>
+            Waits for a specific amount of Frames
+            <para>
+            Usage: yield return Coroutines.Wait(x) (from inside Coroutine)
+            </para>
+            </summary>
+            <param name="frames">Amount of Frames to wait for</param>
+        </member>
+        <member name="T:nl.DTT.Utils.Functions.DTTMath">
+            <summary>
+            DTT's Math Library
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.DegreesToRadians(System.Single)">
+            <summary>
+            Converts Degrees to Radians
+            </summary>
+            <param name="degrees">Degrees to Convert</param>
+            <returns><paramref name="degrees"/> in Radians</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.RadiansToDegrees(System.Single)">
+            <summary>
+            Converts Radians to Degrees
+            </summary>
+            <param name="radians">Radians to Convert</param>
+            <returns><paramref name="radians"/> in Degrees</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.RefactorDegrees(System.Single)">
+            <summary>
+            Refactors Degrees to range 0-360
+            </summary>
+            <param name="value">Value to refactor</param>
+            <returns><paramref name="value"/> refactored to range 0-360</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.RefactorDegrees(System.Double)">
+            <summary>
+            Refactors Degrees to range 0-360
+            </summary>
+            <param name="value">Value to Refactor</param>
+            <returns><paramref name="value"/> refactored to range 0-360</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.Remap(System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Remaps the specified value from one range to another
+            </summary>
+            <param name="value">Value to remap</param>
+            <param name="oldLow">Old low Boundary</param>
+            <param name="oldHigh">Old high Boundary</param>
+            <param name="newLow">New low Boundary</param>
+            <param name="newHigh">New high Boundary</param>
+            <returns><paramref name="value"/> remapped to range <paramref name="newLow"/> - <paramref name="newHigh"/></returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.Map(System.Single,System.Single,System.Single)">
+            <summary>
+            Maps value to range start-end by assuming the range wraps around
+            </summary>
+            <param name="value">Value to remap</param>
+            <param name="start">Start of Range</param>
+            <param name="end">End of Range</param>
+            <returns>Mapped <paramref name="value"/></returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.ClosestTo(System.Collections.Generic.IEnumerable{System.Single},System.Single,System.Int32@)">
+            <summary>
+            Returns value closest to target (and its index) from an IEnumerable
+            </summary>
+            <param name="collection">Collection to search in</param>
+            <param name="target">Target-Value</param>
+            <param name="index"><b>OUT</b>: Index of found value</param>
+            <exception cref="T:System.InvalidOperationException">Thrown if <paramref name="collection"/> is empty</exception>
+            <returns>Closest value to <paramref name="target"/> in <paramref name="collection"/></returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.DecimalHoursToHMS(System.Single,System.Int32@,System.Int32@,System.Single@)">
+            <summary>
+            Converts Decimal Hours to Hours, Minutes and Seconds
+            </summary>
+            <param name="Decimal">Decimal Value to Convert</param>
+            <param name="Hours"><b>OUT</b>: Amount of Hours</param>
+            <param name="Minutes"><b>OUT</b>: Amount of Minutes</param>
+            <param name="Seconds"><b>OUT</b>: Amount of Seconds</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.DecimalDegreesToDMS(System.Single,System.Int32@,System.Int32@,System.Single@)">
+            <summary>
+            Converts Decimal Degrees to Degrees, Minutes and Seconds
+            </summary>
+            <param name="Decimal">Decimal Value to Convert</param>
+            <param name="Degrees"><b>OUT</b>: Amount of Degrees</param>
+            <param name="ArcMinutes"><b>OUT</b>: Amount of ArcMinutes</param>
+            <param name="ArcSeconds"><b>OUT</b>: Amount of ArcSeconds</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.RoundToDecimals(System.Single,System.Int32,System.MidpointRounding)">
+            <summary>
+            Rounds a number to a specific amount of decimal places
+            </summary>
+            <param name="number">Number to round</param>
+            <param name="decimals">Amount of decimal places to use</param>
+            <param name="roundingMode">RoundingMode for rounding .5 (e.g. Bankers-Rounding). Defaults to AwayFromZero (Standard rounding)</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown if <paramref name="decimals"/> &lt; 0</exception>
+            <returns><paramref name="number"/> rounded to <paramref name="decimals"/> decimal places</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.RoundToDecimals(System.Double,System.Int32,System.MidpointRounding)">
+            <summary>
+            Rounds a number to a specific amount of decimal places
+            </summary>
+            <param name="number">Number to round</param>
+            <param name="decimals">Amount of decimal places to use</param>
+            <param name="roundingMode">RoundingMode for rounding .5 (e.g. Bankers-Rounding). Defaults to AwayFromZero (Standard rounding)</param>
+            <returns><paramref name="number"/> rounded to <paramref name="decimals"/> decimal places</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.RoundToMultiple(System.Single,System.Single)">
+            <summary>
+            Rounds a float to a multiple of a value
+            </summary>
+            <param name="number">Number to round</param>
+            <param name="multiple">Value to round to multiple of</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown if <paramref name="multiple"/> &lt;= 0</exception>
+            <returns><paramref name="number"/> rounded to multiple of <paramref name="multiple"/></returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.ClosestPointOnLine(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3)">
+            <summary>
+            Finds the closest point on a Line from a specific point (Line-Projection)
+            </summary>
+            <param name="lineStart">Start of Line-Segment</param>
+            <param name="lineEnd">End of Line-Segment</param>
+            <param name="posToCheckFrom">Point to project</param>
+            <returns>Closest Point to <paramref name="posToCheckFrom"/> on line defined by <paramref name="lineStart"/> and <paramref name="lineEnd"/></returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.IntersectLineLine(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,System.Single@,System.Single@)">
+            <summary>
+            Calculates the Point of Intersection between two lines
+            <para>
+                Lines are defined by two points on each line
+            </para>
+            </summary>
+            <exception cref="T:nl.DTT.Utils.Exceptions.NoIntersectionException">Thrown if no Intersection is found</exception>
+            <param name="line1Point1">Point 1 on Line 1</param>
+            <param name="line1Point2">Point 2 on Line 1</param>
+            <param name="line2Point1">Point 1 on Line 2</param>
+            <param name="line2Point2">Point 2 on Line 2</param>
+            <param name="a"><b>OUT</b>: Ratio of point on Line 1 (if 0-a-1, the point is in between Point 1 and 2)</param>
+            <param name="b"><b>OUT</b>: Ratio of point on Line 1 (if 0-b-1, the point is in between Point 1 and 2)</param>
+            <returns>Point of Intersection between the two lines</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.IntersectLineSegment(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,System.Int32)">
+            <summary>
+            Calculates the Point of Intersection between a line and a segment
+            <para>
+                Lines are defined by two points on each line
+            </para>
+            </summary>
+            <exception cref="T:nl.DTT.Utils.Exceptions.NoIntersectionException">Thrown if no Intersection is found</exception>
+            <param name="segmentStart">StartPoint of Segment</param>
+            <param name="segmentEnd">EndPoint of Segment</param>
+            <param name="linePoint1">Point 1 on Line</param>
+            <param name="linePoint2">Point 2 on Line</param>
+            <param name="detail">Leniency-Amount. Allows for rounding-errors (e.g. 2 will use leniency of 2 * 1e-2, 4 will use 2 * 1e-4, etc.)</param>
+            <returns>Point of Intersection between the two lines</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.IntersectSegmentSegment(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,System.Int32)">
+            <summary>
+            Calculates the Point of Intersection between a two segments
+            <para>
+                Segments are defined by their start- and endpoints
+            </para>
+            </summary>
+            <exception cref="T:nl.DTT.Utils.Exceptions.NoIntersectionException">Thrown if no Intersection is found</exception>
+            <param name="segment1Start">StartPoint of Segment 1</param>
+            <param name="segment1End">EndPoint of Segment 1</param>
+            <param name="segment2Start">StartPoint of Segment 2</param>
+            <param name="segment2End">EndPoint of Segment 2</param>
+            /// <param name="detail">Leniency-Amount. Allows for rounding-errors (e.g. 2 will use leniency of 2 * 1e-2, 4 will use 2 * 1e-4, etc.)</param>
+            <returns>Point of Intersection between the two segments</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.GetOverlap(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2@,UnityEngine.Vector2@)">
+            <summary>
+            Finds the Overlap between two Segments
+            <para>
+                2D-ONLY!
+            </para>
+            </summary>
+            <param name="segment1Start">StartPoint of Segment 1</param>
+            <param name="segment1End">EndPoint of Segment 1</param>
+            <param name="segment2Start">StartPoint of Segment 2</param>
+            <param name="segment2End">EndPoint of Segment 2</param>
+            <param name="min"><b>OUT</b>: Smallest point</param>
+            <param name="max"><b>OUT</b>: Largest point</param>
+            <returns>Array with OverlapStart and OverlapEnd. NULL if no overlap can be found</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.IsAlmostZero(System.Single,System.Single)">
+            <summary>
+            Returns true if Mathf.Abs(value) &lt;= accuracy
+            </summary>
+            <param name="value">Value to check</param>
+            <param name="accuracy">Maximum offset from 0</param>
+            <returns>Mathf.Abs(<paramref name="value"/>) &lt;= <paramref name="accuracy"/></returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.AreParallel(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,System.Single)">
+            <summary>
+            Whether two lines are parallel
+            </summary>
+            <param name="line1Start">Point 1 on Line 1</param>
+            <param name="line1End">Point 2 on Line 1</param>
+            <param name="line2Start">Point 1 on Line 2</param>
+            <param name="line2End">Point 2 on Line 2</param>
+            <param name="threshold">Threshold for parallel (in <b>DEGREES</b>) (Default: 5)</param>
+            <returns>True if parallel</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.AreCollinear(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,System.Single)">
+            <summary>
+            Whether two lines are collinear
+            </summary>
+            <param name="line1Start">Point 1 on Line 1</param>
+            <param name="line1End">Point 2 on Line 1</param>
+            <param name="line2Start">Point 1 on Line 2</param>
+            <param name="line2End">Point 2 on Line 2</param>
+            <param name="threshold">Threshold for parallel (in <b>DEGREES</b>) (Default: 5)</param>
+            <returns>True if Collinear</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.SphericalDistance(UnityEngine.Vector3,UnityEngine.Vector3,System.Single)">
+            <summary>
+            Calculates distance between two points on a sphere across the sphere's surface
+            </summary>
+            <param name="pos1">Point 1</param>
+            <param name="pos2">Point 2</param>
+            <param name="sphereRadius">Radius of Sphere</param>
+            <returns>Spherical distance between <paramref name="pos1"/> and <paramref name="pos2"/></returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.DegreesToHours(System.Single,System.Single)">
+            <summary>
+            Converts from Degrees to Hours (e.g. for the rotation of a Planet)
+            </summary>
+            <param name="degrees">Degrees to Convert</param>
+            <param name="hoursInADay">Amount of Hours in a Day (full rotation)</param>
+            <returns>Hour-value for <paramref name="degrees"/></returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTMath.HoursToDegrees(System.Single,System.Single)">
+            <summary>
+            Converts from Hours to Degrees (e.g. for the rotation of a Planet)
+            </summary>
+            <param name="hours">Hours to Convert</param>
+            <param name="hoursInADay">Amount of Hours in a Day (full rotation)</param>
+            <returns>Degree-value for <paramref name="hours"/></returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Functions.DTTPhysics">
+            <summary>
+            DTT's Physics Library
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Functions.DTTText">
+            <summary>
+            DTT's Text Library
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTText.ParseToRADecMag(System.String,System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Parses StarCoordinates from String to RightAscension, Declination and Magnitude
+            <para>
+                TODO: ENTER EXAMPLE
+            </para>
+            </summary>
+            <param name="coordinate">String to Parse</param>
+            <param name="rightAscension"><b>OUT</b>: Right Ascension</param>
+            <param name="declination"><b>OUT</b>: Declination</param>
+            <param name="magnitude"><b>OUT</b>: Magnitude</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTText.ParseRAtoDecimalHours(System.String)">
+            <summary>
+            Parses Right Ascension to Decimal Hours
+            Values are between 0 and 24 Hours
+            <para>
+                Example: 00h48m22.98s
+            </para>
+            </summary>
+            <param name="rightAscension">Right Ascension as a String</param>
+            <returns><paramref name="rightAscension"/> in Decimal Hours, or -1 if Parsing fails</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTText.ParseDeclinationtoDecimalDegrees(System.String)">
+            <summary>
+            Parses Declination to Decimal Degrees
+            Values are between -90 and 90 degrees
+            <para>
+                Example: +16° 30′ 33.49″
+            </para>
+            </summary>
+            <param name="declination">Declination as a String</param>
+            <returns><paramref name="declination"/> in Decimal Degrees, or -1 if Parsing fails</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTText.HoursDecimalToHMS(System.Single)">
+            <summary>
+            Decimal Hours to String: ..H..M..S
+            </summary>
+            <param name="hours">Decimal Hours to Convert</param>
+            <returns>String-Value for <paramref name="hours"/> (..H..M..S)</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTText.DegreesDecimalToDMS(System.Single)">
+            <summary>
+            Decimal Degrees to String: ..D..M..S
+            </summary>
+            <param name="degrees">Decimal Degrees to Convert</param>
+            <returns>String-Value for <paramref name="degrees"/> (..D..M..S)</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTText.TryParseVector(System.String,UnityEngine.Vector3@)">
+            <summary>
+            Attempts to parse a string to a Vector3
+            <para>
+                String should be in the format "x, y, z" or "(x, y, z)"
+            </para>
+            </summary>
+            <param name="toParse">String to parse</param>
+            <param name="result"><b>OUT</b>: Result after parsing</param>
+            <returns>True if parse is successfull</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTText.SplitText(UnityEngine.TextAsset,System.Char,System.Boolean)">
+            <summary>
+            Splits TextAsset on a char to an array of strings
+            </summary>
+            <param name="txt">Text to split</param>
+            <param name="splitChar">Char to split on</param>
+            <param name="skipEmpty">Whether to exclude empty entries</param>
+            <returns>Array of split text values</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTText.SplitText(UnityEngine.TextAsset,System.String,System.Boolean)">
+            <summary>
+            Splits TextAsset on a string to an array of strings
+            </summary>
+            <param name="txt">Text to split</param>
+            <param name="splitString">String to split on</param>
+            <param name="skipEmpty">Whether to exclude empty entries</param>
+            <returns>Array of split text values</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTText.SplitText(UnityEngine.TextAsset,System.String[],System.Boolean)">
+            <summary>
+            Splits TextAsset on multiple strings to an array of strings
+            </summary>
+            <param name="txt">Text to split</param>
+            <param name="splitStrings">Strings to split on</param>
+            <param name="skipEmpty">Whether to exclude empty entries</param>
+            <returns>Array of split text values</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTText.EscapeHtmlChars(System.String)">
+            <summary>
+            Escapes HTML-Codes in a string
+            </summary>
+            <param name="source">The string containing html codes</param>
+            <returns>The escaped result</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTText.RemoveDiacritics(System.String)">
+            <summary>
+            Removes Diacritics from given string
+            </summary>
+            <param name="data">string to escape</param>
+            <returns>The string without any diacritics</returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Functions.MeasurementConversion">
+            <summary>
+            Converts between Metric and Imperial Measurement Systems
+            <para>
+                Made by: Frank van Hoof
+            </para>
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Functions.MeasurementConversion.InchesInAFoot">
+            <summary>
+            Amount of Inches in 1 Foot
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Functions.MeasurementConversion.InchesInAYard">
+            <summary>
+            Amount of Inches in 1 Yard
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Functions.MeasurementConversion.InchesInAMile">
+            <summary>
+            Amount of Inches in 1 Mile
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Functions.MeasurementConversion.InchesInAMeter">
+            <summary>
+            Amount of Inches in 1 Meter
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.MeasurementConversion.MetersToFeet(System.Single)">
+            <summary>
+            Converts Meters (Metric) into Feet (Imperial)
+            </summary>
+            <param name="meters">Meters to Convert</param>
+            <returns>Amount of Feet</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.MeasurementConversion.MetersToInches(System.Single)">
+            <summary>
+            Converts Meters (Metric) into Inches (Imperial)
+            </summary>
+            <param name="meters">Meters to Convert</param>
+            <returns>Amount of Inches</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.MeasurementConversion.MetersToYards(System.Single)">
+            <summary>
+            Converts Meters (Metric) into Yards (Imperial)
+            </summary>
+            <param name="meters">Meters to Convert</param>
+            <returns>Amount of Yards</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.MeasurementConversion.MetersToMiles(System.Single)">
+            <summary>
+            Converts Meters (Metric) into Miles (Imperial)
+            </summary>
+            <param name="meters">Meters to Convert</param>
+            <returns>Amount of Miles</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.MeasurementConversion.FeetToMeters(System.Single)">
+            <summary>
+            Converts Feet (Imperial) into Meters (Metric)
+            </summary>
+            <param name="feet">Feet to Convert</param>
+            <returns>Amount of Meters</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.MeasurementConversion.InchesToMeters(System.Single)">
+            <summary>
+            Converts Inches (Imperial) into Meters (Metric)
+            </summary>
+            <param name="inches">Inches to Convert</param>
+            <returns>Amount of Meters</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.MeasurementConversion.YardsToMeters(System.Single)">
+            <summary>
+            Converts Yards (Imperial) into Meters (Metric)
+            </summary>
+            <param name="yards">Yards to Convert</param>
+            <returns>Amount of Meters</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.MeasurementConversion.MilesToMeters(System.Single)">
+            <summary>
+            Converts Miles (Imperial) into Meters (Metric)
+            </summary>
+            <param name="miles">Miles to Convert</param>
+            <returns>Amount of Meters</returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Functions.DTTGraphics">
+            <summary>
+            DTT's Graphics Library
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Functions.DTTGraphics.AndroidBaselineDPI">
+            <summary>
+            Baseline DPI (dots per inch) used to convert to density-independent pixels, as used by Android
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTGraphics.DpToPx(System.Single)">
+            <summary>
+            Converts DPI-independent pixel-size to DPI-dependent pixel-size
+            </summary>
+            <param name="dp">DPI-Independent pixel-size</param>
+            <returns>DPI-dependent pixel-size</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.DTTGraphics.PxToDp(System.Single)">
+            <summary>
+            Converts pixel-size to DPI-independent pixel-size
+            </summary>
+            <param name="px">DPI-Dependent pixel-size</param>
+            <returns>DPI-Independent pixel-size</returns>
+        </member>
+        <member name="P:nl.DTT.Utils.Functions.DTTGraphics.ScreenWidthDp">
+            <summary>
+            Width of the screen in DPI-independent pixel-size
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.Functions.DTTGraphics.ScreenHeightDp">
+            <summary>
+            Height of the screen in DPI-independent pixel-size
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Functions.Screenshot">
+            <summary>
+            Class used for creating Screenshots at any size, location, quality, etc
+            <para>
+                Made by: Frank van Hoof
+            </para>
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Functions.Screenshot.CameraOptions">
+            <summary>
+            Possible options for Camera that is created for taking the Screenshot
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Functions.Screenshot.CameraOptions.ClippingPlanes">
+            <summary>
+            The Near and Far Clipping Plane distances for the Camera
+            <para>
+                X is near, Y is far
+            </para>
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Functions.Screenshot.CameraOptions.CullingMask">
+            <summary>
+            Used to render parts of the scene selectively
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Functions.Screenshot.CameraOptions.BackgroundColor">
+            <summary>
+            Color with which the screen will be cleared before rendering
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Functions.Screenshot.CameraOptions.CameraClearFlags">
+            <summary>
+            How the camera clears the background
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Functions.Screenshot.CameraOptions.FieldOfView">
+            <summary>
+            The field of view of the Camera in degrees
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Functions.Screenshot.CameraOptions.Scene">
+            <summary>
+            If not null, the camera will only render the contents of the specified scene
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Functions.Screenshot.CameraOptions.UseHDR">
+            <summary>
+            High Dynamic Range rendering
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Functions.Screenshot.CameraOptions.UseMSAA">
+            <summary>
+            MSAA rendering
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Functions.Screenshot.CameraOptions.UseOcclusionCulling">
+            <summary>
+            Whether or not the Camera will use occlusion culling during rendering
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Functions.Screenshot.CameraOptions.UseOrthographic">
+            <summary>
+            Is the Camera orthographic (true) or perspective (false)?
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Functions.Screenshot.CameraOptions.OrthographicSize">
+            <summary>
+            Camera's half-size when in orthographic mode
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.Screenshot.CameraOptions.#ctor(UnityEngine.Vector2,System.Int32,UnityEngine.Color,UnityEngine.CameraClearFlags,System.Single,System.Nullable{UnityEngine.SceneManagement.Scene},System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Single)">
+            <summary>
+            Constructor for CameraOptions
+            </summary>
+            <param name="clippingPlanes">The Near (X) and Far (Y) Clipping Plane distances for the Camera</param>
+            <param name="cullingMask">Used to render parts of the scene selectively</param>
+            <param name="backgroundColor">Color with which the screen will be cleared before rendering</param>
+            <param name="cameraClearFlags">How the camera clears the background</param>
+            <param name="fieldOfView">The field of view of the Camera in degrees</param>
+            <param name="scene">If not null, the camera will only render the contents of the specified scene</param>
+            <param name="useHDR">High Dynamic Range rendering</param>
+            <param name="useMSAA">MSAA rendering</param>
+            <param name="useOcclusionCulling">Whether or not the Camera will use occlusion culling during rendering</param>
+            <param name="useOrthographic">Is the Camera orthographic (true) or perspective (false)?</param>
+            <param name="orthographicSize">Camera's half-size when in orthographic mode</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.Screenshot.CaptureScreenshot">
+            <summary>
+            Captures Screenshot at Screen Resolution, with Main Camera 
+            <para>
+                The Main Camera is the first enabled camera tagged "MainCamera"
+            </para>
+            </summary>
+            <returns>Texture2D of Screenshot</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.Screenshot.CaptureScreenshot(UnityEngine.Camera)">
+            <summary>
+            Captures Screenshot at Screen Resolution, with a specific Camera
+            </summary>
+            <param name="camera">Camera to capture Screenshot with</param>
+            <returns>Texture2D of Screenshot</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.Screenshot.CaptureScreenshot(UnityEngine.Camera,UnityEngine.Vector2Int,System.Int32,UnityEngine.TextureFormat,System.Boolean)">
+            <summary>
+            Captures Screenshot at specific size, with a specific Camera and basic CaptureOptions
+            </summary>
+            <param name="camera">Camera to capture Screenshot with</param>
+            <param name="size">Size for Image (in Pixels)</param>
+            <param name="bitDepth">BitDepth for Image</param>
+            <param name="format">TextureFormat for Image</param>
+            <param name="mipmap">Whether to use Mipmaps in the Texture2D</param>
+            <returns>Texture2D of Screenshot</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.Screenshot.CaptureScreenshot(UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Vector2Int,nl.DTT.Utils.Functions.Screenshot.CameraOptions,System.Int32,UnityEngine.TextureFormat,System.Boolean)">
+            <summary>
+            Creates a (temporary) Camera and captures a Screenshot
+            </summary>
+            <param name="cameraPos">Position for Camera</param>
+            <param name="cameraRot">Rotation for Camera</param>
+            <param name="size">Size for Image (in Pixels)</param>
+            <param name="options">Parameters for Camera</param>
+            <param name="bitDepth">BitDepth for Image</param>
+            <param name="format">TextureFormat for Image</param>
+            <param name="mipmap">Whether to use Mipmaps in the Texture2D</param>
+            <returns>Texture2D of Screenshot</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Functions.Screenshot.Capture(UnityEngine.Camera,UnityEngine.Vector2Int,System.Int32,UnityEngine.TextureFormat,System.Boolean)">
+            <summary>
+            Captures Screenshot to Texture2D
+            </summary>
+            <param name="camera">Camera to capture Screenshot with</param>
+            <param name="size">Size for Image (in Pixels)</param>
+            <param name="bitDepth">BitDepth for Image</param>
+            <param name="format">TextureFormat for Image</param>
+            <param name="mipmap">Whether to use Mipmaps in the Texture2D</param>
+            <returns>Texture2D image of capture</returns>
+        </member>
+        <member name="T:nl.DTT.Utils.Tools.Debugger">
+            <summary>
+            Holds user-specified LoggingLevel
+            <para>
+                Add this script to a GameObject to specify the LoggingLevel for that Object
+            </para>
+            <para>
+                Set IsSingleton to create a Singleton that can be used globally throughout the project
+            </para>
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.Tools.Debugger.LoggingLevel">
+            <summary>
+            Public Getter for Logging-Level
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Tools.Debugger.isSingleton">
+            <summary>
+            <b>Editor</b>: Whether to create a Singleton out of this Debugger (for global usage)
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Tools.Debugger.loggingLevel">
+            <summary>
+            <b>Editor</b>: Logging-Level to use for this Object
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Tools.Debugger.CreateSingleton(nl.DTT.Utils.Enums.LoggingLevel)">
+            <summary>
+            Creates Singleton-Instance with a specific LoggingLevel
+            </summary>
+            <param name="level">LoggingLevel to Set to Singleton-Instance</param>
+            <exception cref="T:System.InvalidOperationException">Thrown if Instance already exists</exception>
+            <returns>New Singleton-Instance for Debugger</returns>
+        </member>
+        <member name="M:nl.DTT.Utils.Tools.Debugger.Awake">
+            <summary>
+            Creates Singleton ONLY if isSingleton has been set to true
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Tools.Debugger.Start">
+            <summary>
+            Sets isSingleton to true if this object is the singleton-instance 
+            <para>
+                (used in case singleton-instance is created at runtime by calling Instance)
+            </para>
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Tools.Notepad">
+            <summary>
+            Adds notes a Game Object, in order to document things for yourself or for others
+            <para>
+                Made by: Dezley Kleyn
+            </para>
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Tools.Notepad.author">
+            <summary>
+            <b>Editor</b>: The Author of the note(s)
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Tools.Notepad.notes">
+            <summary>
+            <b>Editor</b>: The actual Notes
+            <para>
+                Displayed using 3-15 lines (before scrollbar appears)
+            </para>
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Tools.Notepad.CutContents">
+            <summary>
+            <b>ContextMenu</b>: Copies contents of Notes to Clipboard
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Tools.Notepad.CopyContents">
+            <summary>
+            <b>ContextMenu</b>: Copies contents of Notes to Clipboard
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Tools.Notepad.PasteContents">
+            <summary>
+            <b>ContextMenu</b>: Pastes contents of Notes from Clipboard
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Tools.TransformVisualizer">
+            <summary>
+            Visualizes Transform-Direction (Draws Gizmos)
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Tools.TransformVisualizer.GizmoData">
+            <summary>
+            Data for a Gizmo
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Tools.TransformVisualizer.GizmoData.color">
+            <summary>
+            <b>Editor</b>: Gizmo-Color
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Tools.TransformVisualizer.GizmoData.offset">
+            <summary>
+            <b>Editor</b>: Offset from Transform-Position for Gizmo-Origin
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Tools.TransformVisualizer.GizmoData.offsetSpace">
+            <summary>
+            <b>Editor</b>: Space in which offset is applied
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Tools.TransformVisualizer.GizmoData1D">
+            <summary>
+            Data for a one-dimensional Gizmo
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Tools.TransformVisualizer.GizmoData1D.length">
+            <summary>
+            <b>Editor</b>: Length of Gizmo
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Tools.TransformVisualizer.LineGizmoData">
+            <summary>
+            Data for a LineGizmo (Enum-Based)
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Tools.TransformVisualizer.LineGizmoData.direction">
+            <summary>
+            <b>Editor</b>: Direction of Line (Local Space)
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Tools.TransformVisualizer.RawLineGizmoData">
+            <summary>
+            Data for a LineGizmo (Vector-Based)
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Tools.TransformVisualizer.RawLineGizmoData.direction">
+            <summary>
+            <b>Editor</b>: Direction of Line
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Tools.TransformVisualizer.RawLineGizmoData.directionalSpace">
+            <summary>
+            <b>Editor</b>: Space in which Line-Direction is applied
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Tools.TransformVisualizer.SolidGizmoData">
+            <summary>
+            Data for a Solid/WireMesh-Gizmo
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Tools.TransformVisualizer.SolidGizmoData.drawSolid">
+            <summary>
+            <b>Editor</b>: Solid/WireMesh
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Tools.TransformVisualizer.SphereGizmoData">
+            <summary>
+            Data for a Spheroid-Gizmo
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Tools.TransformVisualizer.SphereGizmoData.radius">
+            <summary>
+            <b>Editor</b>: Radius of Sphere
+            </summary>
+        </member>
+        <member name="T:nl.DTT.Utils.Tools.TransformVisualizer.CubeGizmoData">
+            <summary>
+            Data for a Cuboid-Gizmo
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Tools.TransformVisualizer.CubeGizmoData.size">
+            <summary>
+            <b>Editor</b>: Size of Cube
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Tools.TransformVisualizer.hide">
+            <summary>
+            <b>Editor</b>: Hide this TransformVisualizer
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Tools.TransformVisualizer.drawSelected">
+            <summary>
+            <b>Editor</b>: Draw this TransformVisualizer only if the GameObject (or its parent) is selected
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Tools.TransformVisualizer.lines">
+            <summary>
+            <b>Editor</b>: Gizmo-Lines
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Tools.TransformVisualizer.spheres">
+            <summary>
+            <b>Editor</b>: Gizmo-Spheres
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Tools.TransformVisualizer.cubes">
+            <summary>
+            <b>Editor</b>: Gizmo-Cubes
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.Tools.TransformVisualizer.linesRaw">
+            <summary>
+            <b>Editor</b>: Gizmo-Lines (Vector-Based)
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Tools.TransformVisualizer.DrawLine(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color)">
+            <summary>
+            Draws Line with Gizmos
+            </summary>
+            <param name="startPosition">Start-Position of Line (World-Space)</param>
+            <param name="endPosition">End-Position of Line (World-Space)</param>
+            <param name="color">Color of Line</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Tools.TransformVisualizer.DrawSphere(UnityEngine.Vector3,System.Single,UnityEngine.Color,System.Boolean)">
+            <summary>
+            Draws Sphere with Gizmos
+            </summary>
+            <param name="position">Position for Sphere-Origin (World-Space)</param>
+            <param name="radius">Radius of Sphere</param>
+            <param name="color">Color of Sphere</param>
+            <param name="solid">Whether to draw Solid or WireMesh</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Tools.TransformVisualizer.DrawCube(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color,System.Boolean)">
+            <summary>
+            Draws Cube with Gizmos
+            </summary>
+            <param name="position">Position for Cube-Origin (World-Space)</param>
+            <param name="size">Size of Cube (World-Space)</param>
+            <param name="color">Color of Cube</param>
+            <param name="solid">Whether to draw Solid or WireMesh</param>
+        </member>
+        <member name="M:nl.DTT.Utils.Tools.TransformVisualizer.Awake">
+            <summary>
+            Destroys script if not in Editor
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Tools.TransformVisualizer.Reset">
+            <summary>
+            Sets initial values (Up-, Right-, Forward-Lines)
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Tools.TransformVisualizer.OnDrawGizmos">
+            <summary>
+            Draws Gizmos (always)
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Tools.TransformVisualizer.OnDrawGizmosSelected">
+            <summary>
+            Draws Gizmos (if selected)
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Tools.TransformVisualizer.DrawLines">
+            <summary>
+            Draws Gizmo-Lines
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Tools.TransformVisualizer.DrawCubes">
+            <summary>
+            Draws Gizmo-Cubes
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Tools.TransformVisualizer.DrawSpheres">
+            <summary>
+            Draws Gizmo-Spheres
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Tools.TransformVisualizer.DrawLinesRaw">
+            <summary>
+            Draws Gizmo-Lines (Vector-Based)
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.Tools.TransformVisualizer.GetOrigin(nl.DTT.Utils.Tools.TransformVisualizer.GizmoData)">
+            <summary>
+            Returns Transform-Position with offset added in
+            </summary>
+            <param name="data">Data for Gizmo (Offset-Data)</param>
+            <returns>Transform-Position + (Rotated) Offset (in WorldSpace)</returns>
+        </member>
+        <member name="T:nl.DTT.Utils.UserInput.Click">
+            <summary>
+            A Mouse-Click
+            <para>
+                Includes StartPosition, CurrentPosition, VisitedPositions, and HoldTime
+            </para>
+            <para>
+                Made by: Frank van Hoof
+            </para>
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.UserInput.Click.StartPos">
+            <summary>
+            Position of MouseDown (ScreenSpace)
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.UserInput.Click.Button">
+            <summary>
+            MouseButton for this Click
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.UserInput.Click.LastPos">
+            <summary>
+            <b>READONLY</b>: Last Position for this Click (FinalPos if ClickFinished) (ScreenSpace)
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.UserInput.Click.Visited">
+            <summary>
+            <b>READONLY</b>: Visited positions during Click (MouseDown->MouseUp) (ScreenSpace)
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.UserInput.Click.ClickStartTime">
+            <summary>
+            Time of MouseDown (in Ticks)
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.UserInput.Click.ClickHoldTime">
+            <summary>
+            Amount of time this Click has lasted in Ticks
+            <para>
+                Time until Current if !ClickFinished
+            </para>
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.UserInput.Click.ClickFinished">
+            <summary>
+            Whether this Click has Finished (MouseUp)
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.UserInput.Click.ClickEndTime">
+            <summary>
+            End-Time for Click in Ticks
+            <para>
+                Returns -1 if !ClickFinished
+            </para>
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.UserInput.Click.Movement">
+            <summary>
+            Movement from StartPosition to LastPosition
+            <para>
+                LastUpdated instead of LastPosition if !ClickFinished
+            </para>
+            </summary>
+        </member>
+        <member name="P:nl.DTT.Utils.UserInput.Click.LastMovement">
+            <summary>
+            Movement from LastPosition-1 to LastPosition
+            <para>
+                LastUpdated instead of LastPosition if !ClickFinished
+            </para>
+            </summary>
+        </member>
+        <member name="F:nl.DTT.Utils.UserInput.Click.visitedPositions">
+            <summary>
+            Visited positions during Click (MouseDown->MouseUp)
+            </summary>
+        </member>
+        <member name="M:nl.DTT.Utils.UserInput.Click.#ctor(nl.DTT.Utils.Enums.MouseButton,UnityEngine.Vector2)">
+            <summary>
+            Constructor for a Click
+            </summary>
+            <param name="button">MouseButton for this Click</param>
+            <param name="startPos">Position of MouseDown</param>
+        </member>
+        <member name="M:nl.DTT.Utils.UserInput.Click.UpdatePosition(UnityEngine.Vector2,System.Boolean)">
+            <summary>
+            Updates current position of Click to new position
+            </summary>
+            <param name="newPos">New Current Position (ScreenSpace)</param>
+            <param name="clickFinished">Whether the Click has Finished (MouseUp)</param>
+            <exception cref="T:System.InvalidOperationException">If Click has already Finished (ClickFinished == true)</exception>
+        </member>
+        <member name="M:nl.DTT.Utils.UserInput.Click.AddMovement(UnityEngine.Vector2,System.Boolean)">
+            <summary>
+            Updates current position of Click by movement
+            </summary>
+            <param name="movement">Movement since last position</param>
+            <param name="clickFinished">Whether the Click has Finished (MouseUp)</param>
+            <exception cref="T:System.InvalidOperationException">If Click has already Finished (ClickFinished == true)</exception>
+        </member>
+        <member name="M:nl.DTT.Utils.UserInput.Click.FinishClick(UnityEngine.Vector2)">
+            <summary>
+            Finishes a Click (MouseUp)
+            </summary>
+            <param name="finalPos">Position of MouseUp</param>
+            <exception cref="T:System.InvalidOperationException">If Click has already Finished (ClickFinished == true)</exception>
+        </member>
+    </members>
+</doc>
