@@ -18,10 +18,12 @@ namespace com.romainimberti.ggj2020.game.maze
 		#region Public
 
 		public GameObject obj; //The in-game object representing the cell
-		public bool wall;
 
 		#endregion
 		#region Private
+
+
+		private CellKind kind;
 
 		private int x, y;
 
@@ -33,9 +35,9 @@ namespace com.romainimberti.ggj2020.game.maze
 		#endregion
 		#region Public
 
-		public Cell(bool wall, int x, int y)
+		public Cell(CellKind kind, int x, int y)
 		{
-			this.wall = wall;
+			this.kind = kind;
 			this.x = x;
 			this.y = y;
 			this.obj = CreateObject();
@@ -49,30 +51,60 @@ namespace com.romainimberti.ggj2020.game.maze
 
 		private GameObject CreateObject()
 		{
-			GameObject o;
-			if (wall)
-			{
-				GameObject wall = GameManager.Instance.wallPrefab;
-				o = Maze.Instantiate(wall, x, y);
+			GameObject prefab;
+            switch (kind)
+            {
+				case CellKind.Wall:
+					prefab = GameManager.Instance.wallPrefab;
+					break;
+				case CellKind.TreeStump:
+					prefab = GameManager.Instance.treeStumpPrefab;
+					break;
+				default:
+					prefab = GameManager.Instance.floorPrefab;
+					break;
 			}
-			else
-			{
-				o = Maze.Instantiate(GameManager.Instance.floorPrefab, x, y);
-			}
-			return o;
+			return Maze.Instantiate(prefab, x, y);
 		}
-		//"Dig" the cell, if it is a wall, then it becomes a path and vice versa
-		public void Dig(bool create = true)
+		//"Dig" the cell, if it is a wall, then it becomes a floor. If it is a Floor it randomly becomes a Wall or a treeStump
+		public void Dig()
 		{
-			this.wall = !this.wall;
+            if (kind.Equals(CellKind.Floor))
+				this.kind = CellKind.Wall;
+            else
+				this.kind = CellKind.Floor;
+
 			if (obj != null)
 			{
 				GameObject.Destroy(obj);
 			}
-			if (create)
+			this.obj = CreateObject();
+		}
+
+		public void CutWall()
+        {
+			
+			this.kind = CellKind.TreeStump;
+			if (obj != null)
 			{
-				this.obj = CreateObject();
+				GameObject.Destroy(obj);
 			}
+			this.obj = CreateObject();
+		}
+
+		public CellKind GetKind()
+        {
+			return kind;
+        }
+
+		public bool IsWalkable()
+        {
+			return kind.Equals(CellKind.Floor);
+        }
+
+		public bool IsAWall()
+		{
+			return kind.Equals(CellKind.Wall);
 		}
 
 		#endregion

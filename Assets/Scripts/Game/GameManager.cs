@@ -23,7 +23,7 @@ namespace com.romainimberti.ggj2021.game
         public GameObject floorPrefab;
         public GameObject endPrefab;
         public GameObject startPrefab;
-        public GameObject pathPrefab;
+        public GameObject treeStumpPrefab;
 
         public Camera cam;
 

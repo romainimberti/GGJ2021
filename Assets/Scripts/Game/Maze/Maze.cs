@@ -65,7 +65,7 @@ namespace com.romainimberti.ggj2020.game.maze
             {
                 for (int j = 0; j < maze.GetLength(1); j++)
                 {
-                    maze[i, j] = new Cell(false, i, j);
+                    maze[i, j] = new Cell(CellKind.Floor, i, j);
                     if (i == 0 || j == 0 || i == maze.GetLength(0) - 1 || j == maze.GetLength(1) - 1)
                     {
                         maze[i, j].Dig();
@@ -78,7 +78,8 @@ namespace com.romainimberti.ggj2020.game.maze
             RecursiveDivision(width - 2, height - 2, Vector2Int.one);
             //The algorithm is done
 
-            CoroutineManager.Instance.StartCoroutine(CompleteGeneration());
+            GenerateTreeStump();
+            CompleteGeneration();
         }
 
         public static GameObject Instantiate(GameObject o, int x, int y)
@@ -109,7 +110,7 @@ namespace com.romainimberti.ggj2020.game.maze
         //If a given position is walkable (is not a wall)
         public bool IsWalkable(Vector2Int position)
         {
-            return IsValid(position) && maze != null && !maze[position.x, position.y].wall;
+            return IsValid(position) && maze != null && maze[position.x, position.y].IsWalkable();
         }
 
         public int GetWidth()
@@ -251,6 +252,42 @@ namespace com.romainimberti.ggj2020.game.maze
             }
         }
 
+        private void GenerateTreeStump()
+        {
+            for (int x = 0; x < maze.GetLength(0); x++)
+            {
+                for (int y = 0; y < maze.GetLength(1); y++)
+                {
+                    CutWall(x, y);
+
+                }
+            }
+        }
+
+        private void CutWall(int x, int y)
+        {
+            if (IsACutableWall(x, y))
+            {
+                // TODO --> Randomly generate treeStumps
+                // 90% % to be a treeStump, but it can be changed
+                if (Random.Range(0, 100) < 10)
+                    maze[x, y].CutWall();
+            }
+        }
+
+        private bool IsACutableWall(int x, int y)
+        {
+            return maze[x, y].IsAWall() &&
+                   !IsBorder(new Vector2Int(x, y)) &&
+                   HasOnlyOppositesAsFloor(x, y);
+        }
+
+        private bool HasOnlyOppositesAsFloor(int x, int y)
+        {
+            return ((maze[x + 1, y].IsWalkable() && maze[x - 1, y].IsWalkable()) && (!maze[x, y + 1].IsWalkable() && !maze[x, y - 1].IsWalkable())) ||
+                   ((maze[x, y + 1].IsWalkable() && maze[x, y - 1].IsWalkable()) && (!maze[x + 1, y].IsWalkable() && !maze[x - 1, y].IsWalkable()));
+        }
+
         //Is a given starting cell valid (can we start a wall from this cell)
         private bool IsStartValid(bool horizontal, Vector2Int wallStartingCell, int width, int height)
         {
@@ -260,7 +297,7 @@ namespace com.romainimberti.ggj2020.game.maze
 
                 if (wallStartingCell.x > 0)
                 {
-                    if (!maze[wallStartingCell.x - 1, wallStartingCell.y].wall)
+                    if (maze[wallStartingCell.x - 1, wallStartingCell.y].IsWalkable())
                     {
                         return false;
                     }
@@ -268,7 +305,7 @@ namespace com.romainimberti.ggj2020.game.maze
 
                 if (width + wallStartingCell.x < this.width)
                 {
-                    return maze[width + wallStartingCell.x, wallStartingCell.y].wall;
+                    return !maze[width + wallStartingCell.x, wallStartingCell.y].IsWalkable();
                 }
 
                 return true;
@@ -276,7 +313,7 @@ namespace com.romainimberti.ggj2020.game.maze
 
             if (wallStartingCell.y > 0)
             {
-                if (!maze[wallStartingCell.x, wallStartingCell.y - 1].wall)
+                if (maze[wallStartingCell.x, wallStartingCell.y - 1].IsWalkable())
                 {
                     return false;
                 }
@@ -284,7 +321,7 @@ namespace com.romainimberti.ggj2020.game.maze
 
             if (height + wallStartingCell.y < this.height)
             {
-                return maze[wallStartingCell.x, height + wallStartingCell.y].wall;
+                return !maze[wallStartingCell.x, height + wallStartingCell.y].IsWalkable();
             }
 
             return true;
@@ -306,7 +343,7 @@ namespace com.romainimberti.ggj2020.game.maze
         }
 
 
-        private IEnumerator CompleteGeneration()
+        private void CompleteGeneration()
         {
             //Compute the start and end tiles
             startTile = ComputeStartTile();
@@ -314,13 +351,11 @@ namespace com.romainimberti.ggj2020.game.maze
             if (startTile == ERROR_VECTOR || endTile == ERROR_VECTOR)
             {
                 Debug.Log("No start | end tiles possible, aborting..");
-                yield break;
+                return;
             }
 
             maze[startTile.x, startTile.y].obj = Instantiate(GameManager.Instance.startPrefab, startTile.x, startTile.y);
             maze[endTile.x, endTile.y].obj = Instantiate(GameManager.Instance.endPrefab, endTile.x, endTile.y);
-
-            yield return CoroutineManager.Instance.StartCoroutine(ShowPath());
 
             generated = true;
         }
@@ -330,7 +365,7 @@ namespace com.romainimberti.ggj2020.game.maze
             List<Vector2Int> possibleStarts = new List<Vector2Int>();
             for (int j = 0; j < maze.GetLength(1); j++)
             {
-                if (!maze[1, j].wall)
+                if (maze[1, j].IsWalkable())
                 {
                     possibleStarts.Add(new Vector2Int(0, j));
                 }
@@ -343,33 +378,13 @@ namespace com.romainimberti.ggj2020.game.maze
             List<Vector2Int> possibleEnds = new List<Vector2Int>();
             for (int j = 0; j < maze.GetLength(1); j++)
             {
-                if (!maze[maze.GetLength(0) - 2, j].wall)
+                if (maze[maze.GetLength(0) - 2, j].IsWalkable())
                 {
                     possibleEnds.Add(new Vector2Int(maze.GetLength(0) - 1, j));
                 }
             }
 
             return possibleEnds[Random.Range(0, possibleEnds.Count - 1)];
-        }
-
-        //Show the path between the computed start and end tiles
-        private IEnumerator ShowPath()
-        {
-
-            //Show the path using another type of pavements
-            List<Vector2Int> path = FindPath();
-            foreach (Vector2Int tile in path)
-            {
-                yield return new WaitForSeconds(0.05f);
-                maze[tile.x, tile.y].Dig(false);
-                maze[tile.x, tile.y].obj = Instantiate(GameManager.Instance.pathPrefab, tile.x, tile.y);
-            }
-        }
-
-        //Compute the path between the start and end tiles
-        private List<Vector2Int> FindPath()
-        {
-            return AStar.FindPath(this);
         }
 
         private void Display()
@@ -380,7 +395,7 @@ namespace com.romainimberti.ggj2020.game.maze
                 
                 for (int j = 0; j < maze.GetLength(1); j++)
                 {
-                    if(maze[i, j].wall)
+                    if(!maze[i, j].IsWalkable())
                     {
                         res += 1;
                     }

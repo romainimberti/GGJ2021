@@ -40,12 +40,12 @@ namespace com.romainimberti.ggj2020.game.maze
             {
                 for (int j = 0; j < tiles.GetLength(1); j++)
                 {
-                    bool solid = tiles[i, j].wall;
+                    bool solid = tiles[i, j].IsWalkable();
                     nodes[i, j] = new Node(new Vector2Int(i, j), solid);
                 }
             }
-            Node startNode = new Node(start, tiles[start.x, start.y].wall);
-            Node endNode = new Node(end, tiles[end.x, end.y].wall);
+            Node startNode = new Node(start, tiles[start.x, start.y].IsWalkable());
+            Node endNode = new Node(end, tiles[end.x, end.y].IsWalkable());
 
             //The path can't exist
             if (startNode.IsSolid() || endNode.IsSolid())
