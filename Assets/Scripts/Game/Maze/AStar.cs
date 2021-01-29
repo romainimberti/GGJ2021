@@ -23,7 +23,9 @@ namespace com.romainimberti.ggj2020.game.maze
             List<Vector2Int> path = new List<Vector2Int>();
 
             Vector2Int start = maze.GetStartTile();
+            start.x += 1;
             Vector2Int end = maze.GetEndTile();
+            end.x -= 1;
 
             //The path can't exist
             if (!maze.IsValid(start) || !maze.IsValid(end))

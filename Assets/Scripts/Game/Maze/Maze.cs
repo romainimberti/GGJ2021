@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using com.romainimberti.ggj2021.game;
+using com.romainimberti.ggj2021.utilities;
 
 namespace com.romainimberti.ggj2020.game.maze
 {
@@ -77,7 +78,7 @@ namespace com.romainimberti.ggj2020.game.maze
             RecursiveDivision(width - 2, height - 2, Vector2Int.one);
             //The algorithm is done
 
-            CompleteGeneration();
+            CoroutineManager.Instance.StartCoroutine(CompleteGeneration());
         }
 
         public static GameObject Instantiate(GameObject o, int x, int y)
@@ -305,7 +306,7 @@ namespace com.romainimberti.ggj2020.game.maze
         }
 
 
-        private void CompleteGeneration()
+        private IEnumerator CompleteGeneration()
         {
             //Compute the start and end tiles
             startTile = ComputeStartTile();
@@ -313,22 +314,62 @@ namespace com.romainimberti.ggj2020.game.maze
             if (startTile == ERROR_VECTOR || endTile == ERROR_VECTOR)
             {
                 Debug.Log("No start | end tiles possible, aborting..");
-                return;
+                yield break;
             }
 
             maze[startTile.x, startTile.y].obj = Instantiate(GameManager.Instance.startPrefab, startTile.x, startTile.y);
             maze[endTile.x, endTile.y].obj = Instantiate(GameManager.Instance.endPrefab, endTile.x, endTile.y);
+
+            yield return CoroutineManager.Instance.StartCoroutine(ShowPath());
 
             generated = true;
         }
 
         private Vector2Int ComputeStartTile()
         {
-            return new Vector2Int(0, Random.Range(1, maze.GetLength(1) - 2));
+            List<Vector2Int> possibleStarts = new List<Vector2Int>();
+            for (int j = 0; j < maze.GetLength(1); j++)
+            {
+                if (!maze[1, j].wall)
+                {
+                    possibleStarts.Add(new Vector2Int(0, j));
+                }
+            }
+
+            return possibleStarts[Random.Range(0, possibleStarts.Count - 1)];
         }
         private Vector2Int ComputeEndTile()
         {
-            return new Vector2Int(maze.GetLength(0) - 1, Random.Range(1, maze.GetLength(1) - 2));
+            List<Vector2Int> possibleEnds = new List<Vector2Int>();
+            for (int j = 0; j < maze.GetLength(1); j++)
+            {
+                if (!maze[maze.GetLength(0) - 2, j].wall)
+                {
+                    possibleEnds.Add(new Vector2Int(maze.GetLength(0) - 1, j));
+                }
+            }
+
+            return possibleEnds[Random.Range(0, possibleEnds.Count - 1)];
+        }
+
+        //Show the path between the computed start and end tiles
+        private IEnumerator ShowPath()
+        {
+
+            //Show the path using another type of pavements
+            List<Vector2Int> path = FindPath();
+            foreach (Vector2Int tile in path)
+            {
+                yield return new WaitForSeconds(0.05f);
+                maze[tile.x, tile.y].Dig(false);
+                maze[tile.x, tile.y].obj = Instantiate(GameManager.Instance.pathPrefab, tile.x, tile.y);
+            }
+        }
+
+        //Compute the path between the start and end tiles
+        private List<Vector2Int> FindPath()
+        {
+            return AStar.FindPath(this);
         }
 
         private void Display()
