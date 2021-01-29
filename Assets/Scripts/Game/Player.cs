@@ -29,7 +29,7 @@ namespace com.romainimberti.ggj2020
         #endregion
         #region Public
 
-        public void FixedUpdate()
+        private void Update()
         {
             Vector3 direction = Vector3.up * joystick.Vertical + Vector3.right * joystick.Horizontal;
             gameObject.GetComponent<Rigidbody2D>().velocity = direction * speed * Time.fixedDeltaTime;
