@@ -39,8 +39,8 @@ namespace com.romainimberti.ggj2021.game
 
         private void Awake()
         {
-            CreateMaze(69, 29);
-            SetCameraDimensions(69, 29);
+            CreateMaze(29, 17);
+            SetCameraDimensions(29, 17);
         }
 
         #endregion
@@ -61,7 +61,7 @@ namespace com.romainimberti.ggj2021.game
             }
 
             cam.transform.position = new Vector3(width * 1 / 2, height * 1 / 2, -10);
-            cam.orthographicSize = Mathf.Max(width * 1 / 2, height * 1 / 2);
+            cam.orthographicSize = Mathf.Max(width / 3, height / 3);
         }
 
         //Create the maze
@@ -77,6 +77,8 @@ namespace com.romainimberti.ggj2021.game
 
             //Start generating the maze
             maze.Generate();
+
+            GameObject.Find("Player").transform.position = new Vector3(maze.GetStartTile().x, maze.GetStartTile().y, 0);
         }
 
         #endregion

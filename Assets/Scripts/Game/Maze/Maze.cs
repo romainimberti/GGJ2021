@@ -354,6 +354,9 @@ namespace com.romainimberti.ggj2020.game.maze
                 return;
             }
 
+            maze[startTile.x, startTile.y].Dig();
+            maze[endTile.x, endTile.y].Dig();
+
             maze[startTile.x, startTile.y].obj = Instantiate(GameManager.Instance.startPrefab, startTile.x, startTile.y);
             maze[endTile.x, endTile.y].obj = Instantiate(GameManager.Instance.endPrefab, endTile.x, endTile.y);
 
