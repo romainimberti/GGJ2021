@@ -6,7 +6,7 @@ namespace com.romainimberti.ggj2020
 {
 
     ///<summary>
-    ///
+    /// Class that handles the player
     ///</summary>
     public class Player : MonoBehaviour
     {
@@ -32,7 +32,7 @@ namespace com.romainimberti.ggj2020
         public void FixedUpdate()
         {
             Vector3 direction = Vector3.up * joystick.Vertical + Vector3.right * joystick.Horizontal;
-            gameObject.GetComponent<Rigidbody2D>().AddForce(direction * speed * Time.fixedDeltaTime);
+            gameObject.GetComponent<Rigidbody2D>().velocity = direction * speed * Time.fixedDeltaTime;
         }
         #endregion
         #region Protected
