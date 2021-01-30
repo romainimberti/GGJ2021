@@ -357,6 +357,7 @@ GameObject:
   - component: {fileID: 126139066}
   - component: {fileID: 126139065}
   - component: {fileID: 126139064}
+  - component: {fileID: 126139068}
   m_Layer: 5
   m_Name: btn_jump
   m_TagString: Untagged
@@ -476,6 +477,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 126139062}
   m_CullTransparentMesh: 0
+--- !u!114 &126139068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126139062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf83f1d894858e408fb8b6d92b14bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  graphics: []
 --- !u!1 &131665080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1060,6 +1074,7 @@ GameObject:
   - component: {fileID: 522883835}
   - component: {fileID: 522883834}
   - component: {fileID: 522883833}
+  - component: {fileID: 522883837}
   m_Layer: 5
   m_Name: btn_cut
   m_TagString: Untagged
@@ -1179,6 +1194,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 522883831}
   m_CullTransparentMesh: 0
+--- !u!114 &522883837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522883831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf83f1d894858e408fb8b6d92b14bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  graphics: []
 --- !u!1 &721359254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,8 +1321,21 @@ MonoBehaviour:
     type: 3}
   treeStumpPrefab: {fileID: 3589688500495145286, guid: 6e583e72305e41f4f80ee07f47e7fcbd,
     type: 3}
+  enemyPrefab: {fileID: 7465246816787931603, guid: 245091b2a8b5bbf4b9198f89f701b351,
+    type: 3}
   finishGameObject: {fileID: 1239041525}
+  capacitiesGameObject: {fileID: 2070935942}
   btnFinish: {fileID: 1400418912}
+  btnJump: {fileID: 126139068}
+  btnCut: {fileID: 522883837}
+  btnAttack: {fileID: 1619874551}
+  imgAttack: {fileID: 1982844921}
+  imgJump: {fileID: 311148663}
+  imgCut: {fileID: 234462965}
+  jumpSprite: {fileID: 21300000, guid: eabe9d1fb35f397448f2acc57ff431b0, type: 3}
+  cutSprite: {fileID: 21300000, guid: dad8a460fa90e1748bdd6498caa95f04, type: 3}
+  attackSprite: {fileID: 21300000, guid: 0cee9968e221d0749821e922a0b38308, type: 3}
+  lockedSprite: {fileID: 21300000, guid: 8d675057f91c9d84cb827b50fcfe0c7b, type: 3}
   cam: {fileID: 519420031}
 --- !u!4 &902122904
 Transform:
@@ -1885,7 +1926,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1239041526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2637,6 +2678,7 @@ GameObject:
   - component: {fileID: 1619874549}
   - component: {fileID: 1619874548}
   - component: {fileID: 1619874547}
+  - component: {fileID: 1619874551}
   m_Layer: 5
   m_Name: btn_attack
   m_TagString: Untagged
@@ -2756,6 +2798,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1619874545}
   m_CullTransparentMesh: 0
+--- !u!114 &1619874551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619874545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf83f1d894858e408fb8b6d92b14bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  graphics: []
 --- !u!1 &1908155293
 GameObject:
   m_ObjectHideFlags: 0

@@ -119,6 +119,11 @@ namespace com.romainimberti.ggj2020.game.maze
             return kind.Equals(CellKind.Wall);
         }
 
+        public bool IsATreeStump()
+        {
+            return kind.Equals(CellKind.TreeStump);
+        }
+
         #endregion
         #endregion
     }
