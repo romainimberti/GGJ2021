@@ -1813,7 +1813,10 @@ MonoBehaviour:
   cutSprite: {fileID: 21300000, guid: dad8a460fa90e1748bdd6498caa95f04, type: 3}
   attackSprite: {fileID: 21300000, guid: 0cee9968e221d0749821e922a0b38308, type: 3}
   lockedSprite: {fileID: 21300000, guid: 8d675057f91c9d84cb827b50fcfe0c7b, type: 3}
-  attackSprites: []
+  attackSprites:
+  - {fileID: 21300000, guid: 230cbc96907f3aa4092c45fdaa4125a6, type: 3}
+  - {fileID: 21300000, guid: b7f85f6e21d5f8148b8ffcf41ff4f4c2, type: 3}
+  - {fileID: 21300000, guid: f0c8c8a85310fe84ba1e90484f6ef607, type: 3}
   cam: {fileID: 519420031}
   level: 1
 --- !u!4 &902122904
