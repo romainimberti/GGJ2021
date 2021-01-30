@@ -49,7 +49,7 @@ namespace com.romainimberti.ggj2021.game
         public GameObject endPrefab;
         public GameObject startPrefab;
         public GameObject treeStumpPrefab;
-        public GameObject enemyPrefab;
+        public Enemy enemyPrefab;
 
         public GameObject finishGameObject;
         public GameObject capacitiesGameObject;
@@ -261,7 +261,8 @@ namespace com.romainimberti.ggj2021.game
         {
             foreach (Vector2Int monPos in monsterPositions)
             {
-                Instantiate(enemyPrefab, new Vector3(monPos.x, monPos.y, -1), Quaternion.identity);
+                Enemy enemy = Instantiate(enemyPrefab, new Vector3(monPos.x, monPos.y, -1), Quaternion.identity);
+                enemy.transform.parent = transform;
             }
 
         }
