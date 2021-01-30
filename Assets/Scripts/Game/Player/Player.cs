@@ -15,12 +15,18 @@ namespace com.romainimberti.ggj2020
         #region Variables
         #region Editor
 
+
+        [SerializeField]
+        private Collider2D colliderObject;
+
         [SerializeField]
         private Collider2D attackCollider;
 
         #endregion
         #region Public
         public float speed;
+
+        [HideInInspector]
         public FloatingJoystick joystick;
 
         #endregion
@@ -36,13 +42,11 @@ namespace com.romainimberti.ggj2020
         private void Awake()
         {
             joystick = GameObject.Find("Floating Joystick").GetComponent<FloatingJoystick>();
+            Physics2D.IgnoreCollision(colliderObject, attackCollider, true);
         }
         private void OnTriggerEnter2D(Collider2D col)
         {
-            if (col != null && col.gameObject != null && col.gameObject != gameObject && col.attachedRigidbody != null && col.attachedRigidbody.gameObject.CompareTag("End"))
-            {
-                GameManager.Instance.MazeFinished();
-            }
+            GameManager.Instance.MazeFinished();
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
