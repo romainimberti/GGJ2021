@@ -33,6 +33,8 @@ namespace com.romainimberti.ggj2020.game.maze
         private Vector2Int startTile, endTile;
 
         private List<Vector2Int> enemies = new List<Vector2Int>();
+        [SerializeField]
+        private int minimumDistanceMobStart = 2;
 
         private bool generated = false;
 
@@ -64,7 +66,7 @@ namespace com.romainimberti.ggj2020.game.maze
                         maze[i, j].Dig();
                     }
 
-                    if(i == maze.GetLength(0) / 2 && maze[i, j].IsWalkable())
+                    if (i == maze.GetLength(0) / 2 && maze[i, j].IsWalkable())
                     {
                         maze[i, j].Dig();
                         maze[i, j].CutWall();
@@ -130,9 +132,10 @@ namespace com.romainimberti.ggj2020.game.maze
             //The algorithm is done
 
             GenerateTreeStump();
-            RandomEnemyGenerator();
             SetCorrectWallSprite();
             CompleteGeneration();
+            RandomEnemyGenerator();
+
         }
 
         public void RandomEnemyGenerator()
@@ -144,7 +147,7 @@ namespace com.romainimberti.ggj2020.game.maze
                 {
                     Vector2Int currentPos = new Vector2Int(x, y);
                     //TODO USE A  VARIABLE
-                    if (IsWalkable(currentPos) && (Random.Range(0, 100) < 3))
+                    if (IsWalkable(currentPos) && (Random.Range(0, 100) < 3) && Vector2.Distance(currentPos, startTile) > minimumDistanceMobStart)
                     {
                         enemies.Add(currentPos);
                     };
