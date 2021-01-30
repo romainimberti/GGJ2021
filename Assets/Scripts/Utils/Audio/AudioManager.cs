@@ -49,7 +49,12 @@ namespace com.romainimberti.ggj2021.utilities
         /// </summary>
         public enum SFX
         {
-            Click
+            Click,
+            Step1,
+            Step2,
+            Step3,
+            Step4,
+            Step5
         }
 
         #endregion

@@ -1,5 +1,6 @@
 ﻿using com.romainimberti.ggj2020.game.maze;
 using com.romainimberti.ggj2021.game;
+using com.romainimberti.ggj2021.utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,6 +28,9 @@ namespace com.romainimberti.ggj2020
         [Range(0, 20f)]
         private float attackRange = 3f;
 
+        [SerializeField]
+        private float minStepTime = 0.3f, maxStepTime = 0.55f;
+
         #endregion
         #region Public
         public float speed;
@@ -53,6 +57,9 @@ namespace com.romainimberti.ggj2020
         private int spriteTempo = 0;
 
         private SpriteRenderer playerSpriteRenderer;
+
+        private float lastStepTime = 0f;
+        private float timeToWaitForStep = 0f;
 
         #endregion
         #endregion
@@ -148,7 +155,37 @@ namespace com.romainimberti.ggj2020
             {
                 Vector3 direction = Vector3.up * joystick.Vertical + Vector3.right * joystick.Horizontal;
                 rb.velocity = direction * speed * Time.fixedDeltaTime;
+
+                if (rb.velocity.x != 0 || rb.velocity.y != 0)
+                {
+                    if(Time.time >= lastStepTime + timeToWaitForStep)
+                    {
+                        int sound = Random.Range(0, 5);
+                        lastStepTime = Time.time;
+                        timeToWaitForStep = Random.Range(minStepTime, maxStepTime);
+                        switch (sound)
+                        {
+                            case 0:
+                                AudioManager.Instance.PlayAudioClip(AudioManager.SFX.Step1);
+                                break;
+                            case 1:
+                                AudioManager.Instance.PlayAudioClip(AudioManager.SFX.Step2);
+                                break;
+                            case 2:
+                                AudioManager.Instance.PlayAudioClip(AudioManager.SFX.Step3);
+                                break;
+                            case 3:
+                                AudioManager.Instance.PlayAudioClip(AudioManager.SFX.Step4);
+                                break;
+                            case 4:
+                                AudioManager.Instance.PlayAudioClip(AudioManager.SFX.Step5);
+                                break;
+                        }
+                    }
+                }
+
                 gameObject.GetComponent<Rigidbody2D>().velocity = direction * speed * Time.fixedDeltaTime;
+
 
                 if (goingLeft)
                 {
