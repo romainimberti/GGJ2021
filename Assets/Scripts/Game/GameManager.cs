@@ -35,6 +35,11 @@ namespace com.romainimberti.ggj2021.game
         [SerializeField]
         private GameObject go_fogSecondaryCircle;
 
+        [SerializeField]
+        private RenderTexture fogMainTexture;
+        [SerializeField]
+        private RenderTexture fogSecondaryTexture;
+
         #endregion
         #region Public
 
@@ -104,6 +109,8 @@ namespace com.romainimberti.ggj2021.game
             player.Disable();
             finishGameObject.SetActive(true);
             capacitiesGameObject.SetActive(false);
+            fogMainTexture.Release();
+            fogSecondaryTexture.Release();
         }
 
         public void GenerateMaze()
@@ -113,6 +120,8 @@ namespace com.romainimberti.ggj2021.game
             handleCapacitiesUnlock();
             CreateMaze(29, 17);
             SetCameraDimensions(29, 17);
+            fogMainTexture.Release();
+            fogSecondaryTexture.Release();
         }
 
         public void EnableCapacities(int x, int y)
