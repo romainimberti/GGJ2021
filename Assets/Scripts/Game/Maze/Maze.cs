@@ -344,7 +344,7 @@ namespace com.romainimberti.ggj2020.game.maze
         private bool IsACompleteWall(int x, int y)
         {
             return maze[x, y].IsAWall() &&
-                   (y == 0 || !maze[x, y - 1].IsWalkable());
+                   (y == 0 || !maze[x, y - 1].IsWalkable() && !maze[x, y - 1].IsATreeStump());
         }
 
         private void GenerateTreeStump()

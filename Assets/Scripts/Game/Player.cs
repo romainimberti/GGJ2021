@@ -46,7 +46,6 @@ namespace com.romainimberti.ggj2020
         {
             lastPosition = transform.position;
             playerSpriteRenderer = GetComponent<SpriteRenderer>();
-            joystick = GameObject.Find("Floating Joystick").GetComponent<FloatingJoystick>();
         }
         private void OnTriggerEnter2D(Collider2D col)
         {
