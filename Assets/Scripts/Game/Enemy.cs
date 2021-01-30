@@ -76,7 +76,6 @@ namespace com.romainimberti.ggj2020
             position = transform.position;
             lastPosition = position;
             CalculateNewDirection();
-            Debug.LogError("Allow");
             Fade(false);
         }
 
@@ -90,57 +89,53 @@ namespace com.romainimberti.ggj2020
         }
         private void FixedUpdate()
         {
-            if (alive)
+            Fade();
+
+            if (alive && !freeze)
             {
-                Fade();
-
-                if (!freeze)
+                Vector3 offset = transform.position - position;
+                if ((offset.x.CompareTo(0) < 0.01 || offset.y.CompareTo(0) < 0.01) || playerInRange)
                 {
+                    position = new Vector3(transform.position.x, transform.position.y, transform.position.z);// code to execute when X is getting bigger
+                }
+                else
+                {
+                    CalculateNewDirection();
+                }
 
-                    Vector3 offset = transform.position - position;
-                    if ((offset.x.CompareTo(0) < 0.01 || offset.y.CompareTo(0) < 0.01) || playerInRange)
+                gameObject.GetComponent<Rigidbody2D>().velocity = movementDirection * movementSpeed * Time.fixedDeltaTime;
+
+                if (playerInRange) followPlayer(playerLastPosition);
+
+                if (!goingRight)
+                {
+                    if (movementDirection.x > 0)
                     {
-                        position = new Vector3(transform.position.x, transform.position.y, transform.position.z);// code to execute when X is getting bigger
+                        goingRight = true;
+                        transform.Rotate(0, 180, 0);
                     }
-                    else
+                }
+                else
+                {
+                    if (movementDirection.x < 0)
                     {
-                        CalculateNewDirection();
+                        goingRight = false;
+                        transform.Rotate(0, 180, 0);
                     }
+                }
 
-                    gameObject.GetComponent<Rigidbody2D>().velocity = movementDirection * movementSpeed * Time.fixedDeltaTime;
+                if (lastPosition != transform.position)
+                {
+                    spriteTempo++;
 
-                    if (playerInRange) followPlayer(playerLastPosition);
-
-                    if (!goingRight)
+                    if (spriteTempo > 10)
                     {
-                        if (movementDirection.x > 0)
-                        {
-                            goingRight = true;
-                            transform.Rotate(0, 180, 0);
-                        }
-                    }
-                    else
-                    {
-                        if (movementDirection.x < 0)
-                        {
-                            goingRight = false;
-                            transform.Rotate(0, 180, 0);
-                        }
-                    }
-
-                    if (lastPosition != transform.position)
-                    {
-                        spriteTempo++;
-
-                        if (spriteTempo > 10)
-                        {
-                            spriteTempo = 0;
-                            currentSprite++;
-                            if (currentSprite == 2 || currentSprite == 5)
-                                currentSprite = startingIndexForSprint;
-                            enemySpriteRenderer.sprite = enemySprites[currentSprite];
-                            lastPosition = transform.position;
-                        }
+                        spriteTempo = 0;
+                        currentSprite++;
+                        if (currentSprite == 2 || currentSprite == 5)
+                            currentSprite = startingIndexForSprint;
+                        enemySpriteRenderer.sprite = enemySprites[currentSprite];
+                        lastPosition = transform.position;
                     }
                 }
             }

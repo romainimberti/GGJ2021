@@ -326,6 +326,7 @@ MonoBehaviour:
   joystick: {fileID: 0}
   playerSprites: []
   enemiesInRange: []
+  currentSprite: 0
 --- !u!50 &9058152725305325461
 Rigidbody2D:
   serializedVersion: 4

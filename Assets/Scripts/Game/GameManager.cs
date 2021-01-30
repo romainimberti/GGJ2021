@@ -70,8 +70,6 @@ namespace com.romainimberti.ggj2021.game
         public Image imgJump;
         public Image imgCut;
 
-
-        public Sprite imgPlayer;
         public Sprite imgPlayerJump;
 
         public Sprite imgDarkWall;
@@ -86,6 +84,8 @@ namespace com.romainimberti.ggj2021.game
         public Sprite attackSprite;
         public Sprite lockedSprite;
 
+        public List<Sprite> attackSprites;
+
         public Camera cam;
 
         public Maze maze;
@@ -95,7 +95,7 @@ namespace com.romainimberti.ggj2021.game
         #endregion
         #region Private
 
-        private float level = 1;
+        public float level = 1;
 
         private Vector2Int interactableCell;
 
@@ -233,7 +233,7 @@ namespace com.romainimberti.ggj2021.game
             SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
             playerSprite.sprite = imgPlayerJump;
             LeanTween.move(player.gameObject, newPlayerPos, 0.2f).setEaseInOutQuad().setOnComplete(() =>
-                    playerSprite.sprite = imgPlayer
+                    playerSprite.sprite = player.playerSprites[player.currentSprite]
             );
         }
 
@@ -245,8 +245,41 @@ namespace com.romainimberti.ggj2021.game
 
         private void Attack()
         {
-            foreach(Enemy enemy in player.enemiesInRange)
+            SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
+
+            if(player.enemiesInRange.Count == 0)
             {
+                playerSprite.sprite = attackSprites[0];
+                CoroutineManager.Instance.Wait(0.05f, () =>
+                {
+                    playerSprite.sprite = attackSprites[1];
+                    CoroutineManager.Instance.Wait(0.05f, () =>
+                    {
+                        playerSprite.sprite = attackSprites[2];
+                        CoroutineManager.Instance.Wait(0.05f, () =>
+                        {
+                            playerSprite.sprite = player.playerSprites[player.currentSprite];
+                        });
+                    });
+                });
+            }
+
+            foreach (Enemy enemy in player.enemiesInRange)
+            {
+                playerSprite.sprite = attackSprites[0];
+                CoroutineManager.Instance.Wait(0.05f, () =>
+                {
+                    playerSprite.sprite = attackSprites[1];
+                    CoroutineManager.Instance.Wait(0.05f, () =>
+                    {
+                        playerSprite.sprite = attackSprites[2];
+                        enemy.Die();
+                        CoroutineManager.Instance.Wait(0.05f, () =>
+                        {
+                            playerSprite.sprite = player.playerSprites[player.currentSprite];
+                        });
+                    });
+                });
                 enemy.Die();
             }
         }
