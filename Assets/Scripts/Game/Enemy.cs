@@ -49,6 +49,7 @@ namespace com.romainimberti.ggj2020
         private SpriteRenderer enemySpriteRenderer;
 
         private bool alive = true;
+        public bool freeze = false;
 
 
         private Vector3 lastPosition;
@@ -75,7 +76,7 @@ namespace com.romainimberti.ggj2020
             position = transform.position;
             lastPosition = position;
             CalculateNewDirection();
-
+            Debug.LogError("Allow");
             Fade(false);
         }
 
@@ -93,51 +94,59 @@ namespace com.romainimberti.ggj2020
             {
                 Fade();
 
-                Vector3 offset = transform.position - position;
-                if ((offset.x.CompareTo(0) < 0.01 || offset.y.CompareTo(0) < 0.01)  || playerInRange)
+                if (!freeze)
                 {
-                    position = new Vector3(transform.position.x, transform.position.y, transform.position.z);// code to execute when X is getting bigger
-                }
-                else
-                {
-                    CalculateNewDirection();
-                }
 
-                gameObject.GetComponent<Rigidbody2D>().velocity = movementDirection * movementSpeed * Time.fixedDeltaTime;
-
-                if (playerInRange) followPlayer(playerLastPosition);
-
-                if (!goingRight)
-                {
-                    if (movementDirection.x > 0)
+                    Vector3 offset = transform.position - position;
+                    if ((offset.x.CompareTo(0) < 0.01 || offset.y.CompareTo(0) < 0.01) || playerInRange)
                     {
-                        goingRight = true;
-                        transform.Rotate(0, 180, 0);
+                        position = new Vector3(transform.position.x, transform.position.y, transform.position.z);// code to execute when X is getting bigger
+                    }
+                    else
+                    {
+                        CalculateNewDirection();
+                    }
+
+                    gameObject.GetComponent<Rigidbody2D>().velocity = movementDirection * movementSpeed * Time.fixedDeltaTime;
+
+                    if (playerInRange) followPlayer(playerLastPosition);
+
+                    if (!goingRight)
+                    {
+                        if (movementDirection.x > 0)
+                        {
+                            goingRight = true;
+                            transform.Rotate(0, 180, 0);
+                        }
+                    }
+                    else
+                    {
+                        if (movementDirection.x < 0)
+                        {
+                            goingRight = false;
+                            transform.Rotate(0, 180, 0);
+                        }
+                    }
+
+                    if (lastPosition != transform.position)
+                    {
+                        spriteTempo++;
+
+                        if (spriteTempo > 10)
+                        {
+                            spriteTempo = 0;
+                            currentSprite++;
+                            if (currentSprite == 2 || currentSprite == 5)
+                                currentSprite = startingIndexForSprint;
+                            enemySpriteRenderer.sprite = enemySprites[currentSprite];
+                            lastPosition = transform.position;
+                        }
                     }
                 }
-                else
-                {
-                    if (movementDirection.x < 0)
-                    {
-                        goingRight = false;
-                        transform.Rotate(0, 180, 0);
-                    }
-                }
-
-                if (lastPosition != transform.position)
-                {
-                    spriteTempo++;
-
-                    if (spriteTempo > 10)
-                    {
-                        spriteTempo = 0;
-                        currentSprite++;
-                        if(currentSprite == 2 || currentSprite == 5)
-                            currentSprite = startingIndexForSprint;
-                        enemySpriteRenderer.sprite = enemySprites[currentSprite];
-                        lastPosition = transform.position;
-                    }
-                }
+            }
+            else
+            {
+                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             }
         }
 
@@ -206,7 +215,7 @@ namespace com.romainimberti.ggj2020
 
         public void Die()
         {
-            Destroy(GetComponent<BoxCollider2D>());
+            Destroy(GetComponent<CircleCollider2D>());
             alive = false;
             spriteRenderer.sprite = enemySprites[startingIndexForSprint + 2];
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);

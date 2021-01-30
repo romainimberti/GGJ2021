@@ -185,7 +185,7 @@ namespace com.romainimberti.ggj2021.game
             }
 
             if (mazeCells[x, y].IsAWall()) {
-                if (level > 2)
+                if (level > 3)
                 {
                     if (maze.IsACutableWall(x, y))
                     {
@@ -265,11 +265,11 @@ namespace com.romainimberti.ggj2021.game
                 imgJump.sprite = jumpSprite;
             }
 
-            if (level > 2) {
+            if (level > 3) {
                 imgCut.sprite = cutSprite;
             }
 
-            if (level > 0) {
+            if (level > 2) {
                 imgAttack.sprite = attackSprite;
                 btnAttack.Interactable = true;
             }
@@ -328,9 +328,11 @@ namespace com.romainimberti.ggj2021.game
                     maze.GenerateJumpUnlockTutorial();
                     break;
                 case 2.5F:
+                    maze.GenerateAttackUnlockTutorial();                    
+                    break;
+                case 3.5F:
                     maze.GenerateCutUnlockTutorial();
                     break;
-                case 3.5F: // TODO Attack Tutorial
                 default:
                     maze.Generate();
                     break;
@@ -347,6 +349,7 @@ namespace com.romainimberti.ggj2021.game
             {
                 Enemy enemy = Instantiate(enemyPrefab, new Vector3(monPos.x, monPos.y, -1), Quaternion.identity);
                 enemy.transform.parent = Maze.mazeObject;
+                enemy.freeze = maze.enemiesFrozen;
             }
 
         }
