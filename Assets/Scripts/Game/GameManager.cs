@@ -8,11 +8,11 @@ using UnityEngine;
 namespace com.romainimberti.ggj2021.game
 {
 
-	///<summary>
-	///Class that handles the game manager
-	///</summary>
-	public class GameManager : SingletonBehaviour<GameManager>
-	{
+    ///<summary>
+    ///Class that handles the game manager
+    ///</summary>
+    public class GameManager : SingletonBehaviour<GameManager>
+    {
         #region Variables
         #region Editor
 
@@ -79,7 +79,7 @@ namespace com.romainimberti.ggj2021.game
             //Start generating the maze
             maze.Generate();
 
-            GameObject.Find("Player").transform.position = new Vector3(maze.GetStartTile().x, maze.GetStartTile().y, 0);
+            GameObject.Find("Player").transform.position = new Vector3(maze.GetStartTile().x, maze.GetStartTile().y, -0.75f);
         }
 
         #endregion
