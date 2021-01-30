@@ -36,8 +36,6 @@ namespace com.romainimberti.ggj2020
         private bool playerInRange = true;
         private Vector3 playerLastPosition = new Vector3Int(0, 0, 0);
 
-        private LTDescr animationFade = null;
-
         private int startingIndexForSprint;
 
         private bool goingRight = true;
@@ -207,7 +205,7 @@ namespace com.romainimberti.ggj2020
 
         public void Die()
         {
-            Destroy(GetComponent<BoxCollider2D>());
+            Destroy(GetComponent<Collider2D>());
             alive = false;
             spriteRenderer.sprite = enemySprites[startingIndexForSprint + 2];
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
