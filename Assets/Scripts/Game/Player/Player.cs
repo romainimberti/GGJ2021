@@ -125,6 +125,20 @@ namespace com.romainimberti.ggj2020
                 if (!enemiesInRange.Contains(enemy))
                 {
                     enemiesInRange.Add(enemy);
+
+                    int clip = Random.Range(0, 3);
+                    switch (clip)
+                    {
+                        case 0:
+                            AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SpiderAttack1);
+                            break;
+                        case 1:
+                            AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SpiderAttack2);
+                            break;
+                        case 2:
+                            AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SpiderAttack3);
+                            break;
+                    }
                 }
             }
             else
@@ -134,6 +148,8 @@ namespace com.romainimberti.ggj2020
                     enemiesInRange.Remove(enemy);
                 }
             }
+
+            AudioManager.Instance.Mute(enemiesInRange.Count <= 0, AudioManager.CHANNEL.SECOND_MUSIC);
 
             //GameManager.Instance.EnableAttackCapacity(enemiesInRange.Count > 0);
         }

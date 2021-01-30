@@ -26,6 +26,12 @@ namespace com.romainimberti.ggj2021.utilities.audio
         /// </summary>
         [ConditionalHide("channel", desiredChannel: AudioManager.CHANNEL.SFX, HideInInspector = true)]
         public AudioManager.SFX sfxClip;
+
+        /// <summary>
+        /// The sound effect clip enum.
+        /// </summary>
+        [ConditionalHide("channel", desiredChannel: AudioManager.CHANNEL.SECOND_MUSIC, HideInInspector = true)]
+        public AudioManager.SECOND_MUSIC secondMusicClip;
         #endregion
         #region Public
         public AudioClip[] possibleClips;

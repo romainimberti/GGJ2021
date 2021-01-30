@@ -126,6 +126,8 @@ namespace com.romainimberti.ggj2021.game
             btnCut.Init(Cut);
             btnAttack.Init(Attack);
             btnPlay.Init(GenerateMaze);
+
+            AudioManager.Instance.PlayAudioClip(AudioManager.MUSIC.Menu);
         }
 
         #endregion
@@ -187,6 +189,10 @@ namespace com.romainimberti.ggj2021.game
             /*fogMainTexture.Release();
             fogSecondaryTexture.Release();*/
             joystickGameObject.ResetJoystick();
+
+            AudioManager.Instance.PlayAudioClip(AudioManager.MUSIC.Main);
+            AudioManager.Instance.PlayAudioClip(AudioManager.SECOND_MUSIC.SpiderInRange);
+            AudioManager.Instance.Mute(true, AudioManager.CHANNEL.SECOND_MUSIC);
         }
 
         public void EnableCapacities(int x, int y)

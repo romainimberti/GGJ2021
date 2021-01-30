@@ -1,4 +1,5 @@
 ﻿using com.romainimberti.ggj2021.game;
+using com.romainimberti.ggj2021.utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -93,13 +94,10 @@ namespace com.romainimberti.ggj2020
                 Vector3 offset = transform.position - position;
                 if ((Mathf.Abs(offset.x) > 0.01 || Mathf.Abs(offset.y) > 0.01))
                 {
-                    Debug.Log("Nothing to Change");
-
                     position = new Vector3(transform.position.x, transform.position.y, transform.position.z);// code to execute when X is getting bigger
                 }
                 else
                 {
-                    Debug.Log("Fuck Im Stuck");
                     CalculateNewDirection();
                 }
 
@@ -214,6 +212,7 @@ namespace com.romainimberti.ggj2020
 
         public void Die()
         {
+            AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SpiderDie);
             Destroy(GetComponent<Collider2D>());
             alive = false;
             spriteRenderer.sprite = enemySprites[startingIndexForSprint + 2];

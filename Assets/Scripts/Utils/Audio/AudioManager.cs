@@ -32,7 +32,8 @@ namespace com.romainimberti.ggj2021.utilities
         public enum CHANNEL
         {
             MUSIC,
-            SFX
+            SFX,
+            SECOND_MUSIC
         }
 
 
@@ -41,7 +42,8 @@ namespace com.romainimberti.ggj2021.utilities
         /// </summary>
         public enum MUSIC
         {
-
+            Main,
+            Menu,
         }
 
         /// <summary>
@@ -54,7 +56,19 @@ namespace com.romainimberti.ggj2021.utilities
             Step2,
             Step3,
             Step4,
-            Step5
+            Step5,
+            SpiderAttack1,
+            SpiderAttack2,
+            SpiderAttack3,
+            SpiderDie,
+        }
+
+        /// <summary>
+        /// The music clips playing in the background
+        /// </summary>
+        public enum SECOND_MUSIC
+        {
+            SpiderInRange,
         }
 
         #endregion
@@ -74,6 +88,7 @@ namespace com.romainimberti.ggj2021.utilities
         /// </summary>
         private Dictionary<SFX, AudioAsset> getSFXCLIP = new Dictionary<SFX, AudioAsset>();
         private Dictionary<MUSIC, AudioAsset> getMusicClip = new Dictionary<MUSIC, AudioAsset>();
+        private Dictionary<SECOND_MUSIC, AudioAsset> getSecondMusicClip = new Dictionary<SECOND_MUSIC, AudioAsset>();
 
 
         /// <summary>
@@ -83,7 +98,8 @@ namespace com.romainimberti.ggj2021.utilities
         private Dictionary<CHANNEL, string> channelToOutput = new Dictionary<CHANNEL, string>()
         {
             {CHANNEL.MUSIC,"Music"},
-            {CHANNEL.SFX,"SFX"}
+            {CHANNEL.SFX,"SFX"},
+            {CHANNEL.SECOND_MUSIC,"SECOND_MUSIC"}
         };
 
         /// <summary>
@@ -143,6 +159,7 @@ namespace com.romainimberti.ggj2021.utilities
 
             Mute(!PlayerPrefsX.GetBool(PlayerPrefsKeys.KEY_MUSIC_ON, true), AudioManager.CHANNEL.MUSIC);
             Mute(!PlayerPrefsX.GetBool(PlayerPrefsKeys.KEY_SOUND_EFFECTS_ON, true), AudioManager.CHANNEL.SFX);
+            Mute(!PlayerPrefsX.GetBool(PlayerPrefsKeys.KEY_SOUND_EFFECTS_ON, true), AudioManager.CHANNEL.SECOND_MUSIC);
         }
 
         #endregion
@@ -182,6 +199,17 @@ namespace com.romainimberti.ggj2021.utilities
             if(!getSFXCLIP.ContainsKey(clip))
                 Awake();
             getChannel[CHANNEL.SFX].PlayClip(getSFXCLIP[clip].GetClip(index), onFinish, delay, volumeScale: getSFXCLIP[clip].Volume, pitch: pitch);
+        }
+        /// <summary>
+        /// Plays a SFX clip
+        /// </summary>
+        /// <param name="clip">The clip to play</param>
+        /// <param name="onFinish"> the callback on finishing playing</param>
+        public void PlayAudioClip(SECOND_MUSIC clip, UnityAction onFinish = null, int index = -1, float delay = 0, float pitch = 1)
+        {
+            if(!getSecondMusicClip.ContainsKey(clip))
+                Awake();
+            getChannel[CHANNEL.SECOND_MUSIC].PlayClip(getSecondMusicClip[clip].GetClip(index), onFinish, delay, volumeScale: getSecondMusicClip[clip].Volume, pitch: pitch);
         }
 
         /// <summary>
@@ -306,10 +334,21 @@ namespace com.romainimberti.ggj2021.utilities
                 switch (clipData.channel)
                 {
                     case CHANNEL.SFX:
-                        getSFXCLIP.Add(clipData.sfxClip, clipData);
+                        if (!getSFXCLIP.ContainsKey(clipData.sfxClip)){
+                            getSFXCLIP.Add(clipData.sfxClip, clipData);
+                        }
                         break;
                     case CHANNEL.MUSIC:
-                        getMusicClip.Add(clipData.musicalClip, clipData);
+                        if (!getMusicClip.ContainsKey(clipData.musicalClip))
+                        {
+                            getMusicClip.Add(clipData.musicalClip, clipData);
+                        }
+                        break;
+                    case CHANNEL.SECOND_MUSIC:
+                        if (!getSecondMusicClip.ContainsKey(clipData.secondMusicClip))
+                        {
+                            getSecondMusicClip.Add(clipData.secondMusicClip, clipData);
+                        }
                         break;
                 }
         }
@@ -320,7 +359,12 @@ namespace com.romainimberti.ggj2021.utilities
         private void CreateChannels()
         {
             foreach (ChannelData channelData in AudioChannels)
-                getChannel.Add(channelData.type, channelData.controller);
+            {
+                if (!getChannel.ContainsKey(channelData.type))
+                {
+                    getChannel.Add(channelData.type, channelData.controller);
+                }
+            }
         }
 
         /// <summary>
@@ -336,6 +380,8 @@ namespace com.romainimberti.ggj2021.utilities
                 if (!getSFXCLIP.ContainsKey(values)) sb.Append(values + ", ");
             foreach (MUSIC values in Enum.GetValues(typeof(MUSIC)))
                 if (!getMusicClip.ContainsKey(values)) sb.Append(values + ", ");
+            foreach (SECOND_MUSIC values in Enum.GetValues(typeof(SECOND_MUSIC)))
+                if (!getSecondMusicClip.ContainsKey(values)) sb.Append(values + ", ");
             string result = sb.ToString();
             if (!result.Equals(intro)) Debug.Log(result);
 
