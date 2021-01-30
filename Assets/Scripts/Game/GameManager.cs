@@ -175,7 +175,7 @@ namespace com.romainimberti.ggj2021.game
                 default:
                     width = 23;
                     heigth = 13;
-                    for(int i = 0; i < level - 1; i++)
+                    for (int i = 0; i < level - 1; i++)
                     {
                         width = (int)(width * 1.2);
                         heigth = (int)(heigth * 1.2);
@@ -193,7 +193,8 @@ namespace com.romainimberti.ggj2021.game
         {
             Cell[,] mazeCells = maze.GetTiles();
 
-            if (mazeCells[x, y].IsATreeStump()) {
+            if (mazeCells[x, y].IsATreeStump())
+            {
                 if (level > 1)
                 {
                     btnJump.Interactable = true;
@@ -201,7 +202,8 @@ namespace com.romainimberti.ggj2021.game
                 }
             }
 
-            if (mazeCells[x, y].IsAWall()) {
+            if (mazeCells[x, y].IsAWall())
+            {
                 if (level > 3)
                 {
                     if (maze.IsACutableWall(x, y))
@@ -235,7 +237,8 @@ namespace com.romainimberti.ggj2021.game
             {
                 if (player.transform.position.x < (float)interactableCell.x)
                     newPlayerPos = new Vector3(interactableCell.x + 1, player.transform.position.y, player.transform.position.z);
-                else {
+                else
+                {
                     newPlayerPos = new Vector3(interactableCell.x - 1, player.transform.position.y, player.transform.position.z);
                 }
             }
@@ -278,7 +281,7 @@ namespace com.romainimberti.ggj2021.game
         {
             SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
 
-            if(player.enemiesInRange.Count == 0)
+            if (player.enemiesInRange.Count == 0)
             {
                 playerSprite.sprite = attackSprites[0];
                 CoroutineManager.Instance.Wait(0.05f, () =>
@@ -325,15 +328,18 @@ namespace com.romainimberti.ggj2021.game
             imgCut.sprite = lockedSprite;
             imgAttack.sprite = lockedSprite;
 
-            if (level > 1) {
+            if (level > 1)
+            {
                 imgJump.sprite = jumpSprite;
             }
 
-            if (level > 3) {
+            if (level > 3)
+            {
                 imgCut.sprite = cutSprite;
             }
 
-            if (level > 2) {
+            if (level > 2)
+            {
                 imgAttack.sprite = attackSprite;
                 btnAttack.Interactable = true;
             }
@@ -373,7 +379,7 @@ namespace com.romainimberti.ggj2021.game
             maze = new Maze(width, height);
             SetCameraDimensions(width, height);
 
-            if(level > 2.5)
+            if (level > 2.5)
             {
                 wallPrefab.GetComponent<SpriteRenderer>().sprite = imgDarkWall;
                 completeWallPrefab.GetComponent<SpriteRenderer>().sprite = imgDarkCompleteWall;
@@ -394,7 +400,7 @@ namespace com.romainimberti.ggj2021.game
                     maze.GenerateJumpUnlockTutorial();
                     break;
                 case 2.5F:
-                    maze.GenerateAttackUnlockTutorial();                    
+                    maze.GenerateAttackUnlockTutorial();
                     break;
                 case 3.5F:
                     maze.GenerateCutUnlockTutorial();

@@ -91,12 +91,15 @@ namespace com.romainimberti.ggj2020
             if (alive && !freeze)
             {
                 Vector3 offset = transform.position - position;
-                if ((offset.x.CompareTo(0) < 0.01 || offset.y.CompareTo(0) < 0.01) || playerInRange)
+                if ((Mathf.Abs(offset.x) > 0.01 || Mathf.Abs(offset.y) > 0.01))
                 {
+                    Debug.Log("Nothing to Change");
+
                     position = new Vector3(transform.position.x, transform.position.y, transform.position.z);// code to execute when X is getting bigger
                 }
                 else
                 {
+                    Debug.Log("Fuck Im Stuck");
                     CalculateNewDirection();
                 }
 
@@ -199,6 +202,7 @@ namespace com.romainimberti.ggj2020
         private void OnCollisionEnter2D(Collision2D collision)
         {
             CalculateNewDirection();
+
             if (collision.collider.CompareTag("Player"))
             {
                 gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
@@ -210,7 +214,7 @@ namespace com.romainimberti.ggj2020
 
         public void Die()
         {
-            Destroy(GetComponent<CircleCollider2D>());
+            Destroy(GetComponent<Collider2D>());
             alive = false;
             spriteRenderer.sprite = enemySprites[startingIndexForSprint + 2];
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
