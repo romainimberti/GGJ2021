@@ -281,6 +281,20 @@ namespace com.romainimberti.ggj2021.game
                     });
                 });
             });
+
+            int clip = Random.Range(0, 3);
+            switch (clip)
+            {
+                case 0:
+                    AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SwordWood1);
+                    break;
+                case 1:
+                    AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SwordWood2);
+                    break;
+                case 2:
+                    AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SwordWood3);
+                    break;
+            }
         }
 
         private void Attack()
@@ -302,6 +316,20 @@ namespace com.romainimberti.ggj2021.game
                         });
                     });
                 });
+
+                int clip = Random.Range(0, 3);
+                switch (clip)
+                {
+                    case 0:
+                        AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SwordEmpty1);
+                        break;
+                    case 1:
+                        AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SwordEmpty2);
+                        break;
+                    case 2:
+                        AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SwordEmpty3);
+                        break;
+                }
             }
 
             foreach (Enemy enemy in player.enemiesInRange)
