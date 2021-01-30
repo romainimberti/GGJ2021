@@ -321,7 +321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderObject: {fileID: 816432436422314027}
   attackCollider: {fileID: 2541150395842531373}
-  attackRange: 1
+  attackRange: 1.5
   speed: 175
   joystick: {fileID: 0}
   playerSprites: []

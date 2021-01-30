@@ -36,8 +36,6 @@ namespace com.romainimberti.ggj2020
         private bool playerInRange = true;
         private Vector3 playerLastPosition = new Vector3Int(0, 0, 0);
 
-        private LTDescr animationFade = null;
-
         private int startingIndexForSprint;
 
         private bool goingRight = true;
@@ -79,10 +77,9 @@ namespace com.romainimberti.ggj2020
             Fade(false);
         }
 
-        private void followPlayer(Vector3 playerPosition)
+        private void FollowPlayer(Vector3 playerPosition)
         {
             Vector3 fromPosition = transform.position;
-            //Debug.Log("KILL KILL KILL AT " + playerPosition);
             Vector3 toPosition = GameManager.Instance.Player.transform.position;
             Vector3 offset = toPosition - fromPosition;
             movementDirection = new Vector3(Mathf.Clamp(offset.x, -1, 1), Mathf.Clamp(offset.y, -1, 1), Mathf.Clamp(offset.z, -1, 1));
@@ -105,7 +102,7 @@ namespace com.romainimberti.ggj2020
 
                 gameObject.GetComponent<Rigidbody2D>().velocity = movementDirection * movementSpeed * Time.fixedDeltaTime;
 
-                if (playerInRange) followPlayer(playerLastPosition);
+                if (playerInRange) FollowPlayer(playerLastPosition);
 
                 if (!goingRight)
                 {
@@ -197,13 +194,16 @@ namespace com.romainimberti.ggj2020
                 default:
                     break;
             }
-
         }
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
-
             CalculateNewDirection();
-
+            if (collision.collider.CompareTag("Player"))
+            {
+                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                GameManager.Instance.GameOver();
+            }
         }
         #endregion
         #region Public
