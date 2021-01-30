@@ -74,6 +74,13 @@ namespace com.romainimberti.ggj2021.game
         public Sprite imgPlayer;
         public Sprite imgPlayerJump;
 
+        public Sprite imgDarkWall;
+        public Sprite imgDarkTreeStump;
+        public Sprite imgDarkCompleteWall;
+        public Sprite imgLightWall;
+        public Sprite imgLightTreeStump;
+        public Sprite imgLightCompleteWall;
+
         public Sprite jumpSprite;
         public Sprite cutSprite;
         public Sprite attackSprite;
@@ -301,6 +308,19 @@ namespace com.romainimberti.ggj2021.game
 
             maze = new Maze(width, height);
             SetCameraDimensions(width, height);
+
+            if(level > 2.5)
+            {
+                wallPrefab.GetComponent<SpriteRenderer>().sprite = imgDarkWall;
+                completeWallPrefab.GetComponent<SpriteRenderer>().sprite = imgDarkCompleteWall;
+                treeStumpPrefab.GetComponent<SpriteRenderer>().sprite = imgDarkTreeStump;
+            }
+            else
+            {
+                wallPrefab.GetComponent<SpriteRenderer>().sprite = imgLightWall;
+                completeWallPrefab.GetComponent<SpriteRenderer>().sprite = imgLightCompleteWall;
+                treeStumpPrefab.GetComponent<SpriteRenderer>().sprite = imgLightTreeStump;
+            }
 
             switch (level)
             {

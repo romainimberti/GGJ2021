@@ -20,6 +20,9 @@ namespace com.romainimberti.ggj2020
         [SerializeField]
         private float range = 12f;
 
+        [SerializeField]
+        private List<Sprite> enemySprites;
+
         #endregion
         #region Public
 
@@ -27,13 +30,26 @@ namespace com.romainimberti.ggj2020
         #region Private
         [SerializeField]
         private float movementSpeed = 0;
-        Vector3 movementDirection = new Vector3(0, 0, 0);
+        Vector3 movementDirection = new Vector3(1, 0, 0);
         Vector3 position = new Vector3(0, 0, 0);
 
         private bool playerInRange = true;
         private Vector3 playerLastPosition = new Vector3Int(0, 0, 0);
 
         private LTDescr animationFade = null;
+
+        private int startingIndexForSprint;
+
+        private bool goingRight = true;
+
+        private int currentSprite = 0;
+
+        private int spriteTempo = 0;
+
+        private SpriteRenderer enemySpriteRenderer;
+
+
+        private Vector3 lastPosition;
 
         #endregion
         #endregion
@@ -51,7 +67,11 @@ namespace com.romainimberti.ggj2020
 
         private void Awake()
         {
+            startingIndexForSprint = Random.Range(0, 100) < 50 ? 0 : 2;
+            enemySpriteRenderer = GetComponent<SpriteRenderer>();
+            enemySpriteRenderer.sprite = enemySprites[startingIndexForSprint];
             position = transform.position;
+            lastPosition = position;
             CalculateNewDirection();
 
             Fade(false);
@@ -84,6 +104,38 @@ namespace com.romainimberti.ggj2020
             gameObject.GetComponent<Rigidbody2D>().velocity = movementDirection * movementSpeed * Time.fixedDeltaTime;
 
             if (playerInRange) followPlayer(playerLastPosition);
+
+            if (!goingRight)
+            {
+                if (movementDirection.x > 0)
+                {
+                    goingRight = true;
+                    transform.Rotate(0, 180, 0);
+                }
+            }
+            else
+            {
+                if (movementDirection.x < 0)
+                {
+                    goingRight = false;
+                    transform.Rotate(0, 180, 0);
+                }
+            }
+
+            if (lastPosition != transform.position)
+            {
+                spriteTempo++;
+
+                if (spriteTempo > 10)
+                {
+                    spriteTempo = 0;
+                    currentSprite++;
+                    if (currentSprite % 2 == 0)
+                        currentSprite = startingIndexForSprint;
+                    enemySpriteRenderer.sprite = enemySprites[currentSprite];
+                    lastPosition = transform.position;
+                }
+            }
         }
 
         private void Fade(bool animate = true)

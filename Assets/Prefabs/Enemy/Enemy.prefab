@@ -48,6 +48,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: -6020682515467843339}
   range: 4
+  enemySprites:
+  - {fileID: 21300000, guid: d39d58bb0849b3e41a77c8388cf83643, type: 3}
+  - {fileID: 21300000, guid: 4d67c269156fe3c41bb415679c98787f, type: 3}
+  - {fileID: 21300000, guid: d474a80e63694a94c96d45e94e46a4c9, type: 3}
+  - {fileID: 21300000, guid: 0d0da1351dc3d2747b49b676267df95a, type: 3}
   movementSpeed: 35
 --- !u!212 &-6020682515467843339
 SpriteRenderer:
