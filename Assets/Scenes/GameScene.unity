@@ -1969,6 +1969,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6ed61bd537a0f8f4d8dcce1b3631da7c, type: 2}
   - {fileID: 11400000, guid: 2c816aca8cf225e4684dbb001bc649b9, type: 2}
   - {fileID: 11400000, guid: 577ece1091700044aa9749f340edc52f, type: 2}
+  - {fileID: 11400000, guid: 85d31bce3f0e01f4ebfe38c8d75843bc, type: 2}
+  - {fileID: 11400000, guid: 24e8a0391f330fb478d99a128aa3ee1c, type: 2}
+  - {fileID: 11400000, guid: a57247ce9d7005f4ba8eea02805f0dad, type: 2}
+  - {fileID: 11400000, guid: 3538fda1119749649a691dfc491b4c67, type: 2}
+  - {fileID: 11400000, guid: 0910480a8e360e749b9adb62c4630d6b, type: 2}
+  - {fileID: 11400000, guid: 10c7069901dc4ec4db462f698d73b74a, type: 2}
+  - {fileID: 11400000, guid: 1ed1e982c2ca74a48a7abae4a00130f7, type: 2}
+  - {fileID: 11400000, guid: 392f954e93c74274e84197b7f0151765, type: 2}
+  - {fileID: 11400000, guid: 0e0889ce248864f4fb2ea61700b710ba, type: 2}
+  - {fileID: 11400000, guid: b1de541a3aaa93e4a8ef61d6c9b9249c, type: 2}
   masterAudioMixer: {fileID: 24100000, guid: 7b6b81be5e5c4aa4fb2ad25e5fc2906d, type: 2}
   AudioChannels:
   - type: 0

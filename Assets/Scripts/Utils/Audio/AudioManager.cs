@@ -61,6 +61,16 @@ namespace com.romainimberti.ggj2021.utilities
             SpiderAttack2,
             SpiderAttack3,
             SpiderDie,
+            SwordEmpty1,
+            SwordEmpty2,
+            SwordEmpty3,
+            SwordWood1,
+            SwordWood2,
+            SwordWood3,
+            SwordSpider1,
+            SwordSpider2,
+            SwordSpider3,
+            SwordSpider4,
         }
 
         /// <summary>
