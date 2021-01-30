@@ -40,6 +40,9 @@ namespace com.romainimberti.ggj2021.game
         [SerializeField]
         private RenderTexture fogSecondaryTexture;
 
+        [SerializeField]
+        private RectTransform fogCanvas;
+
         #endregion
         #region Public
 
@@ -250,6 +253,9 @@ namespace com.romainimberti.ggj2021.game
 
             fogCameraMain.transform.position = cam.transform.position;
             fogCameraSecondary.transform.position = cam.transform.position;
+
+            fogCanvas.sizeDelta = new Vector2(cam.rect.width, cam.rect.height);
+            fogCanvas.transform.position = cam.transform.position.With(z: fogCanvas.transform.position.z);
 
             go_fogMainCircle.SetActive(true);
             go_fogSecondaryCircle.SetActive(true);
