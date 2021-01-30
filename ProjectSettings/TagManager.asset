@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wall
+  - End
+  - AttackCollider
   layers:
   - Default
   - TransparentFX

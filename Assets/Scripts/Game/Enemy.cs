@@ -27,10 +27,11 @@ namespace com.romainimberti.ggj2020
         #region Private
         [SerializeField]
         private float movementSpeed = 0;
-        Vector3Int movementDirection = new Vector3Int(0, 0, 0);
+        Vector3 movementDirection = new Vector3(0, 0, 0);
         Vector3 position = new Vector3(0, 0, 0);
 
         private bool playerInRange = true;
+        private Vector3 playerLastPosition = new Vector3Int(0, 0, 0);
 
         private LTDescr animationFade = null;
 
@@ -55,12 +56,23 @@ namespace com.romainimberti.ggj2020
 
             Fade(false);
         }
+
+        private void followPlayer(Vector3 playerPosition)
+        {
+
+            Debug.Log("KILL KILL KILL AT " + playerPosition);
+            Vector3 fromPosition = transform.position;
+            Vector3 toPosition = GameManager.Instance.Player.transform.position;
+            Vector3 offset = toPosition - fromPosition;
+            movementDirection = new Vector3(Mathf.Clamp(offset.x, -1, 1), Mathf.Clamp(offset.y, -1, 1), Mathf.Clamp(offset.z, -1, 1));
+            //movementDirection = ()
+        }
         private void FixedUpdate()
         {
             Fade();
 
             Vector3 offset = transform.position - position;
-            if (offset.x != 0 || offset.y != 0)
+            if (offset.x != 0 || offset.y != 0 || playerInRange)
             {
                 position = new Vector3(transform.position.x, transform.position.y, transform.position.z);// code to execute when X is getting bigger
             }
@@ -69,8 +81,9 @@ namespace com.romainimberti.ggj2020
                 CalculateNewDirection();
             }
 
-            Vector3 dir = movementDirection;
-            gameObject.GetComponent<Rigidbody2D>().velocity = dir * movementSpeed * Time.fixedDeltaTime;
+            gameObject.GetComponent<Rigidbody2D>().velocity = movementDirection * movementSpeed * Time.fixedDeltaTime;
+
+            if (playerInRange) followPlayer(playerLastPosition);
         }
 
         private void Fade(bool animate = true)
@@ -80,17 +93,20 @@ namespace com.romainimberti.ggj2020
             Vector3 direction = toPosition - fromPosition;
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, range);
 
-            bool previousInRange = playerInRange;
+            Debug.DrawRay(transform.position, direction * range, Color.red);
 
             playerInRange = false;
             if (hit.collider != null)
             {
-                if (hit.collider.CompareTag("Player"))
+                if (!hit.collider.CompareTag("Wall") && !hit.collider.CompareTag("Untagged") && !hit.collider.CompareTag("AttackCollider"))
                 {
-                    playerInRange = true;
+                    if (hit.collider.CompareTag("Player"))
+                    {
+                        playerInRange = true;
+                    }
                 }
             }
-
+            /*
             Color c = spriteRenderer.color;
             float target = playerInRange ? 1 : 0;
             if (playerInRange != previousInRange)
@@ -107,7 +123,10 @@ namespace com.romainimberti.ggj2020
                 {
                     animationFade = null;
                 });
-            }
+            }*/
+            spriteRenderer.enabled = playerInRange;
+
+            playerLastPosition = toPosition;
         }
 
         private void CalculateNewDirection()
@@ -116,20 +135,20 @@ namespace com.romainimberti.ggj2020
             switch (randomDirection)
             {
                 case 0:
-                    if (movementDirection.y == 1) CalculateNewDirection();
-                    movementDirection = new Vector3Int(0, 1, 0);
+                    if (movementDirection.y == 1.0f) CalculateNewDirection();
+                    movementDirection = new Vector3(0, 1.0f, 0);
                     break;
                 case 1:
-                    if (movementDirection.x == 1) CalculateNewDirection();
-                    movementDirection = new Vector3Int(1, 0, 0);
+                    if (movementDirection.x == 1.0f) CalculateNewDirection();
+                    movementDirection = new Vector3(1.0f, 0, 0);
                     break;
                 case 2:
-                    if (movementDirection.y == -1) CalculateNewDirection();
-                    movementDirection = new Vector3Int(0, -1, 0);
+                    if (movementDirection.y == -1.0f) CalculateNewDirection();
+                    movementDirection = new Vector3(0, -1.0f, 0);
                     break;
                 case 3:
-                    if (movementDirection.x == -1) CalculateNewDirection();
-                    movementDirection = new Vector3Int(-1, 0, 0);
+                    if (movementDirection.x == -1.0f) CalculateNewDirection();
+                    movementDirection = new Vector3(-1.0f, 0, 0);
                     break;
                 default:
                     break;

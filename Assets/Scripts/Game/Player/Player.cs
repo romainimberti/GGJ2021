@@ -15,9 +15,18 @@ namespace com.romainimberti.ggj2020
         #region Variables
         #region Editor
 
+
+        [SerializeField]
+        private Collider2D colliderObject;
+
+        [SerializeField]
+        private Collider2D attackCollider;
+
         #endregion
         #region Public
         public float speed;
+
+        [HideInInspector]
         public FloatingJoystick joystick;
 
         public List<Sprite> playerSprites;
@@ -46,6 +55,7 @@ namespace com.romainimberti.ggj2020
         {
             lastPosition = transform.position;
             playerSpriteRenderer = GetComponent<SpriteRenderer>();
+            Physics2D.IgnoreCollision(colliderObject, attackCollider, true);
         }
         private void OnTriggerEnter2D(Collider2D col)
         {
