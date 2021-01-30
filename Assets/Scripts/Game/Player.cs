@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using com.romainimberti.ggj2021.game;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,24 +22,50 @@ namespace com.romainimberti.ggj2020
         #endregion
         #region Private
 
+        private bool enable = false;
+
         #endregion
         #endregion
         #region Methods
         #region Unity
 
+        private void Awake()
+        {
+            joystick = GameObject.Find("Floating Joystick").GetComponent<FloatingJoystick>();
+        }
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            GameManager.Instance.MazeFinished();
+        }
+
         #endregion
         #region Public
 
-        private void Update()
+        public void Enable()
         {
-            Vector3 direction = Vector3.up * joystick.Vertical + Vector3.right * joystick.Horizontal;
-            gameObject.GetComponent<Rigidbody2D>().velocity = direction * speed * Time.fixedDeltaTime;
+            enable = true;
         }
+
+        public void Disable()
+        {
+            enable = false;
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2Int(0,0);
+        }
+
         #endregion
         #region Protected
 
         #endregion
         #region Private
+
+        private void Update()
+        {
+            if (enable)
+            {
+                Vector3 direction = Vector3.up * joystick.Vertical + Vector3.right * joystick.Horizontal;
+                gameObject.GetComponent<Rigidbody2D>().velocity = direction * speed * Time.fixedDeltaTime;
+            }
+        }
 
         #endregion
         #endregion

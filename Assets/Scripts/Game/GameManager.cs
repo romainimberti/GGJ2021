@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using com.romainimberti.ggj2020;
+using com.romainimberti.ggj2021.ui;
 
 namespace com.romainimberti.ggj2021.game
 {
@@ -44,12 +45,18 @@ namespace com.romainimberti.ggj2021.game
         public GameObject startPrefab;
         public GameObject treeStumpPrefab;
 
+        public GameObject finishGameObject;
+        public ButtonWithClickAnimation btnFinish;
+
         public Camera cam;
+
+        public Maze maze;
 
         #endregion
         #region Private
 
-        private Maze maze;
+        [SerializeField]
+        private Player player;
 
         #endregion
         #endregion
@@ -62,12 +69,25 @@ namespace com.romainimberti.ggj2021.game
 
             Application.targetFrameRate = 60;
 
-            CreateMaze(29, 17);
-            SetCameraDimensions(29, 17);
+            GenerateMaze();
+            btnFinish.Init(GenerateMaze);
         }
 
         #endregion
         #region Public
+
+        public void MazeFinished()
+        {
+            player.Disable();
+            finishGameObject.SetActive(true);
+        }
+
+        public void GenerateMaze()
+        {
+            finishGameObject.SetActive(false);
+            CreateMaze(29, 17);
+            SetCameraDimensions(29, 17);
+        }
 
         #endregion
         #region Protected
@@ -106,9 +126,9 @@ namespace com.romainimberti.ggj2021.game
 
             //Start generating the maze
             maze.Generate();
-
             Vector3 startPosition = new Vector3(maze.GetStartTile().x, maze.GetStartTile().y, -0.75f);
             player.transform.position = startPosition;
+            player.Enable();
         }
 
         #endregion
