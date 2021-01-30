@@ -57,7 +57,7 @@ namespace com.romainimberti.ggj2021.game
         public GameObject finishGameObject;
         public GameObject menuGameObject;
         public GameObject fogGameObject;
-        public GameObject joystickGameObject;
+        public Joystick joystickGameObject;
         public ButtonWithClickAnimation btnFinish;
 
 
@@ -113,7 +113,7 @@ namespace com.romainimberti.ggj2021.game
             menuGameObject.SetActive(true);
             finishGameObject.SetActive(false);
             fogGameObject.SetActive(false);
-            joystickGameObject.SetActive(false);
+            joystickGameObject.gameObject.SetActive(false);
 
             btnFinish.Init(GenerateMaze);
             btnJump.Init(Jump);
@@ -130,7 +130,7 @@ namespace com.romainimberti.ggj2021.game
             level += 0.5f;
             player.Disable();
             finishGameObject.SetActive(true);
-            joystickGameObject.SetActive(false);
+            joystickGameObject.gameObject.SetActive(false);
             /*fogMainTexture.Release();
             fogSecondaryTexture.Release();*/
         }
@@ -140,7 +140,7 @@ namespace com.romainimberti.ggj2021.game
             finishGameObject.SetActive(false);
             menuGameObject.SetActive(false);
             //fogGameObject.SetActive(true);
-            joystickGameObject.SetActive(true);
+            joystickGameObject.gameObject.SetActive(true);
             HandleCapacitiesUnlock();
             int width;
             int heigth;
@@ -166,8 +166,10 @@ namespace com.romainimberti.ggj2021.game
                     break;
             }
             CreateMaze(width, heigth);
+            player.gameObject.SetActive(true);
             /*fogMainTexture.Release();
             fogSecondaryTexture.Release();*/
+            joystickGameObject.ResetJoystick();
         }
 
         public void EnableCapacities(int x, int y)
@@ -251,7 +253,6 @@ namespace com.romainimberti.ggj2021.game
 
         private void HandleCapacitiesUnlock()
         {
-
             btnJump.Interactable = false;
             btnCut.Interactable = false;
             btnAttack.Interactable = false;

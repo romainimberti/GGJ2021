@@ -636,11 +636,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ReferenceResolution: {x: 800, y: 480}
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -939,7 +939,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2116518872}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2116518874}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a47f546fc70ec8428172694e78e4288, type: 3}
@@ -1428,7 +1428,7 @@ MonoBehaviour:
   finishGameObject: {fileID: 1239041525}
   menuGameObject: {fileID: 176060821}
   fogGameObject: {fileID: 1530909087}
-  joystickGameObject: {fileID: 2116518874}
+  joystickGameObject: {fileID: 422143856}
   btnFinish: {fileID: 1400418912}
   btnJump: {fileID: 126139068}
   btnCut: {fileID: 522883837}
@@ -3400,12 +3400,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2116518872}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2116518874 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8170153791668043269, guid: 0d230cc8be529a542a08cb878ab14b18,
-    type: 3}
-  m_PrefabInstance: {fileID: 2116518872}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5806687268254075827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3617,7 +3611,7 @@ PrefabInstance:
     - target: {fileID: 9058152725305325463, guid: 026870a06203242449580e2d33feaf2d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 026870a06203242449580e2d33feaf2d, type: 3}

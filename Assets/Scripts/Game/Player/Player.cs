@@ -23,6 +23,10 @@ namespace com.romainimberti.ggj2020
         [SerializeField]
         private Collider2D attackCollider;
 
+        [SerializeField]
+        [Range(0, 20f)]
+        private float attackRange = 3f;
+
         #endregion
         #region Public
         public float speed;
@@ -101,6 +105,13 @@ namespace com.romainimberti.ggj2020
 
         public void EnemyInRange(Enemy enemy, bool inRange)
         {
+
+            float distance = GetDistance(enemy.transform, transform);
+            if (distance > attackRange)
+            {
+                return;
+            }
+
             if (inRange)
             {
                 if (!enemiesInRange.Contains(enemy))
@@ -124,6 +135,11 @@ namespace com.romainimberti.ggj2020
 
         #endregion
         #region Private
+
+        private static float GetDistance(Transform lhs, Transform rhs)
+        {
+            return Mathf.Abs(rhs.position.x - lhs.position.x) + Mathf.Abs(rhs.position.y - lhs.position.y);
+        }
 
         private void FixedUpdate()
         {
