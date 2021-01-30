@@ -180,7 +180,17 @@ namespace com.romainimberti.ggj2020.game.maze
                     {
                         Vector3 fromPosition = new Vector3(currentPos.x, currentPos.y, -0.75f);
                         Vector3 toPosition = new Vector3(startTile.x, startTile.y, -0.75f);
-                        if (!Enemy.PlayerInRange(fromPosition, toPosition, 20))
+                        bool toCloseFromAnOther = false;
+                        for(int i = 0; i < possibleSpawns.Count; i++)
+                        {
+                            Vector3 currentPossibility = new Vector3(possibleSpawns[i].x, possibleSpawns[i].y, -0.75f);
+                            if (Enemy.PlayerInRange(fromPosition, currentPossibility, 5))
+                            {
+                                toCloseFromAnOther = true;
+                                break;
+                            }
+                        }
+                        if (!Enemy.PlayerInRange(fromPosition, toPosition, 20) && !toCloseFromAnOther)
                             possibleSpawns.Add(currentPos);
                         //enemies.Add(currentPos);
                     };
