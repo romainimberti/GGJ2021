@@ -80,17 +80,20 @@ namespace com.romainimberti.ggj2020
             Vector3 direction = toPosition - fromPosition;
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, range);
 
-            bool previousInRange = playerInRange;
+            Debug.DrawRay(transform.position, direction * range, Color.red);
 
             playerInRange = false;
             if (hit.collider != null)
             {
-                if (hit.collider.CompareTag("Player"))
+                if (!hit.collider.CompareTag("Wall") && !hit.collider.CompareTag("Untagged") && !hit.collider.CompareTag("AttackCollider"))
                 {
-                    playerInRange = true;
+                    if (hit.collider.CompareTag("Player"))
+                    {
+                        playerInRange = true;
+                    }
                 }
             }
-
+            /*
             Color c = spriteRenderer.color;
             float target = playerInRange ? 1 : 0;
             if (playerInRange != previousInRange)
@@ -107,7 +110,8 @@ namespace com.romainimberti.ggj2020
                 {
                     animationFade = null;
                 });
-            }
+            }*/
+            spriteRenderer.enabled = playerInRange;
         }
 
         private void CalculateNewDirection()

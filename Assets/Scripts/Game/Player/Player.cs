@@ -39,7 +39,10 @@ namespace com.romainimberti.ggj2020
         }
         private void OnTriggerEnter2D(Collider2D col)
         {
-            GameManager.Instance.MazeFinished();
+            if (col != null && col.gameObject != null && col.gameObject != gameObject && col.attachedRigidbody != null && col.attachedRigidbody.gameObject.CompareTag("End"))
+            {
+                GameManager.Instance.MazeFinished();
+            }
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

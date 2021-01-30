@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: -6020682515467843339}
-  range: 2
+  range: 3
   movementSpeed: 75
 --- !u!212 &-6020682515467843339
 SpriteRenderer:
