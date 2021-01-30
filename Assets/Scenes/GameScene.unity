@@ -434,7 +434,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &131665081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1186,6 +1186,8 @@ MonoBehaviour:
   imgAttack: {fileID: 1982844921}
   imgJump: {fileID: 311148663}
   imgCut: {fileID: 234462965}
+  imgPlayer: {fileID: 21300000, guid: 8378b77a210947340b1bd2097c6e25ad, type: 3}
+  imgPlayerJump: {fileID: 21300000, guid: 6998d0990caefcd4b87ed1d9de627e16, type: 3}
   jumpSprite: {fileID: 21300000, guid: eabe9d1fb35f397448f2acc57ff431b0, type: 3}
   cutSprite: {fileID: 21300000, guid: dad8a460fa90e1748bdd6498caa95f04, type: 3}
   attackSprite: {fileID: 21300000, guid: 0cee9968e221d0749821e922a0b38308, type: 3}
@@ -3117,13 +3119,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9058152725305325460, guid: 026870a06203242449580e2d33feaf2d,
         type: 3}
+      propertyPath: playerSprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058152725305325460, guid: 026870a06203242449580e2d33feaf2d,
+        type: 3}
       propertyPath: joystick
       value: 
       objectReference: {fileID: 422143856}
+    - target: {fileID: 9058152725305325460, guid: 026870a06203242449580e2d33feaf2d,
+        type: 3}
+      propertyPath: playerSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 8378b77a210947340b1bd2097c6e25ad,
+        type: 3}
+    - target: {fileID: 9058152725305325460, guid: 026870a06203242449580e2d33feaf2d,
+        type: 3}
+      propertyPath: playerSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: f81782d0297368340a9b95833f4d7cc2,
+        type: 3}
     - target: {fileID: 9058152725305325463, guid: 026870a06203242449580e2d33feaf2d,
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058152725305325463, guid: 026870a06203242449580e2d33feaf2d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 026870a06203242449580e2d33feaf2d, type: 3}

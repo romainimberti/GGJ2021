@@ -20,10 +20,22 @@ namespace com.romainimberti.ggj2020
         public float speed;
         public FloatingJoystick joystick;
 
+        public List<Sprite> playerSprites;
+
         #endregion
         #region Private
 
+        private Vector3 lastPosition;
+
+        private bool goingLeft = false;
+
         private bool enable = false;
+
+        private int currentSprite = 0;
+
+        private int spriteTempo = 0;
+
+        private SpriteRenderer playerSpriteRenderer;
 
         #endregion
         #endregion
@@ -32,6 +44,8 @@ namespace com.romainimberti.ggj2020
 
         private void Awake()
         {
+            lastPosition = transform.position;
+            playerSpriteRenderer = GetComponent<SpriteRenderer>();
             joystick = GameObject.Find("Floating Joystick").GetComponent<FloatingJoystick>();
         }
         private void OnTriggerEnter2D(Collider2D col)
@@ -75,6 +89,38 @@ namespace com.romainimberti.ggj2020
             {
                 Vector3 direction = Vector3.up * joystick.Vertical + Vector3.right * joystick.Horizontal;
                 gameObject.GetComponent<Rigidbody2D>().velocity = direction * speed * Time.fixedDeltaTime;
+
+                if (goingLeft)
+                {
+                    if(direction.x > 0)
+                    {
+                        goingLeft = false;
+                        transform.Rotate(0, 180, 0);
+                    }
+                }
+                else
+                {
+                    if (direction.x < 0)
+                    {
+                        goingLeft = true;
+                        transform.Rotate(0, 180, 0);
+                    }
+                }
+
+                if (lastPosition != transform.position)
+                {
+                    spriteTempo++;
+
+                    if (spriteTempo > 10)
+                    {
+                        spriteTempo = 0;
+                        currentSprite++;
+                        if (currentSprite >= playerSprites.Count)
+                            currentSprite = 0;
+                        playerSpriteRenderer.sprite = playerSprites[currentSprite];
+                        lastPosition = transform.position;
+                    }
+                }
             }
         }
 

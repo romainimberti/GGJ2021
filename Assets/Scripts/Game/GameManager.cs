@@ -64,6 +64,10 @@ namespace com.romainimberti.ggj2021.game
         public Image imgJump;
         public Image imgCut;
 
+
+        public Sprite imgPlayer;
+        public Sprite imgPlayerJump;
+
         public Sprite jumpSprite;
         public Sprite cutSprite;
         public Sprite attackSprite;
@@ -186,10 +190,11 @@ namespace com.romainimberti.ggj2021.game
 
             if (horizontalJump)
             {
-                if(player.transform.position.x < (float)interactableCell.x)
+                if (player.transform.position.x < (float)interactableCell.x)
                     newPlayerPos = new Vector3(interactableCell.x + 1, player.transform.position.y, player.transform.position.z);
-                else
+                else {
                     newPlayerPos = new Vector3(interactableCell.x - 1, player.transform.position.y, player.transform.position.z);
+                }
             }
             else
             {
@@ -199,7 +204,11 @@ namespace com.romainimberti.ggj2021.game
                     newPlayerPos = new Vector3(player.transform.position.x, interactableCell.y - 1, player.transform.position.z);
             }
 
-            LeanTween.move(player.gameObject, newPlayerPos, 0.2f).setEaseInOutQuad();
+            SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
+            playerSprite.sprite = imgPlayerJump;
+            LeanTween.move(player.gameObject, newPlayerPos, 0.2f).setEaseInOutQuad().setOnComplete(() =>
+                    playerSprite.sprite = imgPlayer
+            );
         }
 
         private void Cut()
