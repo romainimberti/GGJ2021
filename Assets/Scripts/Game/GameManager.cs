@@ -166,6 +166,7 @@ namespace com.romainimberti.ggj2021.game
                     break;
             }
             CreateMaze(width, heigth);
+            player.gameObject.SetActive(true);
             /*fogMainTexture.Release();
             fogSecondaryTexture.Release();*/
             joystickGameObject.ResetJoystick();
