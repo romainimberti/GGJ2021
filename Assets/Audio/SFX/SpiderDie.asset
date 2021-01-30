@@ -16,6 +16,7 @@ MonoBehaviour:
   channel: 1
   musicalClip: 0
   sfxClip: 9
+  secondMusicClip: 0
   possibleClips:
   - {fileID: 8300000, guid: 75fae6f1189c38f4e84890f23207f4b5, type: 3}
-  Volume: 0.1
+  Volume: 0.2

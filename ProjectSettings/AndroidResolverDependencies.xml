@@ -32,7 +32,7 @@
     <setting name="gradleTemplateEnabled" value="False" />
     <setting name="installAndroidPackages" value="True" />
     <setting name="packageDir" value="Assets\Plugins\Android" />
-    <setting name="patchAndroidManifest" value="True" />
+    <setting name="patchAndroidManifest" value="False" />
     <setting name="patchMainTemplateGradle" value="True" />
     <setting name="projectExportEnabled" value="False" />
     <setting name="useJetifier" value="False" />

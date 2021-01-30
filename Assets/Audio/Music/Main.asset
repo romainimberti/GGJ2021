@@ -19,4 +19,4 @@ MonoBehaviour:
   secondMusicClip: 0
   possibleClips:
   - {fileID: 8300000, guid: 1c230a93e0bcb5445a9e4e0e4daa02eb, type: 3}
-  Volume: 0.1
+  Volume: 0.2
