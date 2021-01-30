@@ -58,7 +58,7 @@ namespace com.romainimberti.ggj2020
         #endregion
         #region Private
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (enable)
             {

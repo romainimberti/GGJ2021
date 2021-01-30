@@ -53,6 +53,8 @@ namespace com.romainimberti.ggj2021.game
 
         public Maze maze;
 
+        public Player Player => player;
+
         #endregion
         #region Private
 

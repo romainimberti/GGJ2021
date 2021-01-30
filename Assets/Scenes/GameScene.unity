@@ -855,6 +855,8 @@ MonoBehaviour:
     type: 3}
   treeStumpPrefab: {fileID: 3589688500495145286, guid: 6e583e72305e41f4f80ee07f47e7fcbd,
     type: 3}
+  enemyPrefab: {fileID: 7465246816787931603, guid: 245091b2a8b5bbf4b9198f89f701b351,
+    type: 3}
   finishGameObject: {fileID: 1239041525}
   btnFinish: {fileID: 1400418912}
   cam: {fileID: 519420031}
@@ -1689,7 +1691,7 @@ GameObject:
   - component: {fileID: 1389517270}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
