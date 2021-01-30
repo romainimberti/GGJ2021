@@ -838,7 +838,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _persistent: 1
   player: {fileID: 1389517267}
-  img_fog: {fileID: 0}
+  img_fog: {fileID: 1530909089}
   fogCameraMain: {fileID: 911826455}
   fogCameraSecondary: {fileID: 1604193066}
   go_fogMainCircle: {fileID: 344086520}
@@ -992,7 +992,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _persistent: 1
-  clips: []
+  clips:
+  - {fileID: 11400000, guid: ffaa9a1df65b4d2498e47d60507c6396, type: 2}
   masterAudioMixer: {fileID: 24100000, guid: 7b6b81be5e5c4aa4fb2ad25e5fc2906d, type: 2}
   AudioChannels:
   - type: 0

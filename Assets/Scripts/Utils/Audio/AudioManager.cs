@@ -41,7 +41,7 @@ namespace com.romainimberti.ggj2021.utilities
         /// </summary>
         public enum MUSIC
         {
-            MainMusic
+
         }
 
         /// <summary>
@@ -49,21 +49,7 @@ namespace com.romainimberti.ggj2021.utilities
         /// </summary>
         public enum SFX
         {
-            Bump,
-            PlayerDieLaser,
-            PlayerStartsToMove,
-            ObjectiveTeleportation,
-            Explosion,
-            Click,
-            Error,
-            ChargeUp,
-            ChargeDown,
-            Gate,
-            StarAppear,
-            WallAppear,
-            Collectable,
-            Stop,
-            BlackHole,
+            Click
         }
 
         #endregion
