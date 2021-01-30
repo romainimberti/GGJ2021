@@ -199,6 +199,7 @@ namespace com.romainimberti.ggj2020
         private void OnCollisionEnter2D(Collision2D collision)
         {
             CalculateNewDirection();
+
             if (collision.collider.CompareTag("Player"))
             {
                 gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
@@ -210,7 +211,7 @@ namespace com.romainimberti.ggj2020
 
         public void Die()
         {
-            Destroy(GetComponent<CircleCollider2D>());
+            Destroy(GetComponent<Collider2D>());
             alive = false;
             spriteRenderer.sprite = enemySprites[startingIndexForSprint + 2];
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
