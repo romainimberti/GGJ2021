@@ -124,15 +124,15 @@ namespace com.romainimberti.ggj2021.game
             player.Disable();
             finishGameObject.SetActive(true);
             joystickGameObject.SetActive(false);
-            fogMainTexture.Release();
-            fogSecondaryTexture.Release();
+            /*fogMainTexture.Release();
+            fogSecondaryTexture.Release();*/
         }
 
         public void GenerateMaze()
         {
             finishGameObject.SetActive(false);
             menuGameObject.SetActive(false);
-            fogGameObject.SetActive(true);
+            //fogGameObject.SetActive(true);
             joystickGameObject.SetActive(true);
             HandleCapacitiesUnlock();
             int width;
@@ -159,8 +159,8 @@ namespace com.romainimberti.ggj2021.game
                     break;
             }
             CreateMaze(width, heigth);
-            fogMainTexture.Release();
-            fogSecondaryTexture.Release();
+            /*fogMainTexture.Release();
+            fogSecondaryTexture.Release();*/
         }
 
         public void EnableCapacities(int x, int y)
@@ -279,7 +279,7 @@ namespace com.romainimberti.ggj2021.game
 
             cam.transform.position = new Vector3(width * 1 / 2, height * 1 / 2, -10);
             cam.orthographicSize = Mathf.Max(width / 3, height / 3);
-
+            /*
             fogCameraMain.transform.position = cam.transform.position;
             fogCameraSecondary.transform.position = cam.transform.position;
 
@@ -288,6 +288,7 @@ namespace com.romainimberti.ggj2021.game
 
             go_fogMainCircle.SetActive(true);
             go_fogSecondaryCircle.SetActive(true);
+            */
         }
 
         //Create the maze
