@@ -30,6 +30,8 @@ namespace com.romainimberti.ggj2020
         [HideInInspector]
         public FloatingJoystick joystick;
 
+        public List<Sprite> playerSprites;
+
         #endregion
         #region Private
 
@@ -38,6 +40,15 @@ namespace com.romainimberti.ggj2020
         private bool enable = false;
 
         private Rigidbody2D rb;
+        private Vector3 lastPosition;
+
+        private bool goingLeft = false;
+
+        private int currentSprite = 0;
+
+        private int spriteTempo = 0;
+
+        private SpriteRenderer playerSpriteRenderer;
 
         #endregion
         #endregion
@@ -48,6 +59,9 @@ namespace com.romainimberti.ggj2020
         {
             rb = GetComponent<Rigidbody2D>();
             joystick = GameObject.Find("Floating Joystick").GetComponent<FloatingJoystick>();
+            lastPosition = transform.position;
+            playerSpriteRenderer = GetComponent<SpriteRenderer>();
+            Physics2D.IgnoreCollision(colliderObject, attackCollider, true);
         }
 
         private void OnEnable()
@@ -118,6 +132,39 @@ namespace com.romainimberti.ggj2020
             {
                 Vector3 direction = Vector3.up * joystick.Vertical + Vector3.right * joystick.Horizontal;
                 rb.velocity = direction * speed * Time.fixedDeltaTime;
+                gameObject.GetComponent<Rigidbody2D>().velocity = direction * speed * Time.fixedDeltaTime;
+
+                if (goingLeft)
+                {
+                    if(direction.x > 0)
+                    {
+                        goingLeft = false;
+                        transform.Rotate(0, 180, 0);
+                    }
+                }
+                else
+                {
+                    if (direction.x < 0)
+                    {
+                        goingLeft = true;
+                        transform.Rotate(0, 180, 0);
+                    }
+                }
+
+                if (lastPosition != transform.position)
+                {
+                    spriteTempo++;
+
+                    if (spriteTempo > 10)
+                    {
+                        spriteTempo = 0;
+                        currentSprite++;
+                        if (currentSprite >= playerSprites.Count)
+                            currentSprite = 0;
+                        playerSpriteRenderer.sprite = playerSprites[currentSprite];
+                        lastPosition = transform.position;
+                    }
+                }
             }
         }
 

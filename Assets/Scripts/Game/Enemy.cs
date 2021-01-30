@@ -18,7 +18,7 @@ namespace com.romainimberti.ggj2020
         private SpriteRenderer spriteRenderer;
 
         [SerializeField]
-        private float range = 5f;
+        private float range = 12f;
 
         #endregion
         #region Public
