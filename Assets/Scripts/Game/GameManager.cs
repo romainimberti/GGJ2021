@@ -118,8 +118,25 @@ namespace com.romainimberti.ggj2021.game
             capacitiesGameObject.SetActive(true);
             finishGameObject.SetActive(false);
             HandleCapacitiesUnlock();
-            CreateMaze(29, 17);
-            SetCameraDimensions(29, 17);
+            int width;
+            int heigth;
+            switch (level)
+            {
+                case 1.5F:
+                    width = 9;
+                    heigth = 5;
+                    break;
+                case 2.5F:
+                    width = 9;
+                    heigth = 5;
+                    break;
+                case 3.5F: // TODO Attack Tutorial
+                default:
+                    width = 23;
+                    heigth = 13;
+                    break;
+            }
+            CreateMaze(width, heigth);
             fogMainTexture.Release();
             fogSecondaryTexture.Release();
         }
@@ -248,6 +265,7 @@ namespace com.romainimberti.ggj2021.game
             }
 
             maze = new Maze(width, height);
+            SetCameraDimensions(width, height);
 
             switch (level)
             {
