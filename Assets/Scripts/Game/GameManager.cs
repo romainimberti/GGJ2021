@@ -78,9 +78,11 @@ namespace com.romainimberti.ggj2021.game
         public Sprite imgDarkWall;
         public Sprite imgDarkTreeStump;
         public Sprite imgDarkCompleteWall;
+        public Sprite imgDarkFloor;
         public Sprite imgLightWall;
         public Sprite imgLightTreeStump;
         public Sprite imgLightCompleteWall;
+        public Sprite imgLightFloor;
 
         public Sprite jumpSprite;
         public Sprite cutSprite;
@@ -166,7 +168,10 @@ namespace com.romainimberti.ggj2021.game
                     width = 9;
                     heigth = 5;
                     break;
-                case 3.5F: // TODO Attack Tutorial
+                case 3.5F:
+                    width = 9;
+                    heigth = 5;
+                    break;
                 default:
                     width = 23;
                     heigth = 13;
@@ -252,7 +257,21 @@ namespace com.romainimberti.ggj2021.game
         private void Cut()
         {
             Cell[,] mazeCells = maze.GetTiles();
-            mazeCells[interactableCell.x, interactableCell.y].CutWall();
+            SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
+            playerSprite.sprite = attackSprites[0];
+            CoroutineManager.Instance.Wait(0.03f, () =>
+            {
+                playerSprite.sprite = attackSprites[1];
+                CoroutineManager.Instance.Wait(0.03f, () =>
+                {
+                    playerSprite.sprite = attackSprites[2];
+                    CoroutineManager.Instance.Wait(0.03f, () =>
+                    {
+                        playerSprite.sprite = player.playerSprites[player.currentSprite];
+                        mazeCells[interactableCell.x, interactableCell.y].CutWall();
+                    });
+                });
+            });
         }
 
         private void Attack()
@@ -359,12 +378,14 @@ namespace com.romainimberti.ggj2021.game
                 wallPrefab.GetComponent<SpriteRenderer>().sprite = imgDarkWall;
                 completeWallPrefab.GetComponent<SpriteRenderer>().sprite = imgDarkCompleteWall;
                 treeStumpPrefab.GetComponent<SpriteRenderer>().sprite = imgDarkTreeStump;
+                floorPrefab.GetComponent<SpriteRenderer>().sprite = imgDarkFloor;
             }
             else
             {
                 wallPrefab.GetComponent<SpriteRenderer>().sprite = imgLightWall;
                 completeWallPrefab.GetComponent<SpriteRenderer>().sprite = imgLightCompleteWall;
                 treeStumpPrefab.GetComponent<SpriteRenderer>().sprite = imgLightTreeStump;
+                floorPrefab.GetComponent<SpriteRenderer>().sprite = imgLightFloor;
             }
 
             switch (level)

@@ -43,11 +43,11 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 4112ef27b04c82f4b9a9d3a17d1cb3b0, type: 3}
-    totalSpriteSurfaceArea: 8312810
+    totalSpriteSurfaceArea: 8812810
     bindAsDefault: 1
     storedHash:
       serializedVersion: 2
-      Hash: 7ada47dfcf3fe1cf4d9952ab1e0d214b
+      Hash: ee72f259fafcd08d834e440b4054c51a
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 98f4fc70c94f0ba44b23ba42bcb8f223, type: 3}
@@ -72,11 +72,13 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 82f1c82b2d01f1e47ac570ab22adc5c1, type: 3}
   - {fileID: 21300000, guid: 5dcae6bb9ddd5dc4a89f498a64988362, type: 3}
   - {fileID: 21300000, guid: d39d58bb0849b3e41a77c8388cf83643, type: 3}
+  - {fileID: 21300000, guid: e145f07cc79cbdb45988ab06abc59b01, type: 3}
   - {fileID: 21300000, guid: 91d69d8c2f8bedc4fbdfaeaf2d227a98, type: 3}
   - {fileID: 21300000, guid: 1d1ff3ddeb31ca549acfa43aa2e11ce2, type: 3}
   - {fileID: 21300000, guid: d474a80e63694a94c96d45e94e46a4c9, type: 3}
   - {fileID: 21300000, guid: b7f85f6e21d5f8148b8ffcf41ff4f4c2, type: 3}
   - {fileID: 21300000, guid: 776e0f8eb6d97da4c9f0dd0a7ffcf84f, type: 3}
+  - {fileID: 21300000, guid: 8b3e493fb75a80f46bbe63df5252aaae, type: 3}
   - {fileID: 21300000, guid: 1ed65b6fb2d081b41af0c9b1b9760ec7, type: 3}
   - {fileID: 21300000, guid: e6fdcdbf115b48746963d7d6d7d442db, type: 3}
   - {fileID: 21300000, guid: bddfaddfc6037f04da06f4e6af5667d0, type: 3}
@@ -103,11 +105,13 @@ SpriteAtlas:
   - Tronc_clair
   - jumpOverWall
   - Sylvith_1_clair
+  - NVSol_1
   - start
   - Walk_sabre_2
   - Sylvith_1_Sombre
   - Sabre_anim_2
   - play
+  - NVSol_2
   - Walk_sabre_1
   - wall
   - End_clair
