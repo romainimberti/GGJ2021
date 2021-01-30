@@ -194,16 +194,10 @@ namespace com.romainimberti.ggj2021.game
             }
         }
 
-        public void EnableAttackCapacity(bool enable)
-        {
-            btnAttack.Interactable = enable;
-        }
-
         public void DisableCapacities()
         {
             btnJump.Interactable = false;
             btnCut.Interactable = false;
-            btnAttack.Interactable = false;
         }
 
         #endregion
@@ -249,7 +243,10 @@ namespace com.romainimberti.ggj2021.game
 
         private void Attack()
         {
-            Debug.Log("Attack");
+            foreach(Enemy enemy in player.enemiesInRange)
+            {
+                enemy.Die();
+            }
         }
 
         private void HandleCapacitiesUnlock()
@@ -271,8 +268,9 @@ namespace com.romainimberti.ggj2021.game
                 imgCut.sprite = cutSprite;
             }
 
-            if (level > 3) {
+            if (level > 0) {
                 imgAttack.sprite = attackSprite;
+                btnAttack.Interactable = true;
             }
         }
 
