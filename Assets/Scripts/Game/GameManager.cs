@@ -117,7 +117,7 @@ namespace com.romainimberti.ggj2021.game
         {
             capacitiesGameObject.SetActive(true);
             finishGameObject.SetActive(false);
-            handleCapacitiesUnlock();
+            HandleCapacitiesUnlock();
             CreateMaze(29, 17);
             SetCameraDimensions(29, 17);
             fogMainTexture.Release();
@@ -196,7 +196,7 @@ namespace com.romainimberti.ggj2021.game
             Debug.Log("Attack");
         }
 
-        private void handleCapacitiesUnlock()
+        private void HandleCapacitiesUnlock()
         {
 
             btnJump.Interactable = false;
