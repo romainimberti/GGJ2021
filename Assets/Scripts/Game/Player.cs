@@ -1,4 +1,5 @@
-﻿using com.romainimberti.ggj2021.game;
+﻿using com.romainimberti.ggj2020.game.maze;
+using com.romainimberti.ggj2021.game;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +37,16 @@ namespace com.romainimberti.ggj2020
         private void OnTriggerEnter2D(Collider2D col)
         {
             GameManager.Instance.MazeFinished();
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            GameManager.Instance.EnableCapacities((int)collision.transform.position.x, (int)collision.transform.position.y);
+        }
+
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            GameManager.Instance.DisableCapacities();
         }
 
         #endregion

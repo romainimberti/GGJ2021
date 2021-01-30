@@ -47,7 +47,22 @@ namespace com.romainimberti.ggj2021.game
         public GameObject enemyPrefab;
 
         public GameObject finishGameObject;
+        public GameObject capacitiesGameObject;
         public ButtonWithClickAnimation btnFinish;
+
+
+        public ButtonWithClickAnimation btnJump;
+        public ButtonWithClickAnimation btnCut;
+        public ButtonWithClickAnimation btnAttack;
+
+        public Image imgAttack;
+        public Image imgJump;
+        public Image imgCut;
+
+        public Sprite jumpSprite;
+        public Sprite cutSprite;
+        public Sprite attackSprite;
+        public Sprite lockedSprite;
 
         public Camera cam;
 
@@ -57,6 +72,10 @@ namespace com.romainimberti.ggj2021.game
 
         #endregion
         #region Private
+
+        private int level = 1;
+
+        private Vector2Int interactableCell;
 
         #endregion
         #endregion
@@ -71,6 +90,9 @@ namespace com.romainimberti.ggj2021.game
 
             GenerateMaze();
             btnFinish.Init(GenerateMaze);
+            btnJump.Init(Jump);
+            btnCut.Init(Cut);
+            btnAttack.Init(Attack);
         }
 
         #endregion
@@ -78,15 +100,50 @@ namespace com.romainimberti.ggj2021.game
 
         public void MazeFinished()
         {
+            level++;
             player.Disable();
             finishGameObject.SetActive(true);
+            capacitiesGameObject.SetActive(false);
         }
 
         public void GenerateMaze()
         {
+            capacitiesGameObject.SetActive(true);
             finishGameObject.SetActive(false);
+            handleCapacitiesUnlock();
             CreateMaze(29, 17);
             SetCameraDimensions(29, 17);
+        }
+
+        public void EnableCapacities(int x, int y)
+        {
+            Cell[,] mazeCells = maze.GetTiles();
+
+            if (mazeCells[x, y].IsATreeStump()) {
+                if (level >= 2)
+                {
+                    btnJump.Interactable = true;
+                    interactableCell = new Vector2Int(x, y);
+                }
+            }
+
+            if (mazeCells[x, y].IsAWall()) {
+                if (level >= 3)
+                {
+                    if (maze.IsACutableWall(x, y))
+                    {
+                        btnCut.Interactable = true;
+                        interactableCell = new Vector2Int(x, y);
+                    }
+                }
+            }
+        }
+
+        public void DisableCapacities()
+        {
+            btnJump.Interactable = false;
+            btnCut.Interactable = false;
+            btnAttack.Interactable = false;
         }
 
         #endregion
@@ -94,6 +151,65 @@ namespace com.romainimberti.ggj2021.game
 
         #endregion
         #region Private
+
+        private void Jump()
+        {
+            Cell[,] mazeCells = maze.GetTiles();
+            bool horizontalJump = mazeCells[interactableCell.x + 1, interactableCell.y].IsWalkable();
+            Vector3 newPlayerPos;
+
+            if (horizontalJump)
+            {
+                if(player.transform.position.x < (float)interactableCell.x)
+                    newPlayerPos = new Vector3(interactableCell.x + 1, player.transform.position.y, player.transform.position.z);
+                else
+                    newPlayerPos = new Vector3(interactableCell.x - 1, player.transform.position.y, player.transform.position.z);
+            }
+            else
+            {
+                if (player.transform.position.y < (float)interactableCell.y)
+                    newPlayerPos = new Vector3(player.transform.position.x, interactableCell.y + 1, player.transform.position.z);
+                else
+                    newPlayerPos = new Vector3(player.transform.position.x, interactableCell.y - 1, player.transform.position.z);
+            }
+
+            LeanTween.move(player.gameObject, newPlayerPos, 0.2f).setEaseInOutQuad();
+        }
+
+        private void Cut()
+        {
+            Cell[,] mazeCells = maze.GetTiles();
+            mazeCells[interactableCell.x, interactableCell.y].CutWall();
+        }
+
+        private void Attack()
+        {
+            Debug.Log("Attack");
+        }
+
+        private void handleCapacitiesUnlock()
+        {
+
+            btnJump.Interactable = false;
+            btnCut.Interactable = false;
+            btnAttack.Interactable = false;
+
+            imgJump.sprite = lockedSprite;
+            imgCut.sprite = lockedSprite;
+            imgAttack.sprite = lockedSprite;
+
+            if (level >= 2) {
+                imgJump.sprite = jumpSprite;
+            }
+
+            if (level >= 3) {
+                imgCut.sprite = cutSprite;
+            }
+
+            if (level >= 4) {
+                imgAttack.sprite = attackSprite;
+            }
+        }
 
         public void SetCameraDimensions(int width, int height)
         {
@@ -130,7 +246,6 @@ namespace com.romainimberti.ggj2021.game
             player.transform.position = startPosition;
             player.Enable();
             DisplayEnemies(maze.GetEnemies());
-            GameObject.Find("Player").transform.position = new Vector3(maze.GetStartTile().x, maze.GetStartTile().y, -0.75f);
         }
 
         private void DisplayEnemies(List<Vector2Int> monsterPositions)

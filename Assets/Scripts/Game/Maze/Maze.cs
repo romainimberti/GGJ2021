@@ -320,7 +320,7 @@ namespace com.romainimberti.ggj2020.game.maze
             }
         }
 
-        private bool IsACutableWall(int x, int y)
+        public bool IsACutableWall(int x, int y)
         {
             return maze[x, y].IsAWall() &&
                    !IsBorder(new Vector2Int(x, y)) &&

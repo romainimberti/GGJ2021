@@ -54,7 +54,6 @@ namespace com.romainimberti.ggj2020
         }
         private void FixedUpdate()
         {
-
             Vector3 fromPosition = transform.position;
             Vector3 toPosition = GameManager.Instance.Player.transform.position;
             Vector3 direction = toPosition - fromPosition;
@@ -86,7 +85,6 @@ namespace com.romainimberti.ggj2020
             Vector3 dir = movementDirection;
             gameObject.GetComponent<Rigidbody2D>().velocity = dir * movementSpeed * Time.fixedDeltaTime;
         }
-
 
         void CalculateNewDirection()
         {
