@@ -91,12 +91,15 @@ namespace com.romainimberti.ggj2020
             if (alive && !freeze)
             {
                 Vector3 offset = transform.position - position;
-                if ((offset.x.CompareTo(0) < 0.01 || offset.y.CompareTo(0) < 0.01) || playerInRange)
+                if ((Mathf.Abs(offset.x) > 0.01 || Mathf.Abs(offset.y) > 0.01))
                 {
+                    Debug.Log("Nothing to Change");
+
                     position = new Vector3(transform.position.x, transform.position.y, transform.position.z);// code to execute when X is getting bigger
                 }
                 else
                 {
+                    Debug.Log("Fuck Im Stuck");
                     CalculateNewDirection();
                 }
 
