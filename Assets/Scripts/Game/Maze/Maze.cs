@@ -64,7 +64,7 @@ namespace com.romainimberti.ggj2020.game.maze
                         maze[i, j].Dig();
                     }
 
-                    if(i == maze.GetLength(0) / 2)
+                    if(i == maze.GetLength(0) / 2 && maze[i, j].IsWalkable())
                     {
                         maze[i, j].Dig();
                         maze[i, j].CutWall();
@@ -89,7 +89,7 @@ namespace com.romainimberti.ggj2020.game.maze
                         maze[i, j].Dig();
                     }
 
-                    if (i == maze.GetLength(0) / 2)
+                    if (i == maze.GetLength(0) / 2 && maze[i, j].IsWalkable())
                     {
                         maze[i, j].Dig();
                     }
