@@ -43,6 +43,9 @@ namespace com.romainimberti.ggj2021.game
         [SerializeField]
         private RectTransform fogCanvas;
 
+        [SerializeField]
+        private GameObject gameOverGameObject;
+
         #endregion
         #region Public
 
@@ -112,6 +115,7 @@ namespace com.romainimberti.ggj2021.game
 
             menuGameObject.SetActive(true);
             finishGameObject.SetActive(false);
+            gameOverGameObject.SetActive(false);
             fogGameObject.SetActive(false);
             joystickGameObject.gameObject.SetActive(false);
 
@@ -125,11 +129,18 @@ namespace com.romainimberti.ggj2021.game
         #endregion
         #region Public
 
+        public void GameOver()
+        {
+            player.Disable();
+            gameOverGameObject.SetActive(true);
+        }
+
         public void MazeFinished()
         {
             level += 0.5f;
             player.Disable();
             finishGameObject.SetActive(true);
+            gameOverGameObject.SetActive(false);
             joystickGameObject.gameObject.SetActive(false);
             /*fogMainTexture.Release();
             fogSecondaryTexture.Release();*/
@@ -138,6 +149,7 @@ namespace com.romainimberti.ggj2021.game
         public void GenerateMaze()
         {
             finishGameObject.SetActive(false);
+            gameOverGameObject.SetActive(false);
             menuGameObject.SetActive(false);
             //fogGameObject.SetActive(true);
             joystickGameObject.gameObject.SetActive(true);
