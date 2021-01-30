@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using com.romainimberti.ggj2021.game;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,12 +7,18 @@ namespace com.romainimberti.ggj2020
 {
 
     ///<summary>
-    ///
+    /// Class that handles an enemy
     ///</summary>
     public class Enemy : MonoBehaviour
     {
         #region Variables
         #region Editor
+
+        [SerializeField]
+        private SpriteRenderer spriteRenderer;
+
+        [SerializeField]
+        private float range = 5f;
 
         #endregion
         #region Public
@@ -22,6 +29,8 @@ namespace com.romainimberti.ggj2020
         private float movementSpeed = 0;
         Vector3Int movementDirection = new Vector3Int(0, 0, 0);
         Vector3 position = new Vector3(0, 0, 0);
+
+        private bool playerInRange = false;
 
         #endregion
         #endregion
@@ -45,9 +54,6 @@ namespace com.romainimberti.ggj2020
         }
         private void FixedUpdate()
         {
-
-
-
             Vector3 offset = transform.position - position;
             if (offset.x != 0 || offset.y != 0)
             {
@@ -59,6 +65,24 @@ namespace com.romainimberti.ggj2020
 
                 calculateNewDirection();
             }
+
+            Vector3 fromPosition = transform.position;
+            Vector3 toPosition = GameManager.Instance.Player.transform.position;
+            Vector3 direction = toPosition - fromPosition;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, range);
+
+            Debug.DrawRay(transform.position, direction * range, Color.red);
+
+            playerInRange = false;
+            if (hit.collider != null)
+            {
+                if (hit.collider.CompareTag("Player"))
+                {
+                    playerInRange = true;
+                }
+            }
+
+            spriteRenderer.enabled = playerInRange;
 
         }
         private void Update()
@@ -105,14 +129,17 @@ namespace com.romainimberti.ggj2020
         {
             Debug.Log("Collided");
             calculateNewDirection();
-            /* foreach (ContactPoint2D contact in collision.contacts)
-             {
-                 contact.
-                 Debug.DrawRay(contact.point, contact.normal, Color.white);
 
-                 calculateNewDirection([0,1]);
-             }*/
         }
+        #endregion
+        #region Public
+
+        #endregion
+        #region Protected
+
+        #endregion
+        #region Private
+
         #endregion
         #endregion
     }
