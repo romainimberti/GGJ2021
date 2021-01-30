@@ -30,7 +30,9 @@ namespace com.romainimberti.ggj2020
         Vector3Int movementDirection = new Vector3Int(0, 0, 0);
         Vector3 position = new Vector3(0, 0, 0);
 
-        private bool playerInRange = false;
+        private bool playerInRange = true;
+
+        private LTDescr animationFade = null;
 
         #endregion
         #endregion
@@ -51,24 +53,11 @@ namespace com.romainimberti.ggj2020
             position = transform.position;
             CalculateNewDirection();
 
+            Fade(false);
         }
         private void FixedUpdate()
         {
-            Vector3 fromPosition = transform.position;
-            Vector3 toPosition = GameManager.Instance.Player.transform.position;
-            Vector3 direction = toPosition - fromPosition;
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, range);
-
-            playerInRange = false;
-            if (hit.collider != null)
-            {
-                if (hit.collider.CompareTag("Player"))
-                {
-                    playerInRange = true;
-                }
-            }
-
-            spriteRenderer.enabled = playerInRange;
+            Fade();
 
             Vector3 offset = transform.position - position;
             if (offset.x != 0 || offset.y != 0)
@@ -84,7 +73,44 @@ namespace com.romainimberti.ggj2020
             gameObject.GetComponent<Rigidbody2D>().velocity = dir * movementSpeed * Time.fixedDeltaTime;
         }
 
-        void CalculateNewDirection()
+        private void Fade(bool animate = true)
+        {
+            Vector3 fromPosition = transform.position;
+            Vector3 toPosition = GameManager.Instance.Player.transform.position;
+            Vector3 direction = toPosition - fromPosition;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, range);
+
+            bool previousInRange = playerInRange;
+
+            playerInRange = false;
+            if (hit.collider != null)
+            {
+                if (hit.collider.CompareTag("Player"))
+                {
+                    playerInRange = true;
+                }
+            }
+
+            Color c = spriteRenderer.color;
+            float target = playerInRange ? 1 : 0;
+            if (playerInRange != previousInRange)
+            {
+                if (animationFade != null)
+                {
+                    LeanTween.cancel(animationFade.id);
+                }
+                animationFade = LeanTween.value(c.a, target, animate ? 0.15f : 0f).setEaseInOutQuad().setOnUpdate((float f) =>
+                {
+                    c.a = f;
+                    spriteRenderer.color = c;
+                }).setOnComplete(() =>
+                {
+                    animationFade = null;
+                });
+            }
+        }
+
+        private void CalculateNewDirection()
         {
             int randomDirection = Random.Range(0, 4);
             switch (randomDirection)
@@ -110,7 +136,7 @@ namespace com.romainimberti.ggj2020
             }
 
         }
-        void OnCollisionEnter2D(Collision2D collision)
+        private void OnCollisionEnter2D(Collision2D collision)
         {
             CalculateNewDirection();
 

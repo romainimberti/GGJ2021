@@ -24,7 +24,7 @@ namespace com.romainimberti.ggj2020.game.maze
 
         private Vector2Int ERROR_VECTOR = new Vector2Int(-1, -1);
 
-        private static Transform mazeObject;
+        public static Transform mazeObject;
 
         private int width, height;
 
@@ -49,6 +49,55 @@ namespace com.romainimberti.ggj2020.game.maze
             this.width = width;
             this.height = height;
             mazeObject = new GameObject("Maze").transform;
+        }
+
+        public void GenerateJumpUnlockTutorial()
+        {
+            maze = new Cell[width, height];
+            for (int i = 0; i < maze.GetLength(0); i++)
+            {
+                for (int j = 0; j < maze.GetLength(1); j++)
+                {
+                    maze[i, j] = new Cell(CellKind.Floor, i, j);
+                    if (i == 0 || j == 0 || i == maze.GetLength(0) - 1 || j == maze.GetLength(1) - 1)
+                    {
+                        maze[i, j].Dig();
+                    }
+
+                    if(i == maze.GetLength(0) / 2 && maze[i, j].IsWalkable())
+                    {
+                        maze[i, j].Dig();
+                        maze[i, j].CutWall();
+                    }
+
+                }
+            }
+            SetCorrectWallSprite();
+            CompleteGeneration();
+        }
+
+        public void GenerateCutUnlockTutorial()
+        {
+            maze = new Cell[width, height];
+            for (int i = 0; i < maze.GetLength(0); i++)
+            {
+                for (int j = 0; j < maze.GetLength(1); j++)
+                {
+                    maze[i, j] = new Cell(CellKind.Floor, i, j);
+                    if (i == 0 || j == 0 || i == maze.GetLength(0) - 1 || j == maze.GetLength(1) - 1)
+                    {
+                        maze[i, j].Dig();
+                    }
+
+                    if (i == maze.GetLength(0) / 2 && maze[i, j].IsWalkable())
+                    {
+                        maze[i, j].Dig();
+                    }
+
+                }
+            }
+            SetCorrectWallSprite();
+            CompleteGeneration();
         }
 
         public void Generate()

@@ -35,6 +35,11 @@ namespace com.romainimberti.ggj2021.game
         [SerializeField]
         private GameObject go_fogSecondaryCircle;
 
+        [SerializeField]
+        private RenderTexture fogMainTexture;
+        [SerializeField]
+        private RenderTexture fogSecondaryTexture;
+
         #endregion
         #region Public
 
@@ -44,7 +49,7 @@ namespace com.romainimberti.ggj2021.game
         public GameObject endPrefab;
         public GameObject startPrefab;
         public GameObject treeStumpPrefab;
-        public GameObject enemyPrefab;
+        public Enemy enemyPrefab;
 
         public GameObject finishGameObject;
         public GameObject capacitiesGameObject;
@@ -73,7 +78,7 @@ namespace com.romainimberti.ggj2021.game
         #endregion
         #region Private
 
-        private int level = 1;
+        private float level = 1;
 
         private Vector2Int interactableCell;
 
@@ -100,19 +105,23 @@ namespace com.romainimberti.ggj2021.game
 
         public void MazeFinished()
         {
-            level++;
+            level += 0.5f;
             player.Disable();
             finishGameObject.SetActive(true);
             capacitiesGameObject.SetActive(false);
+            fogMainTexture.Release();
+            fogSecondaryTexture.Release();
         }
 
         public void GenerateMaze()
         {
             capacitiesGameObject.SetActive(true);
             finishGameObject.SetActive(false);
-            handleCapacitiesUnlock();
+            HandleCapacitiesUnlock();
             CreateMaze(29, 17);
             SetCameraDimensions(29, 17);
+            fogMainTexture.Release();
+            fogSecondaryTexture.Release();
         }
 
         public void EnableCapacities(int x, int y)
@@ -120,7 +129,7 @@ namespace com.romainimberti.ggj2021.game
             Cell[,] mazeCells = maze.GetTiles();
 
             if (mazeCells[x, y].IsATreeStump()) {
-                if (level >= 2)
+                if (level > 1)
                 {
                     btnJump.Interactable = true;
                     interactableCell = new Vector2Int(x, y);
@@ -128,7 +137,7 @@ namespace com.romainimberti.ggj2021.game
             }
 
             if (mazeCells[x, y].IsAWall()) {
-                if (level >= 3)
+                if (level > 2)
                 {
                     if (maze.IsACutableWall(x, y))
                     {
@@ -187,7 +196,7 @@ namespace com.romainimberti.ggj2021.game
             Debug.Log("Attack");
         }
 
-        private void handleCapacitiesUnlock()
+        private void HandleCapacitiesUnlock()
         {
 
             btnJump.Interactable = false;
@@ -198,15 +207,15 @@ namespace com.romainimberti.ggj2021.game
             imgCut.sprite = lockedSprite;
             imgAttack.sprite = lockedSprite;
 
-            if (level >= 2) {
+            if (level > 1) {
                 imgJump.sprite = jumpSprite;
             }
 
-            if (level >= 3) {
+            if (level > 2) {
                 imgCut.sprite = cutSprite;
             }
 
-            if (level >= 4) {
+            if (level > 3) {
                 imgAttack.sprite = attackSprite;
             }
         }
@@ -240,8 +249,19 @@ namespace com.romainimberti.ggj2021.game
 
             maze = new Maze(width, height);
 
-            //Start generating the maze
-            maze.Generate();
+            switch (level)
+            {
+                case 1.5F:
+                    maze.GenerateJumpUnlockTutorial();
+                    break;
+                case 2.5F:
+                    maze.GenerateCutUnlockTutorial();
+                    break;
+                case 3.5F: // TODO Attack Tutorial
+                default:
+                    maze.Generate();
+                    break;
+            }
             Vector3 startPosition = new Vector3(maze.GetStartTile().x, maze.GetStartTile().y, -0.75f);
             player.transform.position = startPosition;
             player.Enable();
@@ -252,7 +272,8 @@ namespace com.romainimberti.ggj2021.game
         {
             foreach (Vector2Int monPos in monsterPositions)
             {
-                Instantiate(enemyPrefab, new Vector3(monPos.x, monPos.y, -1), Quaternion.identity);
+                Enemy enemy = Instantiate(enemyPrefab, new Vector3(monPos.x, monPos.y, -1), Quaternion.identity);
+                enemy.transform.parent = Maze.mazeObject;
             }
 
         }
