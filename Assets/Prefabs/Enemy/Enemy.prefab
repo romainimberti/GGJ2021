@@ -48,6 +48,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: -6020682515467843339}
   range: 4
+  enemySprites:
+  - {fileID: 21300000, guid: d39d58bb0849b3e41a77c8388cf83643, type: 3}
+  - {fileID: 21300000, guid: 4d67c269156fe3c41bb415679c98787f, type: 3}
+  - {fileID: 21300000, guid: 44f93082ed7a017418292ae0a11785a9, type: 3}
+  - {fileID: 21300000, guid: d474a80e63694a94c96d45e94e46a4c9, type: 3}
+  - {fileID: 21300000, guid: 0d0da1351dc3d2747b49b676267df95a, type: 3}
+  - {fileID: 21300000, guid: 44f93082ed7a017418292ae0a11785a9, type: 3}
   movementSpeed: 35
 --- !u!212 &-6020682515467843339
 SpriteRenderer:
@@ -87,12 +94,12 @@ SpriteRenderer:
   m_SortingLayerID: -1895897831
   m_SortingLayer: 2
   m_SortingOrder: 50
-  m_Sprite: {fileID: 21300000, guid: 44f93082ed7a017418292ae0a11785a9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d39d58bb0849b3e41a77c8388cf83643, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1.0909091}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -133,5 +140,14 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
   m_Radius: 0.54545456

@@ -23,19 +23,19 @@ namespace com.romainimberti.ggj2020
         [SerializeField]
         private Collider2D attackCollider;
 
-        [SerializeField]
-        private FloatingJoystick joystick;
-
         #endregion
         #region Public
         public float speed;
+
+        [HideInInspector]
+        public FloatingJoystick joystick;
 
         public List<Sprite> playerSprites;
 
         #endregion
         #region Private
 
-        private List<Enemy> enemiesInRange;
+        public List<Enemy> enemiesInRange;
 
         private bool enable = false;
 
@@ -116,7 +116,7 @@ namespace com.romainimberti.ggj2020
                 }
             }
 
-            GameManager.Instance.EnableAttackCapacity(enemiesInRange.Count > 0);
+            //GameManager.Instance.EnableAttackCapacity(enemiesInRange.Count > 0);
         }
 
         #endregion
@@ -131,6 +131,7 @@ namespace com.romainimberti.ggj2020
             {
                 Vector3 direction = Vector3.up * joystick.Vertical + Vector3.right * joystick.Horizontal;
                 rb.velocity = direction * speed * Time.fixedDeltaTime;
+                gameObject.GetComponent<Rigidbody2D>().velocity = direction * speed * Time.fixedDeltaTime;
 
                 if (goingLeft)
                 {

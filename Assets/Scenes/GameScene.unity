@@ -1439,6 +1439,14 @@ MonoBehaviour:
   imgCut: {fileID: 234462965}
   imgPlayer: {fileID: 21300000, guid: 8378b77a210947340b1bd2097c6e25ad, type: 3}
   imgPlayerJump: {fileID: 21300000, guid: 6998d0990caefcd4b87ed1d9de627e16, type: 3}
+  imgDarkWall: {fileID: 21300000, guid: 98f4fc70c94f0ba44b23ba42bcb8f223, type: 3}
+  imgDarkTreeStump: {fileID: 21300000, guid: 8c52d2966b70d6a4898b3930a5f91e98, type: 3}
+  imgDarkCompleteWall: {fileID: 21300000, guid: 3b75ea799213ed1499b48bafcfb52234,
+    type: 3}
+  imgLightWall: {fileID: 21300000, guid: bddfaddfc6037f04da06f4e6af5667d0, type: 3}
+  imgLightTreeStump: {fileID: 21300000, guid: 9bf9c65a7d401ae408cfe4b4578339ba, type: 3}
+  imgLightCompleteWall: {fileID: 21300000, guid: c09ba85200b548a45a6d55e2e134d4d3,
+    type: 3}
   jumpSprite: {fileID: 21300000, guid: eabe9d1fb35f397448f2acc57ff431b0, type: 3}
   cutSprite: {fileID: 21300000, guid: dad8a460fa90e1748bdd6498caa95f04, type: 3}
   attackSprite: {fileID: 21300000, guid: 0cee9968e221d0749821e922a0b38308, type: 3}

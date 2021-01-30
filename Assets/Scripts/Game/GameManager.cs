@@ -74,6 +74,13 @@ namespace com.romainimberti.ggj2021.game
         public Sprite imgPlayer;
         public Sprite imgPlayerJump;
 
+        public Sprite imgDarkWall;
+        public Sprite imgDarkTreeStump;
+        public Sprite imgDarkCompleteWall;
+        public Sprite imgLightWall;
+        public Sprite imgLightTreeStump;
+        public Sprite imgLightCompleteWall;
+
         public Sprite jumpSprite;
         public Sprite cutSprite;
         public Sprite attackSprite;
@@ -187,16 +194,10 @@ namespace com.romainimberti.ggj2021.game
             }
         }
 
-        public void EnableAttackCapacity(bool enable)
-        {
-            btnAttack.Interactable = enable;
-        }
-
         public void DisableCapacities()
         {
             btnJump.Interactable = false;
             btnCut.Interactable = false;
-            btnAttack.Interactable = false;
         }
 
         #endregion
@@ -242,7 +243,10 @@ namespace com.romainimberti.ggj2021.game
 
         private void Attack()
         {
-            Debug.Log("Attack");
+            foreach(Enemy enemy in player.enemiesInRange)
+            {
+                enemy.Die();
+            }
         }
 
         private void HandleCapacitiesUnlock()
@@ -264,8 +268,9 @@ namespace com.romainimberti.ggj2021.game
                 imgCut.sprite = cutSprite;
             }
 
-            if (level > 3) {
+            if (level > 0) {
                 imgAttack.sprite = attackSprite;
+                btnAttack.Interactable = true;
             }
         }
 
@@ -302,6 +307,19 @@ namespace com.romainimberti.ggj2021.game
 
             maze = new Maze(width, height);
             SetCameraDimensions(width, height);
+
+            if(level > 2.5)
+            {
+                wallPrefab.GetComponent<SpriteRenderer>().sprite = imgDarkWall;
+                completeWallPrefab.GetComponent<SpriteRenderer>().sprite = imgDarkCompleteWall;
+                treeStumpPrefab.GetComponent<SpriteRenderer>().sprite = imgDarkTreeStump;
+            }
+            else
+            {
+                wallPrefab.GetComponent<SpriteRenderer>().sprite = imgLightWall;
+                completeWallPrefab.GetComponent<SpriteRenderer>().sprite = imgLightCompleteWall;
+                treeStumpPrefab.GetComponent<SpriteRenderer>().sprite = imgLightTreeStump;
+            }
 
             switch (level)
             {
