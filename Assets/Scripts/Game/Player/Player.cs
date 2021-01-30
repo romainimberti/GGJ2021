@@ -15,6 +15,9 @@ namespace com.romainimberti.ggj2020
         #region Variables
         #region Editor
 
+        [SerializeField]
+        private Collider2D attackCollider;
+
         #endregion
         #region Public
         public float speed;
