@@ -23,12 +23,12 @@ namespace com.romainimberti.ggj2020
         [SerializeField]
         private Collider2D attackCollider;
 
+        [SerializeField]
+        private FloatingJoystick joystick;
+
         #endregion
         #region Public
         public float speed;
-
-        [HideInInspector]
-        public FloatingJoystick joystick;
 
         public List<Sprite> playerSprites;
 
@@ -131,7 +131,6 @@ namespace com.romainimberti.ggj2020
             {
                 Vector3 direction = Vector3.up * joystick.Vertical + Vector3.right * joystick.Horizontal;
                 rb.velocity = direction * speed * Time.fixedDeltaTime;
-                gameObject.GetComponent<Rigidbody2D>().velocity = direction * speed * Time.fixedDeltaTime;
 
                 if (goingLeft)
                 {
