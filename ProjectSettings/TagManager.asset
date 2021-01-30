@@ -13,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - FogMain
+  - FogSecondary
   - 
   - 
   - 
@@ -46,4 +46,7 @@ TagManager:
     locked: 0
   - name: Elements
     uniqueID: 2399069465
+    locked: 0
+  - name: Fog
+    uniqueID: 1968257305
     locked: 0

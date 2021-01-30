@@ -4,6 +4,8 @@ using com.romainimberti.ggj2021.utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using com.romainimberti.ggj2020;
 
 namespace com.romainimberti.ggj2021.game
 {
@@ -15,6 +17,22 @@ namespace com.romainimberti.ggj2021.game
     {
         #region Variables
         #region Editor
+
+        [SerializeField]
+        private Player player;
+
+        [SerializeField]
+        private RawImage img_fog;
+
+        [SerializeField]
+        private Camera fogCameraMain;
+        [SerializeField]
+        private Camera fogCameraSecondary;
+
+        [SerializeField]
+        private GameObject go_fogMainCircle;
+        [SerializeField]
+        private GameObject go_fogSecondaryCircle;
 
         #endregion
         #region Public
@@ -38,8 +56,12 @@ namespace com.romainimberti.ggj2021.game
         #region Methods
         #region Unity
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
+            Application.targetFrameRate = 60;
+
             CreateMaze(29, 17);
             SetCameraDimensions(29, 17);
         }
@@ -63,6 +85,12 @@ namespace com.romainimberti.ggj2021.game
 
             cam.transform.position = new Vector3(width * 1 / 2, height * 1 / 2, -10);
             cam.orthographicSize = Mathf.Max(width / 3, height / 3);
+
+            fogCameraMain.transform.position = cam.transform.position;
+            fogCameraSecondary.transform.position = cam.transform.position;
+
+            go_fogMainCircle.SetActive(true);
+            go_fogSecondaryCircle.SetActive(true);
         }
 
         //Create the maze
@@ -79,7 +107,8 @@ namespace com.romainimberti.ggj2021.game
             //Start generating the maze
             maze.Generate();
 
-            GameObject.Find("Player").transform.position = new Vector3(maze.GetStartTile().x, maze.GetStartTile().y, -0.75f);
+            Vector3 startPosition = new Vector3(maze.GetStartTile().x, maze.GetStartTile().y, -0.75f);
+            player.transform.position = startPosition;
         }
 
         #endregion
