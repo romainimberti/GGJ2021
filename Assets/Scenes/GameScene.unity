@@ -1309,6 +1309,8 @@ MonoBehaviour:
   fogCameraSecondary: {fileID: 1604193066}
   go_fogMainCircle: {fileID: 344086520}
   go_fogSecondaryCircle: {fileID: 38595838}
+  fogMainTexture: {fileID: 8400000, guid: 47fcfb1f6cfa1f040bf66c5f4aa8e6dc, type: 2}
+  fogSecondaryTexture: {fileID: 8400000, guid: d184746465ebc5a4f8ff72dd5278477a, type: 2}
   completeWallPrefab: {fileID: 1598797744748027373, guid: dde94828a564ec446b82f9488e672450,
     type: 3}
   wallPrefab: {fileID: 1245924414169070192, guid: e0067ebb2e76a7f43833de919f26280f,
