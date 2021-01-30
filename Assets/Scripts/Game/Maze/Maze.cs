@@ -7,11 +7,11 @@ using com.romainimberti.ggj2021.utilities;
 namespace com.romainimberti.ggj2020.game.maze
 {
 
-	///<summary>
-	///
-	///</summary>
-	public class Maze
-	{
+    ///<summary>
+    ///
+    ///</summary>
+    public class Maze
+    {
         #region Variables
         #region Editor
 
@@ -24,15 +24,17 @@ namespace com.romainimberti.ggj2020.game.maze
 
         private Vector2Int ERROR_VECTOR = new Vector2Int(-1, -1);
 
-		private static Transform mazeObject;
+        private static Transform mazeObject;
 
-		private int width, height;
+        private int width, height;
 
-		private Cell[,] maze;
+        private Cell[,] maze;
 
-		private Vector2Int startTile, endTile;
+        private Vector2Int startTile, endTile;
 
-		private bool generated = false;
+        private List<Vector2Int> enemies = new List<Vector2Int>();
+
+        private bool generated = false;
 
         #endregion
         #endregion
@@ -79,8 +81,27 @@ namespace com.romainimberti.ggj2020.game.maze
             //The algorithm is done
 
             GenerateTreeStump();
+            RandomEnemyGenerator();
             SetCorrectWallSprite();
             CompleteGeneration();
+        }
+
+        public void RandomEnemyGenerator()
+        {
+
+            for (int x = 0; x < maze.GetLength(0); x++)
+            {
+                for (int y = 0; y < maze.GetLength(1); y++)
+                {
+                    Vector2Int currentPos = new Vector2Int(x, y);
+                    //TODO USE A  VARIABLE
+                    if (IsWalkable(currentPos) && (Random.Range(0, 100) < 3))
+                    {
+                        enemies.Add(currentPos);
+                    };
+                }
+            }
+
         }
 
         public static GameObject Instantiate(GameObject o, int x, int y)
@@ -132,6 +153,11 @@ namespace com.romainimberti.ggj2020.game.maze
         public Vector2Int GetEndTile()
         {
             return endTile;
+        }
+
+        public List<Vector2Int> GetEnemies()
+        {
+            return enemies;
         }
 
         public static int Compare(int lhs, int rhs)
@@ -255,9 +281,9 @@ namespace com.romainimberti.ggj2020.game.maze
 
         private void SetCorrectWallSprite()
         {
-            for(int x = 0; x < maze.GetLength(0); x++)
+            for (int x = 0; x < maze.GetLength(0); x++)
             {
-                for(int y = 0; y < maze.GetLength(1); y++)
+                for (int y = 0; y < maze.GetLength(1); y++)
                 {
                     if (IsACompleteWall(x, y))
                     {
@@ -415,10 +441,10 @@ namespace com.romainimberti.ggj2020.game.maze
             string res = "";
             for (int i = 0; i < maze.GetLength(0); i++)
             {
-                
+
                 for (int j = 0; j < maze.GetLength(1); j++)
                 {
-                    if(!maze[i, j].IsWalkable())
+                    if (!maze[i, j].IsWalkable())
                     {
                         res += 1;
                     }
@@ -426,7 +452,7 @@ namespace com.romainimberti.ggj2020.game.maze
                     {
                         res += 0;
                     }
-                    
+
                 }
                 res += "\n";
             }
