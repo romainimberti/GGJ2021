@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Step5
   channel: 1
   musicalClip: 0
-  sfxClip: 5
+  sfxClip: 10
   secondMusicClip: 0
   possibleClips:
   - {fileID: 8300000, guid: dd11a30068c29dd49a6f4bccb7f747d6, type: 3}
