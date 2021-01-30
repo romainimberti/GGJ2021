@@ -59,8 +59,6 @@ namespace com.romainimberti.ggj2020
             Vector3 direction = toPosition - fromPosition;
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, range);
 
-            Debug.DrawRay(transform.position, direction * range, Color.red);
-
             playerInRange = false;
             if (hit.collider != null)
             {
