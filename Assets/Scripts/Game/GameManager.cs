@@ -25,6 +25,7 @@ namespace com.romainimberti.ggj2021.game
         public GameObject endPrefab;
         public GameObject startPrefab;
         public GameObject treeStumpPrefab;
+        public GameObject enemyPrefab;
 
         public Camera cam;
 
@@ -78,8 +79,19 @@ namespace com.romainimberti.ggj2021.game
 
             //Start generating the maze
             maze.Generate();
-
+            DisplayEnemies(maze.GetEnemies());
             GameObject.Find("Player").transform.position = new Vector3(maze.GetStartTile().x, maze.GetStartTile().y, -0.75f);
+        }
+
+        private void DisplayEnemies(List<Vector2Int> monsterPositions)
+        {
+            foreach (Vector2Int monPos in monsterPositions)
+            {
+                Instantiate(enemyPrefab, new Vector3(monPos.x, monPos.y, -1), Quaternion.identity);
+            }
+
+
+
         }
 
         #endregion

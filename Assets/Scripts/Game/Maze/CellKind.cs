@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace com.romainimberti.ggj2020.game.maze
 {
-	public enum CellKind
-	{
+    public enum CellKind
+    {
 
-		Floor,
-		Wall,
-		CompleteWall,
-		TreeStump,
+        Floor,
+        Wall,
+        CompleteWall,
+        TreeStump,
 
-	}
+    }
 }
