@@ -55,9 +55,6 @@ namespace com.romainimberti.ggj2021.game
         #endregion
         #region Private
 
-        [SerializeField]
-        private Player player;
-
         #endregion
         #endregion
         #region Methods
