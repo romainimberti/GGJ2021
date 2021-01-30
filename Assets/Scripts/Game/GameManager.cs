@@ -273,7 +273,7 @@ namespace com.romainimberti.ggj2021.game
             foreach (Vector2Int monPos in monsterPositions)
             {
                 Enemy enemy = Instantiate(enemyPrefab, new Vector3(monPos.x, monPos.y, -1), Quaternion.identity);
-                enemy.transform.parent = transform;
+                enemy.transform.parent = Maze.mazeObject;
             }
 
         }

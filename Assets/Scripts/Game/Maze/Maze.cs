@@ -24,7 +24,7 @@ namespace com.romainimberti.ggj2020.game.maze
 
         private Vector2Int ERROR_VECTOR = new Vector2Int(-1, -1);
 
-        private static Transform mazeObject;
+        public static Transform mazeObject;
 
         private int width, height;
 
