@@ -205,6 +205,11 @@ namespace com.romainimberti.ggj2020
             }
         }
 
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            movementDirection = new Vector3(-1.0f, 0, 0);
+        }
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
             CalculateNewDirection();
