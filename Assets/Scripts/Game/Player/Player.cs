@@ -58,7 +58,6 @@ namespace com.romainimberti.ggj2020
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
-            joystick = GameObject.Find("Floating Joystick").GetComponent<FloatingJoystick>();
             lastPosition = transform.position;
             playerSpriteRenderer = GetComponent<SpriteRenderer>();
             Physics2D.IgnoreCollision(colliderObject, attackCollider, true);

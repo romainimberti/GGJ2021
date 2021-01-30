@@ -151,6 +151,11 @@ namespace com.romainimberti.ggj2021.game
                 default:
                     width = 23;
                     heigth = 13;
+                    for(int i = 0; i < level - 1; i++)
+                    {
+                        width = (int)(width * 1.2);
+                        heigth = (int)(heigth * 1.2);
+                    }
                     break;
             }
             CreateMaze(width, heigth);

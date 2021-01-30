@@ -47,32 +47,42 @@ SpriteAtlas:
     bindAsDefault: 1
     storedHash:
       serializedVersion: 2
-      Hash: bf171b9470984e02815cdd772fc9aee8
+      Hash: 36f111034c3cfabeeccc5baea788d697
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: f81782d0297368340a9b95833f4d7cc2, type: 3}
+  - {fileID: 21300000, guid: 930571f0c2df42f42a0375d79f9b5420, type: 3}
   - {fileID: 21300000, guid: 8b4114a1a8afc4a4a89983c528772085, type: 3}
   - {fileID: 21300000, guid: c09ba85200b548a45a6d55e2e134d4d3, type: 3}
   - {fileID: 21300000, guid: 44f93082ed7a017418292ae0a11785a9, type: 3}
   - {fileID: 21300000, guid: 6ab9b8c2e86be9e4ab9533913be8cc02, type: 3}
   - {fileID: 21300000, guid: 784db934085f4344f819d7c28f9963d1, type: 3}
+  - {fileID: 21300000, guid: d6a69754007435c4eb1159e17ba091da, type: 3}
   - {fileID: 21300000, guid: 1a9cb2c5bc492744d83680eb4179bbd6, type: 3}
+  - {fileID: 21300000, guid: 6998d0990caefcd4b87ed1d9de627e16, type: 3}
   - {fileID: 21300000, guid: 8378b77a210947340b1bd2097c6e25ad, type: 3}
   - {fileID: 21300000, guid: 82f1c82b2d01f1e47ac570ab22adc5c1, type: 3}
   - {fileID: 21300000, guid: 5dcae6bb9ddd5dc4a89f498a64988362, type: 3}
   - {fileID: 21300000, guid: 91d69d8c2f8bedc4fbdfaeaf2d227a98, type: 3}
+  - {fileID: 21300000, guid: 776e0f8eb6d97da4c9f0dd0a7ffcf84f, type: 3}
   - {fileID: 21300000, guid: e6fdcdbf115b48746963d7d6d7d442db, type: 3}
   - {fileID: 21300000, guid: bddfaddfc6037f04da06f4e6af5667d0, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Perso_2
+  - backgroundMenu
   - Sol
   - Wall_clair
   - frame-2
   - floor
   - selectedFloor
+  - title
   - end
+  - Perso_Jump1
   - Perso_1
   - Tronc_clair
   - jumpOverWall
   - start
+  - play
   - wall
   - End_clair
   m_Tag: Main
