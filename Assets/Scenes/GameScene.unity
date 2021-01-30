@@ -1791,6 +1791,7 @@ MonoBehaviour:
   fogGameObject: {fileID: 1530909087}
   joystickGameObject: {fileID: 422143856}
   btnFinish: {fileID: 1400418912}
+  capacitiesGameObject: {fileID: 2070935942}
   btnJump: {fileID: 126139068}
   btnCut: {fileID: 522883837}
   btnAttack: {fileID: 1619874551}

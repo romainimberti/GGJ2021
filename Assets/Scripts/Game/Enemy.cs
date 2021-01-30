@@ -70,6 +70,7 @@ namespace com.romainimberti.ggj2020
         private void Awake()
         {
             startingIndexForSprint = Random.Range(0, 100) < 50 ? 0 : 3;
+            currentSprite = startingIndexForSprint;
             enemySpriteRenderer = GetComponent<SpriteRenderer>();
             enemySpriteRenderer.sprite = enemySprites[startingIndexForSprint];
             position = transform.position;
@@ -143,16 +144,14 @@ namespace com.romainimberti.ggj2020
             }
         }
 
-        private void Fade(bool animate = true)
+        public static bool PlayerInRange(Vector3 fromPosition, Vector3 toPosition, float range)
         {
-            Vector3 fromPosition = transform.position;
-            Vector3 toPosition = GameManager.Instance.Player.transform.position;
             Vector3 direction = toPosition - fromPosition;
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, range);
+            RaycastHit2D hit = Physics2D.Raycast(fromPosition, direction, range);
 
             //Debug.DrawRay(transform.position, direction * range, Color.black);
 
-            playerInRange = false;
+            bool playerInRange = false;
             if (hit.collider != null)
             {
                 if (!hit.collider.CompareTag("Wall") && !hit.collider.CompareTag("Untagged") && !hit.collider.CompareTag("AttackCollider"))
@@ -163,6 +162,15 @@ namespace com.romainimberti.ggj2020
                     }
                 }
             }
+            return playerInRange;
+        }
+
+        private void Fade(bool animate = true)
+        {
+            Vector3 toPosition = GameManager.Instance.Player.transform.position;
+            Vector3 fromPosition = transform.position;
+
+            playerInRange = PlayerInRange(fromPosition, toPosition, range);
 
             GameManager.Instance.Player.EnemyInRange(this, playerInRange);
 

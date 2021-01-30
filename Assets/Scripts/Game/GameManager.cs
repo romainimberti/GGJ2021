@@ -62,6 +62,7 @@ namespace com.romainimberti.ggj2021.game
         public GameObject fogGameObject;
         public Joystick joystickGameObject;
         public ButtonWithClickAnimation btnFinish;
+        public GameObject capacitiesGameObject;
 
 
         public ButtonWithClickAnimation btnJump;
@@ -120,6 +121,7 @@ namespace com.romainimberti.ggj2021.game
             gameOverGameObject.SetActive(false);
             fogGameObject.SetActive(false);
             joystickGameObject.gameObject.SetActive(false);
+            capacitiesGameObject.SetActive(false);
 
             btnFinish.Init(GenerateMaze);
             btnJump.Init(Jump);
@@ -135,8 +137,11 @@ namespace com.romainimberti.ggj2021.game
 
         public void GameOver()
         {
+            FrozeAllEnemies();
             player.Disable();
             gameOverGameObject.SetActive(true);
+            joystickGameObject.gameObject.SetActive(false);
+            capacitiesGameObject.SetActive(false);
         }
 
         public void MazeFinished()
@@ -146,6 +151,7 @@ namespace com.romainimberti.ggj2021.game
             finishGameObject.SetActive(true);
             gameOverGameObject.SetActive(false);
             joystickGameObject.gameObject.SetActive(false);
+            capacitiesGameObject.SetActive(false);
             /*fogMainTexture.Release();
             fogSecondaryTexture.Release();*/
         }
@@ -157,6 +163,7 @@ namespace com.romainimberti.ggj2021.game
             menuGameObject.SetActive(false);
             //fogGameObject.SetActive(true);
             joystickGameObject.gameObject.SetActive(true);
+            capacitiesGameObject.SetActive(true);
             HandleCapacitiesUnlock();
             int width;
             int heigth;
@@ -430,6 +437,15 @@ namespace com.romainimberti.ggj2021.game
                 enemy.freeze = maze.enemiesFrozen;
             }
 
+        }
+
+        private void FrozeAllEnemies()
+        {
+            Component[] enemies = Maze.mazeObject.GetComponentsInChildren(typeof(Enemy));
+            foreach (Enemy enemy in enemies)
+            {
+                enemy.freeze = true;
+            }
         }
 
         #endregion

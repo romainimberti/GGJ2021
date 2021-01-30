@@ -168,17 +168,29 @@ namespace com.romainimberti.ggj2020.game.maze
         public void RandomEnemyGenerator()
         {
 
+            List<Vector2Int> possibleSpawns =  new List<Vector2Int>();
+
             for (int x = 0; x < maze.GetLength(0); x++)
             {
                 for (int y = 0; y < maze.GetLength(1); y++)
                 {
                     Vector2Int currentPos = new Vector2Int(x, y);
                     //TODO USE A  VARIABLE
-                    if (IsWalkable(currentPos) && (Random.Range(0, 100) < 3) && Vector2.Distance(currentPos, startTile) > minimumDistanceMobStart)
+                    if (IsWalkable(currentPos) && Vector2.Distance(currentPos, startTile) > minimumDistanceMobStart)
                     {
-                        enemies.Add(currentPos);
+                        Vector3 fromPosition = new Vector3(currentPos.x, currentPos.y, -0.75f);
+                        Vector3 toPosition = new Vector3(startTile.x, startTile.y, -0.75f);
+                        if (!Enemy.PlayerInRange(fromPosition, toPosition, 20))
+                            possibleSpawns.Add(currentPos);
+                        //enemies.Add(currentPos);
                     };
                 }
+            }
+
+            int nbOfEnemies = Random.Range(1, possibleSpawns.Count < 10 ? possibleSpawns.Count : 10);
+            for (int i = 0; i < nbOfEnemies; i++)
+            {
+                enemies.Add(possibleSpawns[Random.Range(0, possibleSpawns.Count)]);
             }
         }
 
