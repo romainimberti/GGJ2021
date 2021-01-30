@@ -168,6 +168,11 @@ namespace com.romainimberti.ggj2021.game
             }
         }
 
+        public void EnableAttackCapacity(bool enable)
+        {
+            btnAttack.Interactable = enable;
+        }
+
         public void DisableCapacities()
         {
             btnJump.Interactable = false;

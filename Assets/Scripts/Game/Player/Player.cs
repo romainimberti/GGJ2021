@@ -10,6 +10,7 @@ namespace com.romainimberti.ggj2020
     ///<summary>
     /// Class that handles the player
     ///</summary>
+    [RequireComponent(typeof(Rigidbody2D))]
     public class Player : MonoBehaviour
     {
         #region Variables
@@ -32,7 +33,11 @@ namespace com.romainimberti.ggj2020
         #endregion
         #region Private
 
+        private List<Enemy> enemiesInRange;
+
         private bool enable = false;
+
+        private Rigidbody2D rb;
 
         #endregion
         #endregion
@@ -41,9 +46,15 @@ namespace com.romainimberti.ggj2020
 
         private void Awake()
         {
+            rb = GetComponent<Rigidbody2D>();
             joystick = GameObject.Find("Floating Joystick").GetComponent<FloatingJoystick>();
-            Physics2D.IgnoreCollision(colliderObject, attackCollider, true);
         }
+
+        private void OnEnable()
+        {
+            enemiesInRange = new List<Enemy>();
+        }
+
         private void OnTriggerEnter2D(Collider2D col)
         {
             GameManager.Instance.MazeFinished();
@@ -65,12 +76,34 @@ namespace com.romainimberti.ggj2020
         public void Enable()
         {
             enable = true;
+            enemiesInRange = new List<Enemy>();
         }
 
         public void Disable()
         {
             enable = false;
-            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2Int(0, 0);
+            enemiesInRange = new List<Enemy>();
+            rb.velocity = new Vector2Int(0, 0);
+        }
+
+        public void EnemyInRange(Enemy enemy, bool inRange)
+        {
+            if (inRange)
+            {
+                if (!enemiesInRange.Contains(enemy))
+                {
+                    enemiesInRange.Add(enemy);
+                }
+            }
+            else
+            {
+                if (enemiesInRange.Contains(enemy))
+                {
+                    enemiesInRange.Remove(enemy);
+                }
+            }
+
+            GameManager.Instance.EnableAttackCapacity(enemiesInRange.Count > 0);
         }
 
         #endregion
@@ -84,7 +117,7 @@ namespace com.romainimberti.ggj2020
             if (enable)
             {
                 Vector3 direction = Vector3.up * joystick.Vertical + Vector3.right * joystick.Horizontal;
-                gameObject.GetComponent<Rigidbody2D>().velocity = direction * speed * Time.fixedDeltaTime;
+                rb.velocity = direction * speed * Time.fixedDeltaTime;
             }
         }
 

@@ -93,7 +93,7 @@ namespace com.romainimberti.ggj2020
             Vector3 direction = toPosition - fromPosition;
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, range);
 
-            Debug.DrawRay(transform.position, direction * range, Color.red);
+            //Debug.DrawRay(transform.position, direction * range, Color.red);
 
             playerInRange = false;
             if (hit.collider != null)
@@ -106,25 +106,10 @@ namespace com.romainimberti.ggj2020
                     }
                 }
             }
-            /*
-            Color c = spriteRenderer.color;
-            float target = playerInRange ? 1 : 0;
-            if (playerInRange != previousInRange)
-            {
-                if (animationFade != null)
-                {
-                    LeanTween.cancel(animationFade.id);
-                }
-                animationFade = LeanTween.value(c.a, target, animate ? 0.15f : 0f).setEaseInOutQuad().setOnUpdate((float f) =>
-                {
-                    c.a = f;
-                    spriteRenderer.color = c;
-                }).setOnComplete(() =>
-                {
-                    animationFade = null;
-                });
-            }*/
-            spriteRenderer.enabled = playerInRange;
+
+            GameManager.Instance.Player.EnemyInRange(this, playerInRange);
+
+            //spriteRenderer.enabled = playerInRange;
 
             playerLastPosition = toPosition;
         }

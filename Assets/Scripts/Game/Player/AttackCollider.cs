@@ -10,30 +10,34 @@ namespace com.romainimberti.ggj2020
 	///</summary>
 	public class AttackCollider : MonoBehaviour
 	{
-	    #region Variables
-		#region Editor
+        #region Variables
+        #region Editor
 
-		#endregion
-		#region Public
-		
-		#endregion
-		#region Private
+        [SerializeField]
+        private Player player;
 
-		#endregion
-		#endregion
-		#region Methods
-		#region Unity
+        #endregion
+        #region Public
 
-		#endregion
-		#region Public
+        #endregion
+        #region Private
 
-		#endregion
-		#region Protected
-		
-		#endregion
-		#region Private
+        #endregion
+        #endregion
+        #region Methods
+        #region Unity
 
-		#endregion
-		#endregion
-	}
+        #endregion
+        #region Public
+
+
+        #endregion
+        #region Protected
+
+        #endregion
+        #region Private
+
+        #endregion
+        #endregion
+    }
 }
