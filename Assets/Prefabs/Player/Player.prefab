@@ -38,7 +38,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6371158962439097054}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -305,6 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1af57126843cdb4e89fe2378f063e1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colliderObject: {fileID: 816432436422314027}
   attackCollider: {fileID: 2541150395842531373}
   speed: 150
   joystick: {fileID: 0}
