@@ -101,7 +101,6 @@ namespace com.romainimberti.ggj2020.game.maze
                     };
                 }
             }
-
         }
 
         public static GameObject Instantiate(GameObject o, int x, int y)
