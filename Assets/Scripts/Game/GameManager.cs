@@ -78,7 +78,7 @@ namespace com.romainimberti.ggj2021.game
         #endregion
         #region Private
 
-        private int level = 1;
+        private float level = 1;
 
         private Vector2Int interactableCell;
 
@@ -105,7 +105,7 @@ namespace com.romainimberti.ggj2021.game
 
         public void MazeFinished()
         {
-            level++;
+            level += 0.5f;
             player.Disable();
             finishGameObject.SetActive(true);
             capacitiesGameObject.SetActive(false);
@@ -129,7 +129,7 @@ namespace com.romainimberti.ggj2021.game
             Cell[,] mazeCells = maze.GetTiles();
 
             if (mazeCells[x, y].IsATreeStump()) {
-                if (level >= 2)
+                if (level > 1)
                 {
                     btnJump.Interactable = true;
                     interactableCell = new Vector2Int(x, y);
@@ -137,7 +137,7 @@ namespace com.romainimberti.ggj2021.game
             }
 
             if (mazeCells[x, y].IsAWall()) {
-                if (level >= 3)
+                if (level > 2)
                 {
                     if (maze.IsACutableWall(x, y))
                     {
@@ -207,15 +207,15 @@ namespace com.romainimberti.ggj2021.game
             imgCut.sprite = lockedSprite;
             imgAttack.sprite = lockedSprite;
 
-            if (level >= 2) {
+            if (level > 1) {
                 imgJump.sprite = jumpSprite;
             }
 
-            if (level >= 3) {
+            if (level > 2) {
                 imgCut.sprite = cutSprite;
             }
 
-            if (level >= 4) {
+            if (level > 3) {
                 imgAttack.sprite = attackSprite;
             }
         }
@@ -249,8 +249,19 @@ namespace com.romainimberti.ggj2021.game
 
             maze = new Maze(width, height);
 
-            //Start generating the maze
-            maze.Generate();
+            switch (level)
+            {
+                case 1.5F:
+                    maze.GenerateJumpUnlockTutorial();
+                    break;
+                case 2.5F:
+                    maze.GenerateCutUnlockTutorial();
+                    break;
+                case 3.5F: // TODO Attack Tutorial
+                default:
+                    maze.Generate();
+                    break;
+            }
             Vector3 startPosition = new Vector3(maze.GetStartTile().x, maze.GetStartTile().y, -0.75f);
             player.transform.position = startPosition;
             player.Enable();
