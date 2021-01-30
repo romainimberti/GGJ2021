@@ -68,6 +68,8 @@ namespace com.romainimberti.ggj2021.game
 
         public Maze maze;
 
+        public Player Player => player;
+
         #endregion
         #region Private
 
@@ -255,8 +257,6 @@ namespace com.romainimberti.ggj2021.game
             {
                 Instantiate(enemyPrefab, new Vector3(monPos.x, monPos.y, -1), Quaternion.identity);
             }
-
-
 
         }
 

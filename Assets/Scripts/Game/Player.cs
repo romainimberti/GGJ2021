@@ -60,7 +60,7 @@ namespace com.romainimberti.ggj2020
         public void Disable()
         {
             enable = false;
-            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2Int(0,0);
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2Int(0, 0);
         }
 
         #endregion
@@ -69,7 +69,7 @@ namespace com.romainimberti.ggj2020
         #endregion
         #region Private
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (enable)
             {
