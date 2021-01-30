@@ -43,6 +43,9 @@ namespace com.romainimberti.ggj2021.game
         [SerializeField]
         private RectTransform fogCanvas;
 
+        [SerializeField]
+        private GameObject gameOverGameObject;
+
         #endregion
         #region Public
 
@@ -70,8 +73,6 @@ namespace com.romainimberti.ggj2021.game
         public Image imgJump;
         public Image imgCut;
 
-
-        public Sprite imgPlayer;
         public Sprite imgPlayerJump;
 
         public Sprite imgDarkWall;
@@ -86,6 +87,8 @@ namespace com.romainimberti.ggj2021.game
         public Sprite attackSprite;
         public Sprite lockedSprite;
 
+        public List<Sprite> attackSprites;
+
         public Camera cam;
 
         public Maze maze;
@@ -95,7 +98,7 @@ namespace com.romainimberti.ggj2021.game
         #endregion
         #region Private
 
-        private float level = 1;
+        public float level = 1;
 
         private Vector2Int interactableCell;
 
@@ -112,6 +115,7 @@ namespace com.romainimberti.ggj2021.game
 
             menuGameObject.SetActive(true);
             finishGameObject.SetActive(false);
+            gameOverGameObject.SetActive(false);
             fogGameObject.SetActive(false);
             joystickGameObject.gameObject.SetActive(false);
 
@@ -125,11 +129,18 @@ namespace com.romainimberti.ggj2021.game
         #endregion
         #region Public
 
+        public void GameOver()
+        {
+            player.Disable();
+            gameOverGameObject.SetActive(true);
+        }
+
         public void MazeFinished()
         {
             level += 0.5f;
             player.Disable();
             finishGameObject.SetActive(true);
+            gameOverGameObject.SetActive(false);
             joystickGameObject.gameObject.SetActive(false);
             /*fogMainTexture.Release();
             fogSecondaryTexture.Release();*/
@@ -138,6 +149,7 @@ namespace com.romainimberti.ggj2021.game
         public void GenerateMaze()
         {
             finishGameObject.SetActive(false);
+            gameOverGameObject.SetActive(false);
             menuGameObject.SetActive(false);
             //fogGameObject.SetActive(true);
             joystickGameObject.gameObject.SetActive(true);
@@ -187,7 +199,7 @@ namespace com.romainimberti.ggj2021.game
 
             if (mazeCells[x, y].IsAWall())
             {
-                if (level > 2)
+                if (level > 3)
                 {
                     if (maze.IsACutableWall(x, y))
                     {
@@ -236,7 +248,7 @@ namespace com.romainimberti.ggj2021.game
             SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
             playerSprite.sprite = imgPlayerJump;
             LeanTween.move(player.gameObject, newPlayerPos, 0.2f).setEaseInOutQuad().setOnComplete(() =>
-                    playerSprite.sprite = imgPlayer
+                    playerSprite.sprite = player.playerSprites[player.currentSprite]
             );
         }
 
@@ -248,8 +260,41 @@ namespace com.romainimberti.ggj2021.game
 
         private void Attack()
         {
+            SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
+
+            if (player.enemiesInRange.Count == 0)
+            {
+                playerSprite.sprite = attackSprites[0];
+                CoroutineManager.Instance.Wait(0.05f, () =>
+                {
+                    playerSprite.sprite = attackSprites[1];
+                    CoroutineManager.Instance.Wait(0.05f, () =>
+                    {
+                        playerSprite.sprite = attackSprites[2];
+                        CoroutineManager.Instance.Wait(0.05f, () =>
+                        {
+                            playerSprite.sprite = player.playerSprites[player.currentSprite];
+                        });
+                    });
+                });
+            }
+
             foreach (Enemy enemy in player.enemiesInRange)
             {
+                playerSprite.sprite = attackSprites[0];
+                CoroutineManager.Instance.Wait(0.05f, () =>
+                {
+                    playerSprite.sprite = attackSprites[1];
+                    CoroutineManager.Instance.Wait(0.05f, () =>
+                    {
+                        playerSprite.sprite = attackSprites[2];
+                        enemy.Die();
+                        CoroutineManager.Instance.Wait(0.05f, () =>
+                        {
+                            playerSprite.sprite = player.playerSprites[player.currentSprite];
+                        });
+                    });
+                });
                 enemy.Die();
             }
         }
@@ -269,12 +314,12 @@ namespace com.romainimberti.ggj2021.game
                 imgJump.sprite = jumpSprite;
             }
 
-            if (level > 2)
+            if (level > 3)
             {
                 imgCut.sprite = cutSprite;
             }
 
-            if (level > 0)
+            if (level > 2)
             {
                 imgAttack.sprite = attackSprite;
                 btnAttack.Interactable = true;
@@ -334,9 +379,11 @@ namespace com.romainimberti.ggj2021.game
                     maze.GenerateJumpUnlockTutorial();
                     break;
                 case 2.5F:
+                    maze.GenerateAttackUnlockTutorial();
+                    break;
+                case 3.5F:
                     maze.GenerateCutUnlockTutorial();
                     break;
-                case 3.5F: // TODO Attack Tutorial
                 default:
                     maze.Generate();
                     break;
@@ -349,13 +396,13 @@ namespace com.romainimberti.ggj2021.game
 
         private void DisplayEnemies(List<Vector2Int> monsterPositions)
         {
-            Enemy enemy = Instantiate(enemyPrefab, new Vector3(monsterPositions[0].x, monsterPositions[0].y, -1), Quaternion.identity);
-            /* foreach (Vector2Int monPos in monsterPositions)
-             {
-                 Enemy enemy = Instantiate(enemyPrefab, new Vector3(monPos.x, monPos.y, -1), Quaternion.identity);
-                 enemy.transform.parent = Maze.mazeObject;
-             }
- */
+            foreach (Vector2Int monPos in monsterPositions)
+            {
+                Enemy enemy = Instantiate(enemyPrefab, new Vector3(monPos.x, monPos.y, -1), Quaternion.identity);
+                enemy.transform.parent = Maze.mazeObject;
+                enemy.freeze = maze.enemiesFrozen;
+            }
+
         }
 
         #endregion

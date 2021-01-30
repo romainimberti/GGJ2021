@@ -26,6 +26,8 @@ namespace com.romainimberti.ggj2020.game.maze
 
         public static Transform mazeObject;
 
+        public bool enemiesFrozen = false;
+
         private int width, height;
 
         private Cell[,] maze;
@@ -98,6 +100,31 @@ namespace com.romainimberti.ggj2020.game.maze
 
                 }
             }
+            SetCorrectWallSprite();
+            CompleteGeneration();
+        }
+
+        public void GenerateAttackUnlockTutorial()
+        {
+            maze = new Cell[width, height];
+            for (int i = 0; i < maze.GetLength(0); i++)
+            {
+                for (int j = 0; j < maze.GetLength(1); j++)
+                {
+                    maze[i, j] = new Cell(CellKind.Floor, i, j);
+                    if (i == 0 || j == 0 || i == maze.GetLength(0) - 1 || j == maze.GetLength(1) - 1)
+                    {
+                        maze[i, j].Dig();
+                    }
+
+                    if (i == maze.GetLength(0) / 2 && maze[i, j].IsWalkable())
+                    {
+                        enemies.Add(new Vector2Int(i, j));
+                    }
+
+                }
+            }
+            enemiesFrozen = true;
             SetCorrectWallSprite();
             CompleteGeneration();
         }

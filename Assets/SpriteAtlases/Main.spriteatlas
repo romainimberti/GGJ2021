@@ -43,11 +43,11 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 4112ef27b04c82f4b9a9d3a17d1cb3b0, type: 3}
-    totalSpriteSurfaceArea: 7062310
+    totalSpriteSurfaceArea: 8312810
     bindAsDefault: 1
     storedHash:
       serializedVersion: 2
-      Hash: a06a2570dc785bd33079f3a6f6b57739
+      Hash: 7ada47dfcf3fe1cf4d9952ab1e0d214b
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 98f4fc70c94f0ba44b23ba42bcb8f223, type: 3}
@@ -62,6 +62,8 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 0d0da1351dc3d2747b49b676267df95a, type: 3}
   - {fileID: 21300000, guid: 1a9cb2c5bc492744d83680eb4179bbd6, type: 3}
   - {fileID: 21300000, guid: 8c52d2966b70d6a4898b3930a5f91e98, type: 3}
+  - {fileID: 21300000, guid: 230cbc96907f3aa4092c45fdaa4125a6, type: 3}
+  - {fileID: 21300000, guid: f0c8c8a85310fe84ba1e90484f6ef607, type: 3}
   - {fileID: 21300000, guid: 4d67c269156fe3c41bb415679c98787f, type: 3}
   - {fileID: 21300000, guid: 3b75ea799213ed1499b48bafcfb52234, type: 3}
   - {fileID: 21300000, guid: 6998d0990caefcd4b87ed1d9de627e16, type: 3}
@@ -71,8 +73,11 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 5dcae6bb9ddd5dc4a89f498a64988362, type: 3}
   - {fileID: 21300000, guid: d39d58bb0849b3e41a77c8388cf83643, type: 3}
   - {fileID: 21300000, guid: 91d69d8c2f8bedc4fbdfaeaf2d227a98, type: 3}
+  - {fileID: 21300000, guid: 1d1ff3ddeb31ca549acfa43aa2e11ce2, type: 3}
   - {fileID: 21300000, guid: d474a80e63694a94c96d45e94e46a4c9, type: 3}
+  - {fileID: 21300000, guid: b7f85f6e21d5f8148b8ffcf41ff4f4c2, type: 3}
   - {fileID: 21300000, guid: 776e0f8eb6d97da4c9f0dd0a7ffcf84f, type: 3}
+  - {fileID: 21300000, guid: 1ed65b6fb2d081b41af0c9b1b9760ec7, type: 3}
   - {fileID: 21300000, guid: e6fdcdbf115b48746963d7d6d7d442db, type: 3}
   - {fileID: 21300000, guid: bddfaddfc6037f04da06f4e6af5667d0, type: 3}
   m_PackedSpriteNamesToIndex:
@@ -88,6 +93,8 @@ SpriteAtlas:
   - Sylvith_2_Sombre
   - end
   - Tronc_bleu_2
+  - Sabre_anim_1
+  - Sabre_anim_3
   - Sylvith_2_clair
   - Wall_Bleu
   - Perso_Jump1
@@ -97,8 +104,11 @@ SpriteAtlas:
   - jumpOverWall
   - Sylvith_1_clair
   - start
+  - Walk_sabre_2
   - Sylvith_1_Sombre
+  - Sabre_anim_2
   - play
+  - Walk_sabre_1
   - wall
   - End_clair
   m_Tag: Main

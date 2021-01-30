@@ -48,7 +48,7 @@ namespace com.romainimberti.ggj2020
 
         private bool goingLeft = false;
 
-        private int currentSprite = 0;
+        public int currentSprite = 0;
 
         private int spriteTempo = 0;
 
@@ -61,6 +61,7 @@ namespace com.romainimberti.ggj2020
 
         private void Awake()
         {
+            currentSprite = GameManager.Instance.level > 2 ? 2 : 0;
             rb = GetComponent<Rigidbody2D>();
             lastPosition = transform.position;
             playerSpriteRenderer = GetComponent<SpriteRenderer>();
@@ -174,8 +175,8 @@ namespace com.romainimberti.ggj2020
                     {
                         spriteTempo = 0;
                         currentSprite++;
-                        if (currentSprite >= playerSprites.Count)
-                            currentSprite = 0;
+                        if (currentSprite %2 == 0)
+                            currentSprite = GameManager.Instance.level > 2 ? 2 : 0;
                         playerSpriteRenderer.sprite = playerSprites[currentSprite];
                         lastPosition = transform.position;
                     }
