@@ -173,7 +173,7 @@ namespace com.romainimberti.ggj2021.game
                     newPlayerPos = new Vector3(player.transform.position.x, interactableCell.y - 1, player.transform.position.z);
             }
 
-            player.transform.position = newPlayerPos;
+            LeanTween.move(player.gameObject, newPlayerPos, 0.2f).setEaseInOutQuad();
         }
 
         private void Cut()
@@ -200,17 +200,14 @@ namespace com.romainimberti.ggj2021.game
 
             if (level >= 2) {
                 imgJump.sprite = jumpSprite;
-                btnJump.Interactable = true;
             }
 
             if (level >= 3) {
                 imgCut.sprite = cutSprite;
-                btnCut.Interactable = true;
             }
 
             if (level >= 4) {
                 imgAttack.sprite = attackSprite;
-                btnAttack.Interactable = true;
             }
         }
 

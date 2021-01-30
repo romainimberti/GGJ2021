@@ -116,7 +116,7 @@ namespace com.romainimberti.ggj2020.game.maze
 
         public bool IsAWall()
         {
-            return kind.Equals(CellKind.Wall);
+            return kind.Equals(CellKind.Wall) || kind.Equals(CellKind.CompleteWall);
         }
 
         public bool IsATreeStump()

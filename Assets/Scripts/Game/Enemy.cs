@@ -61,8 +61,6 @@ namespace com.romainimberti.ggj2020
             }
             else
             {
-                Debug.Log("Blocked Calculating New Pos ");
-
                 calculateNewDirection();
             }
 
@@ -97,7 +95,6 @@ namespace com.romainimberti.ggj2020
 
         void calculateNewDirection()
         {
-            Debug.Log("Calculating new direction");
 
             int randomDirection = Random.Range(0, 4);
             switch (randomDirection)
@@ -122,12 +119,10 @@ namespace com.romainimberti.ggj2020
                     Debug.LogError("EUHHH WHAT random was?" + randomDirection);
                     break;
             }
-            Debug.Log("New Direction" + randomDirection);
 
         }
         void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log("Collided");
             calculateNewDirection();
 
         }
