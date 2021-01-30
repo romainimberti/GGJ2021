@@ -9,6 +9,7 @@ namespace com.romainimberti.ggj2020.game.maze
 
 		Floor,
 		Wall,
+		CompleteWall,
 		TreeStump,
 
 	}

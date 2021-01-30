@@ -79,6 +79,7 @@ namespace com.romainimberti.ggj2020.game.maze
             //The algorithm is done
 
             GenerateTreeStump();
+            SetCorrectWallSprite();
             CompleteGeneration();
         }
 
@@ -252,6 +253,26 @@ namespace com.romainimberti.ggj2020.game.maze
             }
         }
 
+        private void SetCorrectWallSprite()
+        {
+            for(int x = 0; x < maze.GetLength(0); x++)
+            {
+                for(int y = 0; y < maze.GetLength(1); y++)
+                {
+                    if (IsACompleteWall(x, y))
+                    {
+                        maze[x, y].SetAsCompleteWall();
+                    }
+                }
+            }
+        }
+
+        private bool IsACompleteWall(int x, int y)
+        {
+            return maze[x, y].IsAWall() &&
+                   (y == 0 || !maze[x, y - 1].IsWalkable());
+        }
+
         private void GenerateTreeStump()
         {
             for (int x = 0; x < maze.GetLength(0); x++)
@@ -259,7 +280,6 @@ namespace com.romainimberti.ggj2020.game.maze
                 for (int y = 0; y < maze.GetLength(1); y++)
                 {
                     CutWall(x, y);
-
                 }
             }
         }

@@ -19,6 +19,7 @@ namespace com.romainimberti.ggj2021.game
         #endregion
         #region Public
 
+        public GameObject completeWallPrefab;
         public GameObject wallPrefab;
         public GameObject floorPrefab;
         public GameObject endPrefab;

@@ -578,6 +578,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _persistent: 1
+  completeWallPrefab: {fileID: 1598797744748027373, guid: dde94828a564ec446b82f9488e672450,
+    type: 3}
   wallPrefab: {fileID: 1245924414169070192, guid: e0067ebb2e76a7f43833de919f26280f,
     type: 3}
   floorPrefab: {fileID: 5741569103996863004, guid: 50bfffd7bee040143a34e3d281412ed4,

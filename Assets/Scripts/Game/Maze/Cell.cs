@@ -57,6 +57,9 @@ namespace com.romainimberti.ggj2020.game.maze
 				case CellKind.Wall:
 					prefab = GameManager.Instance.wallPrefab;
 					break;
+				case CellKind.CompleteWall:
+					prefab = GameManager.Instance.completeWallPrefab;
+					break;
 				case CellKind.TreeStump:
 					prefab = GameManager.Instance.treeStumpPrefab;
 					break;
@@ -83,7 +86,6 @@ namespace com.romainimberti.ggj2020.game.maze
 
 		public void CutWall()
         {
-			
 			this.kind = CellKind.TreeStump;
 			if (obj != null)
 			{
@@ -96,6 +98,16 @@ namespace com.romainimberti.ggj2020.game.maze
         {
 			return kind;
         }
+
+		public void SetAsCompleteWall()
+        {
+			this.kind = CellKind.CompleteWall;
+			if (obj != null)
+			{
+				GameObject.Destroy(obj);
+			}
+			this.obj = CreateObject();
+		}
 
 		public bool IsWalkable()
         {
