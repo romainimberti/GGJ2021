@@ -197,6 +197,7 @@ namespace com.romainimberti.ggj2020
             CalculateNewDirection();
             if (collision.collider.CompareTag("Player"))
             {
+                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
                 GameManager.Instance.GameOver();
             }
         }
