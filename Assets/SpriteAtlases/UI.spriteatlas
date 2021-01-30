@@ -6,7 +6,7 @@ SpriteAtlas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Main
+  m_Name: UI
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -42,38 +42,28 @@ SpriteAtlas:
       enableTightPacking: 0
     variantMultiplier: 1
     packables:
-    - {fileID: 102900000, guid: 4112ef27b04c82f4b9a9d3a17d1cb3b0, type: 3}
-    totalSpriteSurfaceArea: 3607523
+    - {fileID: 102900000, guid: dba49257c8a61f64882e25892394c35e, type: 3}
+    totalSpriteSurfaceArea: 5351397
     bindAsDefault: 1
     storedHash:
       serializedVersion: 2
-      Hash: bf171b9470984e02815cdd772fc9aee8
+      Hash: 6af18747ad29a6729a32f6b680ffeb34
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 8b4114a1a8afc4a4a89983c528772085, type: 3}
-  - {fileID: 21300000, guid: c09ba85200b548a45a6d55e2e134d4d3, type: 3}
-  - {fileID: 21300000, guid: 44f93082ed7a017418292ae0a11785a9, type: 3}
-  - {fileID: 21300000, guid: 6ab9b8c2e86be9e4ab9533913be8cc02, type: 3}
-  - {fileID: 21300000, guid: 784db934085f4344f819d7c28f9963d1, type: 3}
-  - {fileID: 21300000, guid: 1a9cb2c5bc492744d83680eb4179bbd6, type: 3}
-  - {fileID: 21300000, guid: 8378b77a210947340b1bd2097c6e25ad, type: 3}
-  - {fileID: 21300000, guid: 82f1c82b2d01f1e47ac570ab22adc5c1, type: 3}
-  - {fileID: 21300000, guid: 5dcae6bb9ddd5dc4a89f498a64988362, type: 3}
-  - {fileID: 21300000, guid: 91d69d8c2f8bedc4fbdfaeaf2d227a98, type: 3}
-  - {fileID: 21300000, guid: e6fdcdbf115b48746963d7d6d7d442db, type: 3}
-  - {fileID: 21300000, guid: bddfaddfc6037f04da06f4e6af5667d0, type: 3}
+  - {fileID: 21300000, guid: dad8a460fa90e1748bdd6498caa95f04, type: 3}
+  - {fileID: 21300000, guid: 107cc4a1d7da5b04e983d9b5fdb1c674, type: 3}
+  - {fileID: 21300000, guid: fdd17a53857ceb547a98bbb1dc72486a, type: 3}
+  - {fileID: 21300000, guid: 8d675057f91c9d84cb827b50fcfe0c7b, type: 3}
+  - {fileID: 21300000, guid: 0cee9968e221d0749821e922a0b38308, type: 3}
+  - {fileID: 21300000, guid: d566405b199265d4cb06e18ae1c7f0ed, type: 3}
+  - {fileID: 21300000, guid: eabe9d1fb35f397448f2acc57ff431b0, type: 3}
   m_PackedSpriteNamesToIndex:
-  - Sol
-  - Wall_clair
-  - frame-2
-  - floor
-  - selectedFloor
-  - end
-  - Perso_1
-  - Tronc_clair
-  - jumpOverWall
-  - start
-  - wall
-  - End_clair
-  m_Tag: Main
+  - cut
+  - threshold
+  - touch
+  - lock
+  - attack
+  - congrats
+  - jump
+  m_Tag: UI
   m_IsVariant: 0
