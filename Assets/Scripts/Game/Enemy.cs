@@ -59,20 +59,18 @@ namespace com.romainimberti.ggj2020
 
         private void followPlayer(Vector3 playerPosition)
         {
-
-            Debug.Log("KILL KILL KILL AT " + playerPosition);
             Vector3 fromPosition = transform.position;
+            //Debug.Log("KILL KILL KILL AT " + playerPosition);
             Vector3 toPosition = GameManager.Instance.Player.transform.position;
             Vector3 offset = toPosition - fromPosition;
             movementDirection = new Vector3(Mathf.Clamp(offset.x, -1, 1), Mathf.Clamp(offset.y, -1, 1), Mathf.Clamp(offset.z, -1, 1));
-            //movementDirection = ()
         }
         private void FixedUpdate()
         {
             Fade();
 
             Vector3 offset = transform.position - position;
-            if (offset.x != 0 || offset.y != 0 || playerInRange)
+            if ((offset.x.CompareTo(0) < 0.01 || offset.y.CompareTo(0) < 0.01) || playerInRange)
             {
                 position = new Vector3(transform.position.x, transform.position.y, transform.position.z);// code to execute when X is getting bigger
             }
@@ -80,10 +78,12 @@ namespace com.romainimberti.ggj2020
             {
                 CalculateNewDirection();
             }
-
             gameObject.GetComponent<Rigidbody2D>().velocity = movementDirection * movementSpeed * Time.fixedDeltaTime;
-
             if (playerInRange) followPlayer(playerLastPosition);
+
+
+
+
         }
 
         private void Fade(bool animate = true)
@@ -93,7 +93,7 @@ namespace com.romainimberti.ggj2020
             Vector3 direction = toPosition - fromPosition;
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, range);
 
-            //Debug.DrawRay(transform.position, direction * range, Color.red);
+            //Debug.DrawRay(transform.position, direction * range, Color.black);
 
             playerInRange = false;
             if (hit.collider != null)
@@ -142,6 +142,7 @@ namespace com.romainimberti.ggj2020
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
+
             CalculateNewDirection();
 
         }
