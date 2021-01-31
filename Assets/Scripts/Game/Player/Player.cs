@@ -87,6 +87,12 @@ namespace com.romainimberti.ggj2020
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+
+            if (collision.gameObject.tag == "Start")
+            {
+                Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+                Debug.Log("Ignoring");
+            }
             GameManager.Instance.EnableCapacities((int)collision.transform.position.x, (int)collision.transform.position.y);
         }
 
@@ -174,7 +180,7 @@ namespace com.romainimberti.ggj2020
 
                 if (rb.velocity.x != 0 || rb.velocity.y != 0)
                 {
-                    if(Time.time >= lastStepTime + timeToWaitForStep)
+                    if (Time.time >= lastStepTime + timeToWaitForStep)
                     {
                         int sound = Random.Range(0, 5);
                         lastStepTime = Time.time;
@@ -205,7 +211,7 @@ namespace com.romainimberti.ggj2020
 
                 if (goingLeft)
                 {
-                    if(direction.x > 0)
+                    if (direction.x > 0)
                     {
                         goingLeft = false;
                         transform.Rotate(0, 180, 0);
@@ -228,7 +234,7 @@ namespace com.romainimberti.ggj2020
                     {
                         spriteTempo = 0;
                         currentSprite++;
-                        if (currentSprite %2 == 0)
+                        if (currentSprite % 2 == 0)
                             currentSprite = GameManager.Instance.level > 2 ? 2 : 0;
                         playerSpriteRenderer.sprite = playerSprites[currentSprite];
                         lastPosition = transform.position;

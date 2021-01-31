@@ -8,6 +8,7 @@ TagManager:
   - End
   - AttackCollider
   - Enemy
+  - Start
   layers:
   - Default
   - TransparentFX

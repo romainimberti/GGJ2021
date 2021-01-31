@@ -46,6 +46,9 @@ namespace com.romainimberti.ggj2021.game
         [SerializeField]
         private GameObject gameOverGameObject;
 
+        [SerializeField]
+        private List<Sprite> firstCinematic;
+
         #endregion
         #region Public
 
@@ -62,6 +65,8 @@ namespace com.romainimberti.ggj2021.game
         public GameObject fogGameObject;
         public Joystick joystickGameObject;
         public ButtonWithClickAnimation btnFinish;
+        public GameObject capacitiesGameObject;
+        public GameObject cinematicGameObject;
 
 
         public ButtonWithClickAnimation btnJump;
@@ -120,12 +125,14 @@ namespace com.romainimberti.ggj2021.game
             gameOverGameObject.SetActive(false);
             fogGameObject.SetActive(false);
             joystickGameObject.gameObject.SetActive(false);
+            capacitiesGameObject.SetActive(false);
+            cinematicGameObject.SetActive(false);
 
             btnFinish.Init(GenerateMaze);
             btnJump.Init(Jump);
             btnCut.Init(Cut);
             btnAttack.Init(Attack);
-            btnPlay.Init(GenerateMaze);
+            btnPlay.Init(PlayFirstCinematic);
 
             AudioManager.Instance.PlayAudioClip(AudioManager.MUSIC.Menu);
         }
@@ -135,8 +142,12 @@ namespace com.romainimberti.ggj2021.game
 
         public void GameOver()
         {
+            FrozeAllEnemies();
             player.Disable();
             gameOverGameObject.SetActive(true);
+            joystickGameObject.gameObject.SetActive(false);
+            capacitiesGameObject.SetActive(false);
+            cinematicGameObject.SetActive(false);
         }
 
         public void MazeFinished()
@@ -146,6 +157,8 @@ namespace com.romainimberti.ggj2021.game
             finishGameObject.SetActive(true);
             gameOverGameObject.SetActive(false);
             joystickGameObject.gameObject.SetActive(false);
+            capacitiesGameObject.SetActive(false);
+            cinematicGameObject.SetActive(false);
             /*fogMainTexture.Release();
             fogSecondaryTexture.Release();*/
         }
@@ -157,6 +170,8 @@ namespace com.romainimberti.ggj2021.game
             menuGameObject.SetActive(false);
             //fogGameObject.SetActive(true);
             joystickGameObject.gameObject.SetActive(true);
+            capacitiesGameObject.SetActive(true);
+            cinematicGameObject.SetActive(false);
             HandleCapacitiesUnlock();
             int width;
             int heigth;
@@ -233,6 +248,28 @@ namespace com.romainimberti.ggj2021.game
         #endregion
         #region Private
 
+        private void PlayFirstCinematic()
+        {
+            cinematicGameObject.SetActive(true);
+            Image imgCinematic = cinematicGameObject.GetComponentInChildren<Image>();
+            imgCinematic.sprite = firstCinematic[0];
+            CoroutineManager.Instance.Wait(2.0f, () =>
+            {
+                imgCinematic.sprite = firstCinematic[1];
+                CoroutineManager.Instance.Wait(2.0f, () =>
+                {
+                    imgCinematic.sprite = firstCinematic[2];
+                    CoroutineManager.Instance.Wait(2.0f, () =>
+                    {
+                        imgCinematic.sprite = firstCinematic[3];
+                        CoroutineManager.Instance.Wait(2.0f, () =>
+                        {
+                            GenerateMaze();
+                        });
+                    });
+                });
+            });
+        }
         private void Jump()
         {
             Cell[,] mazeCells = maze.GetTiles();
@@ -477,6 +514,15 @@ namespace com.romainimberti.ggj2021.game
                 enemy.freeze = maze.enemiesFrozen;
             }
 
+        }
+
+        private void FrozeAllEnemies()
+        {
+            Component[] enemies = Maze.mazeObject.GetComponentsInChildren(typeof(Enemy));
+            foreach (Enemy enemy in enemies)
+            {
+                enemy.freeze = true;
+            }
         }
 
         #endregion
