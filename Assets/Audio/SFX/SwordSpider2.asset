@@ -18,5 +18,5 @@ MonoBehaviour:
   sfxClip: 17
   secondMusicClip: 0
   possibleClips:
-  - {fileID: 8300000, guid: 42f5f4ccac65a404dacb186ced703d82, type: 3}
+  - {fileID: 8300000, guid: e3730c3fdb313e244a5242d227bb8500, type: 3}
   Volume: 0.2
