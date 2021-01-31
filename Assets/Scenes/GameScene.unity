@@ -1615,14 +1615,15 @@ MonoBehaviour:
   fogCanvas: {fileID: 131665084}
   gameOverGameObject: {fileID: 1880895131}
   firstCinematic:
-  - {fileID: 21300000, guid: 5deb755859883a7498c888b3e25f91da, type: 3}
-  - {fileID: 21300000, guid: 60ad902931dcdae44a29bb306152300d, type: 3}
+  - {fileID: 21300000, guid: ea3049039dcc0bc46b053a3f735a84ff, type: 3}
+  - {fileID: 21300000, guid: 27aa5289fc252794889a7deb3525fe5f, type: 3}
   - {fileID: 21300000, guid: 73ac9a189a1a33c408f6d94ff8c6b4e0, type: 3}
   - {fileID: 21300000, guid: 43ceeacde93b8c348a1eb11dab5c9a15, type: 3}
   endCinematic:
-  - {fileID: 21300000, guid: 7d023c1d8804f74469a951e78cfea68d, type: 3}
-  - {fileID: 21300000, guid: 76cbc3d7bb0c9924bb16bc0bc9de1642, type: 3}
+  - {fileID: 21300000, guid: 93b247f674e3aad41af44d16af7419b1, type: 3}
+  - {fileID: 21300000, guid: 51512ee6c8035e6429c3fadf8904c9bb, type: 3}
   - {fileID: 21300000, guid: 35d6cc3ec759fe840a2b51727ae7699e, type: 3}
+  - {fileID: 21300000, guid: 7483c196a9295b64a820e71a7a8c85cc, type: 3}
   - {fileID: 21300000, guid: 73ac9a189a1a33c408f6d94ff8c6b4e0, type: 3}
   mainMenuBackground: {fileID: 91347416}
   cinematicBackground: {fileID: 2068542164}
@@ -1663,9 +1664,9 @@ MonoBehaviour:
     type: 3}
   imgDarkFloor: {fileID: 21300000, guid: e145f07cc79cbdb45988ab06abc59b01, type: 3}
   imgDarkEnd: {fileID: 21300000, guid: 687c6674d2421db46887d9b8d110bbdc, type: 3}
-  imgFinishJump: {fileID: 21300000, guid: 0769e834a37dfcf45958e1d0eb8cc54d, type: 3}
-  imgFinishCut: {fileID: 21300000, guid: c2585fd53e7d2da41b8f310d16bf618c, type: 3}
-  imgFinishAttack: {fileID: 21300000, guid: 5ef6b68f328895a4dbf7fc1079fa08ba, type: 3}
+  imgFinishJump: {fileID: 21300000, guid: d157a3f21e329844aaf9afb8951cf015, type: 3}
+  imgFinishCut: {fileID: 21300000, guid: 614a920d258b7214d8e9de6ead4c73eb, type: 3}
+  imgFinishAttack: {fileID: 21300000, guid: 964548726cc0cf945803e3944f4ba60d, type: 3}
   imgCinematic: {fileID: 2077449371}
   playerDeath:
   - {fileID: 21300000, guid: 99b473c0f397c4649947abbe99b9429e, type: 3}
