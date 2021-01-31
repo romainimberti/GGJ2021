@@ -44,6 +44,7 @@ namespace com.romainimberti.ggj2021.utilities
         {
             Main,
             Menu,
+            Cinematic,
         }
 
         /// <summary>
@@ -71,6 +72,10 @@ namespace com.romainimberti.ggj2021.utilities
             SwordSpider2,
             SwordSpider3,
             SwordSpider4,
+            Jump1,
+            Jump2,
+            Jump3,
+            Congratulations,
         }
 
         /// <summary>
