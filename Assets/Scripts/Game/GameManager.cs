@@ -50,6 +50,9 @@ namespace com.romainimberti.ggj2021.game
         private List<Sprite> firstCinematic;
 
         [SerializeField]
+        private List<Sprite> endCinematic;
+
+        [SerializeField]
         private GameObject mainMenuBackground;
 
         [SerializeField]
@@ -165,7 +168,7 @@ namespace com.romainimberti.ggj2021.game
             btnCut.Init(Cut);
             btnAttack.Init(Attack);
             btnPlay.Init(PlayFirstCinematic);
-            cinematicNext.Init(NextCinematicButton);
+            cinematicNext.Init(NextFirstCinematicButton);
 
             AudioManager.Instance.PlayAudioClip(AudioManager.MUSIC.Menu);
         }
@@ -247,7 +250,7 @@ namespace com.romainimberti.ggj2021.game
             btnCut.Init(Cut);
             btnAttack.Init(Attack);
             btnPlay.Init(PlayFirstCinematic);
-            cinematicNext.Init(NextCinematicButton);
+            cinematicNext.Init(NextFirstCinematicButton);
 
             AudioManager.Instance.PlayAudioClip(AudioManager.MUSIC.Menu);
 
@@ -273,9 +276,11 @@ namespace com.romainimberti.ggj2021.game
                     imgCinematic.sprite = imgFinishCut;
                     break;
                 case 4.5F:
-                    imgCinematic.sprite = imgFinishAttack;
-                    btnFinish.Init(EndGame);
-                    break;
+                    gameOverGameObject.gameObject.SetActive(false);
+                    joystickGameObject.gameObject.SetActive(false);
+                    capacitiesGameObject.SetActive(false);
+                    PlayEndCinematic();
+                    return;
                 default:
                     playCinematic = false;
                     break;
@@ -284,10 +289,6 @@ namespace com.romainimberti.ggj2021.game
             AudioManager.Instance.PlayAudioClip(AudioManager.SFX.Congratulations);
             if (playCinematic)
             {
-                if(level == 4.5F)
-                {
-                    AudioManager.Instance.PlayAudioClip(AudioManager.MUSIC.End);
-                }
                 finishGameObject.SetActive(true);
                 gameOverGameObject.gameObject.SetActive(false);
                 joystickGameObject.gameObject.SetActive(false);
@@ -389,7 +390,7 @@ namespace com.romainimberti.ggj2021.game
         #endregion
         #region Private
 
-        private void NextCinematicButton()
+        private void NextFirstCinematicButton()
         {
             currentFirstCinematicSprite++;
             DisplayFirstCinematicSprite();
@@ -397,6 +398,7 @@ namespace com.romainimberti.ggj2021.game
 
         private void PlayFirstCinematic()
         {
+            currentFirstCinematicSprite = 0;
             AudioManager.Instance.PlayAudioClip(AudioManager.MUSIC.Cinematic);
             cinematicGameObject.SetActive(true);
             DisplayFirstCinematicSprite();
@@ -410,6 +412,31 @@ namespace com.romainimberti.ggj2021.game
             {
                 playingFirstCinematic = true;
                 cinematicNext.Init(GenerateMaze);
+            }
+        }
+
+        private void PlayEndCinematic()
+        {
+            currentFirstCinematicSprite = 0;
+            AudioManager.Instance.PlayAudioClip(AudioManager.MUSIC.End);
+            cinematicGameObject.SetActive(true);
+            cinematicNext.Init(NextEndCinematicButton);
+            DisplayEndCinematicSprite();
+        }
+
+        private void NextEndCinematicButton()
+        {
+            currentFirstCinematicSprite++;
+            DisplayEndCinematicSprite();
+        }
+
+        private void DisplayEndCinematicSprite()
+        {
+            Image imgCinematic = cinematicGameObject.GetComponentInChildren<Image>();
+            imgCinematic.sprite = endCinematic[currentFirstCinematicSprite];
+            if (currentFirstCinematicSprite == 3)
+            {
+                cinematicNext.Init(EndGame);
             }
         }
 
