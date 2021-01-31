@@ -45,6 +45,7 @@ namespace com.romainimberti.ggj2021.utilities
             Main,
             Menu,
             Cinematic,
+            End,
         }
 
         /// <summary>
