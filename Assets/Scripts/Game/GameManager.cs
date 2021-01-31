@@ -203,6 +203,19 @@ namespace com.romainimberti.ggj2021.game
             });
         }
 
+        public void EndGame()
+        {
+            menuGameObject.SetActive(true);
+            finishGameObject.SetActive(false);
+            gameOverGameObject.gameObject.SetActive(false);
+            fogGameObject.SetActive(false);
+            joystickGameObject.gameObject.SetActive(false);
+            capacitiesGameObject.SetActive(false);
+            cinematicGameObject.SetActive(false);
+            AudioManager.Instance.PlayAudioClip(AudioManager.MUSIC.Menu);
+
+        }
+
         public void MazeFinished()
         {
             level += 0.5f;
@@ -220,6 +233,10 @@ namespace com.romainimberti.ggj2021.game
                     break;
                 case 3.5F:
                     imgCinematic.sprite = imgFinishCut;
+                    break;
+                case 4.5F:
+                    imgCinematic.sprite = imgFinishAttack;
+                    btnFinish.Init(EndGame);
                     break;
                 default:
                     playCinematic = false;
