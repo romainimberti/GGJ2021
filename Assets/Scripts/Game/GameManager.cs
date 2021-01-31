@@ -108,6 +108,8 @@ namespace com.romainimberti.ggj2021.game
 
         public Player Player => player;
 
+        public bool isGameOver = false;
+
         #endregion
         #region Private
 
@@ -148,17 +150,21 @@ namespace com.romainimberti.ggj2021.game
 
         public void GameOver()
         {
+            isGameOver = true;
+            FrozeAllEnemies();
+            player.Disable();
+            joystickGameObject.gameObject.SetActive(false);
+            capacitiesGameObject.SetActive(false);
             SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
-            playerSprite.sprite = playerDeath[0];
-            CoroutineManager.Instance.Wait(0.5f, () => {
-                playerSprite.sprite = playerDeath[1];
+            CoroutineManager.Instance.Wait(0.2f, () =>
+            {
+                playerSprite.sprite = playerDeath[0];
                 CoroutineManager.Instance.Wait(0.5f, () => {
-                    FrozeAllEnemies();
-                    player.Disable();
-                    gameOverGameObject.SetActive(true);
-                    joystickGameObject.gameObject.SetActive(false);
-                    capacitiesGameObject.SetActive(false);
-                    cinematicGameObject.SetActive(false);
+                    playerSprite.sprite = playerDeath[1];
+                    CoroutineManager.Instance.Wait(0.5f, () => {
+                        gameOverGameObject.SetActive(true);
+                        cinematicGameObject.SetActive(false);
+                    });
                 });
             });
         }
@@ -179,6 +185,7 @@ namespace com.romainimberti.ggj2021.game
 
         public void GenerateMaze()
         {
+            isGameOver = false;
             finishGameObject.SetActive(false);
             gameOverGameObject.SetActive(false);
             menuGameObject.SetActive(false);

@@ -223,7 +223,8 @@ namespace com.romainimberti.ggj2020
             if (collision.collider.CompareTag("Player"))
             {
                 gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-                GameManager.Instance.GameOver();
+                if(!GameManager.Instance.isGameOver)
+                    GameManager.Instance.GameOver();
             }
           
         }
