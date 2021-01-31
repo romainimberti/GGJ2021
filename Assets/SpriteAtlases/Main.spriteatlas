@@ -43,11 +43,11 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 4112ef27b04c82f4b9a9d3a17d1cb3b0, type: 3}
-    totalSpriteSurfaceArea: 23986340
+    totalSpriteSurfaceArea: 28254480
     bindAsDefault: 1
     storedHash:
       serializedVersion: 2
-      Hash: e46a4358f18cb11898fd0dfb5f17851d
+      Hash: fcf7c0e779ba44d637651f9247256b7e
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 98f4fc70c94f0ba44b23ba42bcb8f223, type: 3}
@@ -68,8 +68,10 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 687c6674d2421db46887d9b8d110bbdc, type: 3}
   - {fileID: 21300000, guid: da8d829476c9aa84baf01594abbd9f0d, type: 3}
   - {fileID: 21300000, guid: 0d0da1351dc3d2747b49b676267df95a, type: 3}
+  - {fileID: 21300000, guid: e39d2545b500dbb4fae1559da457e354, type: 3}
   - {fileID: 21300000, guid: b7daa155778e0e84385274cd85d79be7, type: 3}
   - {fileID: 21300000, guid: 1a9cb2c5bc492744d83680eb4179bbd6, type: 3}
+  - {fileID: 21300000, guid: c2585fd53e7d2da41b8f310d16bf618c, type: 3}
   - {fileID: 21300000, guid: 8c52d2966b70d6a4898b3930a5f91e98, type: 3}
   - {fileID: 21300000, guid: 230cbc96907f3aa4092c45fdaa4125a6, type: 3}
   - {fileID: 21300000, guid: 73ac9a189a1a33c408f6d94ff8c6b4e0, type: 3}
@@ -121,8 +123,10 @@ SpriteAtlas:
   - Sol_sortie_2
   - Sylvith_Dead_Sombre_1
   - Sylvith_2_Sombre
+  - GameOver
   - Sylvith_Dead_Sombre_2
   - end
+  - Cinematiques_hache
   - Tronc_bleu_2
   - Sabre_anim_1
   - GoodLuck_1
