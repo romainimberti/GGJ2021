@@ -86,6 +86,8 @@ namespace com.romainimberti.ggj2021.game
         public Sprite imgDarkFloor;
         public Sprite imgDarkEnd;
 
+        public List<Sprite> playerDeath;
+
         public Sprite imgLightStart;
         public Sprite imgLightWall;
         public Sprite imgLightTreeStump;
@@ -146,12 +148,19 @@ namespace com.romainimberti.ggj2021.game
 
         public void GameOver()
         {
-            FrozeAllEnemies();
-            player.Disable();
-            gameOverGameObject.SetActive(true);
-            joystickGameObject.gameObject.SetActive(false);
-            capacitiesGameObject.SetActive(false);
-            cinematicGameObject.SetActive(false);
+            SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
+            playerSprite.sprite = playerDeath[0];
+            CoroutineManager.Instance.Wait(0.5f, () => {
+                playerSprite.sprite = playerDeath[1];
+                CoroutineManager.Instance.Wait(0.5f, () => {
+                    FrozeAllEnemies();
+                    player.Disable();
+                    gameOverGameObject.SetActive(true);
+                    joystickGameObject.gameObject.SetActive(false);
+                    capacitiesGameObject.SetActive(false);
+                    cinematicGameObject.SetActive(false);
+                });
+            });
         }
 
         public void MazeFinished()

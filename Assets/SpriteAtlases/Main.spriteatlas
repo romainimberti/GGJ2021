@@ -43,15 +43,16 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 4112ef27b04c82f4b9a9d3a17d1cb3b0, type: 3}
-    totalSpriteSurfaceArea: 23367230
+    totalSpriteSurfaceArea: 23887230
     bindAsDefault: 1
     storedHash:
       serializedVersion: 2
-      Hash: 25bfe3eac34d5f16e874ac04d2853b2a
+      Hash: fbb8b20cc032d0b4e0d3641189545dce
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 98f4fc70c94f0ba44b23ba42bcb8f223, type: 3}
   - {fileID: 21300000, guid: 10fb22c02d4600e4a8113493b6ce1b87, type: 3}
+  - {fileID: 21300000, guid: 99b473c0f397c4649947abbe99b9429e, type: 3}
   - {fileID: 21300000, guid: f81782d0297368340a9b95833f4d7cc2, type: 3}
   - {fileID: 21300000, guid: 930571f0c2df42f42a0375d79f9b5420, type: 3}
   - {fileID: 21300000, guid: 8b4114a1a8afc4a4a89983c528772085, type: 3}
@@ -84,6 +85,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 4ca7cd5b3c6a661448e27adfb840828d, type: 3}
   - {fileID: 21300000, guid: 5dcae6bb9ddd5dc4a89f498a64988362, type: 3}
   - {fileID: 21300000, guid: d39d58bb0849b3e41a77c8388cf83643, type: 3}
+  - {fileID: 21300000, guid: b471ec3cb151b554c8d51789f3b327e1, type: 3}
   - {fileID: 21300000, guid: e145f07cc79cbdb45988ab06abc59b01, type: 3}
   - {fileID: 21300000, guid: 91d69d8c2f8bedc4fbdfaeaf2d227a98, type: 3}
   - {fileID: 21300000, guid: 43ceeacde93b8c348a1eb11dab5c9a15, type: 3}
@@ -101,6 +103,7 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - End_bleu
   - Sol_sortie_1
+  - Dead_1
   - Perso_2
   - backgroundMenu
   - Sol
@@ -133,6 +136,7 @@ SpriteAtlas:
   - Sylvith_Dead_Light_1
   - jumpOverWall
   - Sylvith_1_clair
+  - Dead_2
   - NVSol_1
   - start
   - GoodLuck_2
