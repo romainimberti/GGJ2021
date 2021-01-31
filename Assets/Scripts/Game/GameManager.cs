@@ -79,15 +79,19 @@ namespace com.romainimberti.ggj2021.game
         public Image imgCut;
 
         public Sprite imgPlayerJump;
-
+        public Sprite imgDarkStart;
         public Sprite imgDarkWall;
         public Sprite imgDarkTreeStump;
         public Sprite imgDarkCompleteWall;
         public Sprite imgDarkFloor;
+        public Sprite imgDarkEnd;
+
+        public Sprite imgLightStart;
         public Sprite imgLightWall;
         public Sprite imgLightTreeStump;
         public Sprite imgLightCompleteWall;
         public Sprite imgLightFloor;
+        public Sprite imgLightEnd;
 
         public Sprite jumpSprite;
         public Sprite cutSprite;
@@ -469,18 +473,25 @@ namespace com.romainimberti.ggj2021.game
 
             if (level > 2.5)
             {
+                startPrefab.GetComponent<SpriteRenderer>().sprite = imgDarkStart;
                 wallPrefab.GetComponent<SpriteRenderer>().sprite = imgDarkWall;
                 completeWallPrefab.GetComponent<SpriteRenderer>().sprite = imgDarkCompleteWall;
                 treeStumpPrefab.GetComponent<SpriteRenderer>().sprite = imgDarkTreeStump;
                 floorPrefab.GetComponent<SpriteRenderer>().sprite = imgDarkFloor;
+                wallPrefab.GetComponent<SpriteRenderer>().sprite = imgDarkWall;
+                endPrefab.GetComponent<SpriteRenderer>().sprite = imgDarkEnd;
+
             }
             else
             {
+                startPrefab.GetComponent<SpriteRenderer>().sprite = imgLightStart;
                 wallPrefab.GetComponent<SpriteRenderer>().sprite = imgLightWall;
                 completeWallPrefab.GetComponent<SpriteRenderer>().sprite = imgLightCompleteWall;
                 treeStumpPrefab.GetComponent<SpriteRenderer>().sprite = imgLightTreeStump;
                 floorPrefab.GetComponent<SpriteRenderer>().sprite = imgLightFloor;
+                endPrefab.GetComponent<SpriteRenderer>().sprite = imgLightEnd;
             }
+
 
             switch (level)
             {
