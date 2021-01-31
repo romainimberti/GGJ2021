@@ -43,27 +43,41 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: dba49257c8a61f64882e25892394c35e, type: 3}
-    totalSpriteSurfaceArea: 5351397
+    totalSpriteSurfaceArea: 6536022
     bindAsDefault: 1
     storedHash:
       serializedVersion: 2
-      Hash: e5bfcc12619f73f5c97b3418f07d4555
+      Hash: b284ab5d974aeb409017b3e5bb6a7a3d
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: dad8a460fa90e1748bdd6498caa95f04, type: 3}
   - {fileID: 21300000, guid: 107cc4a1d7da5b04e983d9b5fdb1c674, type: 3}
   - {fileID: 21300000, guid: b0e18ab1721753e45be5a7fc1f654800, type: 3}
   - {fileID: 21300000, guid: fdd17a53857ceb547a98bbb1dc72486a, type: 3}
+  - {fileID: 21300000, guid: 922367a39d2940444aee96260f559b7b, type: 3}
+  - {fileID: 21300000, guid: 564103c394e82ca43b44e990cf802804, type: 3}
   - {fileID: 21300000, guid: 8d675057f91c9d84cb827b50fcfe0c7b, type: 3}
   - {fileID: 21300000, guid: 0cee9968e221d0749821e922a0b38308, type: 3}
+  - {fileID: 21300000, guid: a93e6ad952a570047bb54896e7dec5b7, type: 3}
+  - {fileID: 21300000, guid: a40f2aaa9837b9a40a85d6b73517b593, type: 3}
+  - {fileID: 21300000, guid: ff4548eae1a8ae448a4321cb7f556aca, type: 3}
+  - {fileID: 21300000, guid: ca82754bce9a6804fa92eee8facda37e, type: 3}
+  - {fileID: 21300000, guid: f26ca2ad34deb234a9f0224138edac91, type: 3}
   - {fileID: 21300000, guid: eabe9d1fb35f397448f2acc57ff431b0, type: 3}
   m_PackedSpriteNamesToIndex:
   - cut
   - threshold
   - next
   - touch
+  - Hache
+  - epee_croix
   - lock
   - attack
+  - epee_bouton
+  - Saut_bouton
+  - Saut_croix
+  - Fleche_bouton
+  - Hache_croix
   - jump
   m_Tag: UI
   m_IsVariant: 0

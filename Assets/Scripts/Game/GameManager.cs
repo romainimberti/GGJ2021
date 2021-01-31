@@ -105,7 +105,9 @@ namespace com.romainimberti.ggj2021.game
         public Sprite jumpSprite;
         public Sprite cutSprite;
         public Sprite attackSprite;
-        public Sprite lockedSprite;
+        public Sprite lockedJumpSprite;
+        public Sprite lockedCutSprite;
+        public Sprite lockedAttackSprite;
 
         public List<Sprite> attackSprites;
 
@@ -180,7 +182,7 @@ namespace com.romainimberti.ggj2021.game
             #endregion
             #region Public
 
-            public void GameOver()
+        public void GameOver()
         {
             AudioManager.Instance.Mute(true, AudioManager.CHANNEL.SECOND_MUSIC);
             int clip = Random.Range(0, 4);
@@ -530,8 +532,9 @@ namespace com.romainimberti.ggj2021.game
                 }
             }
 
-            foreach (Enemy enemy in player.enemiesInRange)
+            for(int i = 0; i < player.enemiesInRange.Count; i++)
             {
+                Enemy enemy = player.enemiesInRange[i];
                 playerSprite.sprite = attackSprites[0];
                 CoroutineManager.Instance.Wait(0.05f, () =>
                 {
@@ -556,9 +559,9 @@ namespace com.romainimberti.ggj2021.game
             btnCut.Interactable = false;
             btnAttack.Interactable = false;
 
-            imgJump.sprite = lockedSprite;
-            imgCut.sprite = lockedSprite;
-            imgAttack.sprite = lockedSprite;
+            imgJump.sprite = lockedJumpSprite;
+            imgCut.sprite = lockedCutSprite;
+            imgAttack.sprite = lockedAttackSprite;
 
             if (level > 1)
             {
