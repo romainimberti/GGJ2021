@@ -43,11 +43,11 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 4112ef27b04c82f4b9a9d3a17d1cb3b0, type: 3}
-    totalSpriteSurfaceArea: 28254480
+    totalSpriteSurfaceArea: 36290760
     bindAsDefault: 1
     storedHash:
       serializedVersion: 2
-      Hash: fcf7c0e779ba44d637651f9247256b7e
+      Hash: 88976f78a61d016e744e0c76b9359091
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 98f4fc70c94f0ba44b23ba42bcb8f223, type: 3}
@@ -74,6 +74,8 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c2585fd53e7d2da41b8f310d16bf618c, type: 3}
   - {fileID: 21300000, guid: 8c52d2966b70d6a4898b3930a5f91e98, type: 3}
   - {fileID: 21300000, guid: 230cbc96907f3aa4092c45fdaa4125a6, type: 3}
+  - {fileID: 21300000, guid: c4b114a75d01c3e4ea926bc5dfab8150, type: 3}
+  - {fileID: 21300000, guid: 76cbc3d7bb0c9924bb16bc0bc9de1642, type: 3}
   - {fileID: 21300000, guid: 73ac9a189a1a33c408f6d94ff8c6b4e0, type: 3}
   - {fileID: 21300000, guid: 5deb755859883a7498c888b3e25f91da, type: 3}
   - {fileID: 21300000, guid: f0c8c8a85310fe84ba1e90484f6ef607, type: 3}
@@ -92,9 +94,11 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b471ec3cb151b554c8d51789f3b327e1, type: 3}
   - {fileID: 21300000, guid: e145f07cc79cbdb45988ab06abc59b01, type: 3}
   - {fileID: 21300000, guid: 91d69d8c2f8bedc4fbdfaeaf2d227a98, type: 3}
+  - {fileID: 21300000, guid: 7d023c1d8804f74469a951e78cfea68d, type: 3}
   - {fileID: 21300000, guid: 43ceeacde93b8c348a1eb11dab5c9a15, type: 3}
   - {fileID: 21300000, guid: 1d1ff3ddeb31ca549acfa43aa2e11ce2, type: 3}
   - {fileID: 21300000, guid: d474a80e63694a94c96d45e94e46a4c9, type: 3}
+  - {fileID: 21300000, guid: 35d6cc3ec759fe840a2b51727ae7699e, type: 3}
   - {fileID: 21300000, guid: b7f85f6e21d5f8148b8ffcf41ff4f4c2, type: 3}
   - {fileID: 21300000, guid: 776e0f8eb6d97da4c9f0dd0a7ffcf84f, type: 3}
   - {fileID: 21300000, guid: 8b3e493fb75a80f46bbe63df5252aaae, type: 3}
@@ -129,6 +133,8 @@ SpriteAtlas:
   - Cinematiques_hache
   - Tronc_bleu_2
   - Sabre_anim_1
+  - Samourai_Fin
+  - Cinematiques_Fin_2
   - GoodLuck_1
   - Fugi_1.1
   - Sabre_anim_3
@@ -147,9 +153,11 @@ SpriteAtlas:
   - Dead_2
   - NVSol_1
   - start
+  - Cinematiques_FIN_1
   - GoodLuck_2
   - Walk_sabre_2
   - Sylvith_1_Sombre
+  - Cinematiques_Fin_3
   - Sabre_anim_2
   - play
   - NVSol_2
