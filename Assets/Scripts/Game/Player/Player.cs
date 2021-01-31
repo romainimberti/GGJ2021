@@ -123,6 +123,11 @@ namespace com.romainimberti.ggj2020
             float distance = GetDistance(enemy.transform, transform);
             if (distance > attackRange)
             {
+                if (enemiesInRange.Contains(enemy))
+                {
+                    enemiesInRange.Remove(enemy);
+                }
+                AudioManager.Instance.Mute(enemiesInRange.Count <= 0, AudioManager.CHANNEL.SECOND_MUSIC);
                 return;
             }
 
