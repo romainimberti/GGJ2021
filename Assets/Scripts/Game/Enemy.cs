@@ -216,12 +216,18 @@ namespace com.romainimberti.ggj2020
         private void OnCollisionEnter2D(Collision2D collision)
         {
             CalculateNewDirection();
-
+            if (collision.collider.CompareTag("Start"))
+            {
+                Debug.Log("DIEEE");
+               Die();
+            }
             if (collision.collider.CompareTag("Player"))
             {
                 gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
                 GameManager.Instance.GameOver();
+                Debug.Log("Kill Player");
             }
+          
         }
         #endregion
         #region Public
