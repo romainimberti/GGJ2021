@@ -43,11 +43,11 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 4112ef27b04c82f4b9a9d3a17d1cb3b0, type: 3}
-    totalSpriteSurfaceArea: 52363320
+    totalSpriteSurfaceArea: 52613320
     bindAsDefault: 1
     storedHash:
       serializedVersion: 2
-      Hash: 96e0f506d2fe1d007e99390b3ca151cb
+      Hash: 7ea5dd9a3ae363f67f9d813b76b9ce4d
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 98f4fc70c94f0ba44b23ba42bcb8f223, type: 3}
@@ -101,6 +101,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b471ec3cb151b554c8d51789f3b327e1, type: 3}
   - {fileID: 21300000, guid: e145f07cc79cbdb45988ab06abc59b01, type: 3}
   - {fileID: 21300000, guid: 91d69d8c2f8bedc4fbdfaeaf2d227a98, type: 3}
+  - {fileID: 21300000, guid: ee484efc94e4e4d419957f4d4a8f4506, type: 3}
   - {fileID: 21300000, guid: 614a920d258b7214d8e9de6ead4c73eb, type: 3}
   - {fileID: 21300000, guid: 7d023c1d8804f74469a951e78cfea68d, type: 3}
   - {fileID: 21300000, guid: 43ceeacde93b8c348a1eb11dab5c9a15, type: 3}
@@ -168,6 +169,7 @@ SpriteAtlas:
   - Dead_2
   - NVSol_1
   - start
+  - Shidokan_Apercu
   - Splash5
   - Cinematiques_FIN_1
   - GoodLuck_2
