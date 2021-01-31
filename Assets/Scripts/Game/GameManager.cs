@@ -274,6 +274,10 @@ namespace com.romainimberti.ggj2021.game
             AudioManager.Instance.PlayAudioClip(AudioManager.SFX.Congratulations);
             if (playCinematic)
             {
+                if(level == 4.5F)
+                {
+                    AudioManager.Instance.PlayAudioClip(AudioManager.MUSIC.End);
+                }
                 finishGameObject.SetActive(true);
                 gameOverGameObject.gameObject.SetActive(false);
                 joystickGameObject.gameObject.SetActive(false);
