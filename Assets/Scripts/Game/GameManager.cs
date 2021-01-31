@@ -372,6 +372,25 @@ namespace com.romainimberti.ggj2021.game
                         break;
                 }
             }
+            else
+            {
+                int clip = Random.Range(0, 4);
+                switch (clip)
+                {
+                    case 0:
+                        AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SwordSpider1);
+                        break;
+                    case 1:
+                        AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SwordSpider2);
+                        break;
+                    case 2:
+                        AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SwordSpider3);
+                        break;
+                    case 3:
+                        AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SwordSpider4);
+                        break;
+                }
+            }
 
             foreach (Enemy enemy in player.enemiesInRange)
             {
@@ -390,23 +409,6 @@ namespace com.romainimberti.ggj2021.game
                     });
                 });
                 enemy.Die();
-
-                int clip = Random.Range(0, 4);
-                switch (clip)
-                {
-                    case 0:
-                        AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SwordSpider1);
-                        break;
-                    case 1:
-                        AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SwordSpider2);
-                        break;
-                    case 2:
-                        AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SwordSpider3);
-                        break;
-                    case 3:
-                        AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SwordSpider4);
-                        break;
-                }
             }
         }
 
