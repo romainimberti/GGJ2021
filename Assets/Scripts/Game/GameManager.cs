@@ -73,6 +73,7 @@ namespace com.romainimberti.ggj2021.game
         public ButtonWithClickAnimation btnCut;
         public ButtonWithClickAnimation btnAttack;
         public ButtonWithClickAnimation btnPlay;
+        public ButtonWithClickAnimation cinematicNext;
 
         public Image imgAttack;
         public Image imgJump;
@@ -85,6 +86,12 @@ namespace com.romainimberti.ggj2021.game
         public Sprite imgDarkCompleteWall;
         public Sprite imgDarkFloor;
         public Sprite imgDarkEnd;
+
+        public Sprite imgFinishJump;
+        public Sprite imgFinishCut;
+        public Sprite imgFinishAttack;
+
+        public Image imgCinematic;
 
         public List<Sprite> playerDeath;
 
@@ -117,6 +124,12 @@ namespace com.romainimberti.ggj2021.game
 
         private Vector2Int interactableCell;
 
+        private int currentFirstCinematicSprite = 0;
+
+        private bool playingFirstCinematic = false;
+
+        private int tempo = 0;
+
         #endregion
         #endregion
         #region Methods
@@ -141,14 +154,33 @@ namespace com.romainimberti.ggj2021.game
             btnCut.Init(Cut);
             btnAttack.Init(Attack);
             btnPlay.Init(PlayFirstCinematic);
+            cinematicNext.Init(NextCinematicButton);
 
             AudioManager.Instance.PlayAudioClip(AudioManager.MUSIC.Menu);
         }
 
-        #endregion
-        #region Public
+        private void FixedUpdate()
+        {
+            if (playingFirstCinematic)
+            {
+                tempo++;
 
-        public void GameOver()
+                if (tempo > 5)
+                {
+                    tempo = 0;
+                    Image imgCinematic = cinematicGameObject.GetComponentInChildren<Image>();
+                    imgCinematic.sprite = firstCinematic[currentFirstCinematicSprite];
+                    currentFirstCinematicSprite++;
+                    if (currentFirstCinematicSprite > 3)
+                        currentFirstCinematicSprite = 2;
+                }
+            }
+        }
+
+            #endregion
+            #region Public
+
+            public void GameOver()
         {
             isGameOver = true;
             FrozeAllEnemies();
@@ -175,18 +207,45 @@ namespace com.romainimberti.ggj2021.game
         {
             level += 0.5f;
             player.Disable();
-            finishGameObject.SetActive(true);
-            gameOverGameObject.gameObject.SetActive(false);
-            joystickGameObject.gameObject.SetActive(false);
-            capacitiesGameObject.SetActive(false);
-            cinematicGameObject.SetActive(false);
+
+            bool playCinematic = true;
+
+            switch (level)
+            {
+                case 1.5F:
+                    imgCinematic.sprite = imgFinishJump;
+                    break;
+                case 2.5F:
+                    imgCinematic.sprite = imgFinishAttack;
+                    break;
+                case 3.5F:
+                    imgCinematic.sprite = imgFinishCut;
+                    break;
+                default:
+                    playCinematic = false;
+                    break;
+            }
+
             AudioManager.Instance.PlayAudioClip(AudioManager.SFX.Congratulations);
+            if (playCinematic)
+            {
+                finishGameObject.SetActive(true);
+                gameOverGameObject.gameObject.SetActive(false);
+                joystickGameObject.gameObject.SetActive(false);
+                capacitiesGameObject.SetActive(false);
+                cinematicGameObject.SetActive(false);
+            }
+            else
+            {
+                GenerateMaze();
+            }
             /*fogMainTexture.Release();
             fogSecondaryTexture.Release();*/
         }
 
         public void GenerateMaze()
         {
+            playingFirstCinematic = false;
             isGameOver = false;
             finishGameObject.SetActive(false);
             gameOverGameObject.gameObject.SetActive(false);
@@ -271,29 +330,30 @@ namespace com.romainimberti.ggj2021.game
         #endregion
         #region Private
 
+        private void NextCinematicButton()
+        {
+            currentFirstCinematicSprite++;
+            DisplayFirstCinematicSprite();
+        }
+
         private void PlayFirstCinematic()
         {
             AudioManager.Instance.PlayAudioClip(AudioManager.MUSIC.Cinematic);
             cinematicGameObject.SetActive(true);
-            Image imgCinematic = cinematicGameObject.GetComponentInChildren<Image>();
-            imgCinematic.sprite = firstCinematic[0];
-            CoroutineManager.Instance.Wait(2.0f, () =>
-            {
-                imgCinematic.sprite = firstCinematic[1];
-                CoroutineManager.Instance.Wait(2.0f, () =>
-                {
-                    imgCinematic.sprite = firstCinematic[2];
-                    CoroutineManager.Instance.Wait(2.0f, () =>
-                    {
-                        imgCinematic.sprite = firstCinematic[3];
-                        CoroutineManager.Instance.Wait(2.0f, () =>
-                        {
-                            GenerateMaze();
-                        });
-                    });
-                });
-            });
+            DisplayFirstCinematicSprite();
         }
+
+        private void DisplayFirstCinematicSprite()
+        {
+            Image imgCinematic = cinematicGameObject.GetComponentInChildren<Image>();
+            imgCinematic.sprite = firstCinematic[currentFirstCinematicSprite];
+            if(currentFirstCinematicSprite == 2)
+            {
+                playingFirstCinematic = true;
+                cinematicNext.Init(GenerateMaze);
+            }
+        }
+
         private void Jump()
         {
             Cell[,] mazeCells = maze.GetTiles();
