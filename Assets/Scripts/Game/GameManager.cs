@@ -230,6 +230,14 @@ namespace com.romainimberti.ggj2021.game
             joystickGameObject.gameObject.SetActive(false);
             capacitiesGameObject.SetActive(false);
             cinematicGameObject.SetActive(false);
+
+            btnFinish.Init(GenerateMaze);
+            btnJump.Init(Jump);
+            btnCut.Init(Cut);
+            btnAttack.Init(Attack);
+            btnPlay.Init(PlayFirstCinematic);
+            cinematicNext.Init(NextCinematicButton);
+
             AudioManager.Instance.PlayAudioClip(AudioManager.MUSIC.Menu);
 
         }
