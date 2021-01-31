@@ -3386,6 +3386,7 @@ MonoBehaviour:
   playerDeathAnimation:
   - {fileID: 21300000, guid: 99b473c0f397c4649947abbe99b9429e, type: 3}
   - {fileID: 21300000, guid: b471ec3cb151b554c8d51789f3b327e1, type: 3}
+  gameOverText: {fileID: 209386387}
 --- !u!1 &1908155293
 GameObject:
   m_ObjectHideFlags: 0
