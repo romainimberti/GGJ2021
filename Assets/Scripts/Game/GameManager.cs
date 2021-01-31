@@ -163,6 +163,7 @@ namespace com.romainimberti.ggj2021.game
             joystickGameObject.gameObject.SetActive(false);
             capacitiesGameObject.SetActive(false);
             cinematicGameObject.SetActive(false);
+            AudioManager.Instance.PlayAudioClip(AudioManager.SFX.Congratulations);
             /*fogMainTexture.Release();
             fogSecondaryTexture.Release();*/
         }
@@ -254,6 +255,7 @@ namespace com.romainimberti.ggj2021.game
 
         private void PlayFirstCinematic()
         {
+            AudioManager.Instance.PlayAudioClip(AudioManager.MUSIC.Cinematic);
             cinematicGameObject.SetActive(true);
             Image imgCinematic = cinematicGameObject.GetComponentInChildren<Image>();
             imgCinematic.sprite = firstCinematic[0];
@@ -279,6 +281,21 @@ namespace com.romainimberti.ggj2021.game
             Cell[,] mazeCells = maze.GetTiles();
             bool horizontalJump = mazeCells[interactableCell.x + 1, interactableCell.y].IsWalkable();
             Vector3 newPlayerPos;
+
+
+            int clip = Random.Range(0, 3);
+            switch (clip)
+            {
+                case 0:
+                    AudioManager.Instance.PlayAudioClip(AudioManager.SFX.Jump1);
+                    break;
+                case 1:
+                    AudioManager.Instance.PlayAudioClip(AudioManager.SFX.Jump2);
+                    break;
+                case 2:
+                    AudioManager.Instance.PlayAudioClip(AudioManager.SFX.Jump3);
+                    break;
+            }
 
             if (horizontalJump)
             {

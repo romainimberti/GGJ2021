@@ -2084,6 +2084,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 392f954e93c74274e84197b7f0151765, type: 2}
   - {fileID: 11400000, guid: 0e0889ce248864f4fb2ea61700b710ba, type: 2}
   - {fileID: 11400000, guid: b1de541a3aaa93e4a8ef61d6c9b9249c, type: 2}
+  - {fileID: 11400000, guid: 05123a4ddc70dd44b95049d9b2f2cdc5, type: 2}
+  - {fileID: 11400000, guid: 47ccaf1aa1925ba49a88f90ebc6a0750, type: 2}
+  - {fileID: 11400000, guid: a0f4cf4ca15c8564f9a49a90988da161, type: 2}
+  - {fileID: 11400000, guid: 7192a5ce045fb3645ac38327ca688d78, type: 2}
+  - {fileID: 11400000, guid: f3031bdff173e8a4d970ef591fb4d6d4, type: 2}
   masterAudioMixer: {fileID: 24100000, guid: 7b6b81be5e5c4aa4fb2ad25e5fc2906d, type: 2}
   AudioChannels:
   - type: 0

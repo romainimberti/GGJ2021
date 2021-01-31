@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 709e9355f0eb49f44a80efcae5d25772, type: 3}
-  m_Name: SpiderInRange
+  m_Name: Jump1
   m_EditorClassIdentifier: 
-  name: SpiderInRange
-  channel: 2
-  musicalClip: 2
-  sfxClip: 0
+  name: Jump1
+  channel: 1
+  musicalClip: 0
+  sfxClip: 20
   secondMusicClip: 0
   possibleClips:
-  - {fileID: 8300000, guid: 79e45fa10f47a664dbc4a466c71d1340, type: 3}
-  Volume: 0.25
+  - {fileID: 8300000, guid: fd9e5c43b95e7fe46a6fa5aea0591384, type: 3}
+  Volume: 0.2
