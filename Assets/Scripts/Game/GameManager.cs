@@ -258,6 +258,7 @@ namespace com.romainimberti.ggj2021.game
             level += 0.5f;
             player.Disable();
 
+            isGameOver = true;
             bool playCinematic = true;
 
             switch (level)

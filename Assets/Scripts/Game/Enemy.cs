@@ -226,7 +226,6 @@ namespace com.romainimberti.ggj2020
                 if(!GameManager.Instance.isGameOver)
                     GameManager.Instance.GameOver();
             }
-          
         }
         #endregion
         #region Public
