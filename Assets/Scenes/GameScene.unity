@@ -2103,6 +2103,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a0f4cf4ca15c8564f9a49a90988da161, type: 2}
   - {fileID: 11400000, guid: 7192a5ce045fb3645ac38327ca688d78, type: 2}
   - {fileID: 11400000, guid: f3031bdff173e8a4d970ef591fb4d6d4, type: 2}
+  - {fileID: 11400000, guid: 740abc26fd922f2418713ca3ac98dc68, type: 2}
+  - {fileID: 11400000, guid: c24936b26f53b9248b74f5f66d9c77ad, type: 2}
+  - {fileID: 11400000, guid: 7fb62a045eaab5f46ada60fa4556b005, type: 2}
+  - {fileID: 11400000, guid: 37ee3d95b01c2d24999b9a3dfccc1f40, type: 2}
+  - {fileID: 11400000, guid: de1f39b7201b6724797948fe87e3021b, type: 2}
   masterAudioMixer: {fileID: 24100000, guid: 7b6b81be5e5c4aa4fb2ad25e5fc2906d, type: 2}
   AudioChannels:
   - type: 0

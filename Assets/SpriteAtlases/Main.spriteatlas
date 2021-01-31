@@ -43,11 +43,11 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 4112ef27b04c82f4b9a9d3a17d1cb3b0, type: 3}
-    totalSpriteSurfaceArea: 25995410
+    totalSpriteSurfaceArea: 23986340
     bindAsDefault: 1
     storedHash:
       serializedVersion: 2
-      Hash: e46a4358f18cb11898fd0dfb5f17851d
+      Hash: 98280a9003991f72a25ea46aadfe3212
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 98f4fc70c94f0ba44b23ba42bcb8f223, type: 3}
@@ -62,7 +62,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c09ba85200b548a45a6d55e2e134d4d3, type: 3}
   - {fileID: 21300000, guid: 44f93082ed7a017418292ae0a11785a9, type: 3}
   - {fileID: 21300000, guid: 6ab9b8c2e86be9e4ab9533913be8cc02, type: 3}
-  - {fileID: 21300000, guid: 0769e834a37dfcf45958e1d0eb8cc54d, type: 3}
   - {fileID: 21300000, guid: 784db934085f4344f819d7c28f9963d1, type: 3}
   - {fileID: 21300000, guid: d6a69754007435c4eb1159e17ba091da, type: 3}
   - {fileID: 21300000, guid: 687c6674d2421db46887d9b8d110bbdc, type: 3}
@@ -115,7 +114,6 @@ SpriteAtlas:
   - Wall_clair
   - frame-2
   - floor
-  - Saule_1
   - selectedFloor
   - title
   - Sol_sortie_2
