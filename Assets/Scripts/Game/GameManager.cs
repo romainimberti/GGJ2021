@@ -256,7 +256,7 @@ namespace com.romainimberti.ggj2021.game
 
             switch (level)
             {
-                case 4.5F:
+                case 1.5F:
                     imgCinematic.sprite = imgFinishJump;
                     break;
                 case 2.5F:
@@ -265,7 +265,7 @@ namespace com.romainimberti.ggj2021.game
                 case 3.5F:
                     imgCinematic.sprite = imgFinishCut;
                     break;
-                case 1.5F:
+                case 4.5F:
                     gameOverGameObject.gameObject.SetActive(false);
                     joystickGameObject.gameObject.SetActive(false);
                     capacitiesGameObject.SetActive(false);
