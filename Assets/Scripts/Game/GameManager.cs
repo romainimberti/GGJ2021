@@ -44,7 +44,7 @@ namespace com.romainimberti.ggj2021.game
         private RectTransform fogCanvas;
 
         [SerializeField]
-        private GameObject gameOverGameObject;
+        private GameOverUI gameOverGameObject;
 
         [SerializeField]
         private List<Sprite> firstCinematic;
@@ -130,7 +130,7 @@ namespace com.romainimberti.ggj2021.game
 
             menuGameObject.SetActive(true);
             finishGameObject.SetActive(false);
-            gameOverGameObject.SetActive(false);
+            gameOverGameObject.gameObject.SetActive(false);
             fogGameObject.SetActive(false);
             joystickGameObject.gameObject.SetActive(false);
             capacitiesGameObject.SetActive(false);
@@ -162,7 +162,9 @@ namespace com.romainimberti.ggj2021.game
                 CoroutineManager.Instance.Wait(0.5f, () => {
                     playerSprite.sprite = playerDeath[1];
                     CoroutineManager.Instance.Wait(0.5f, () => {
-                        gameOverGameObject.SetActive(true);
+                        gameOverGameObject.SetFirstPlayerImage(player.playerSprites[player.currentSprite]);
+                        gameOverGameObject.gameObject.SetActive(true);
+                        gameOverGameObject.PlayDeathAnimation();
                         cinematicGameObject.SetActive(false);
                     });
                 });
@@ -174,7 +176,7 @@ namespace com.romainimberti.ggj2021.game
             level += 0.5f;
             player.Disable();
             finishGameObject.SetActive(true);
-            gameOverGameObject.SetActive(false);
+            gameOverGameObject.gameObject.SetActive(false);
             joystickGameObject.gameObject.SetActive(false);
             capacitiesGameObject.SetActive(false);
             cinematicGameObject.SetActive(false);
@@ -187,7 +189,7 @@ namespace com.romainimberti.ggj2021.game
         {
             isGameOver = false;
             finishGameObject.SetActive(false);
-            gameOverGameObject.SetActive(false);
+            gameOverGameObject.gameObject.SetActive(false);
             menuGameObject.SetActive(false);
             //fogGameObject.SetActive(true);
             joystickGameObject.gameObject.SetActive(true);

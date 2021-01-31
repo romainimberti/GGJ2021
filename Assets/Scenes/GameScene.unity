@@ -606,7 +606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &176060822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1870,7 +1870,7 @@ MonoBehaviour:
   fogMainTexture: {fileID: 8400000, guid: 47fcfb1f6cfa1f040bf66c5f4aa8e6dc, type: 2}
   fogSecondaryTexture: {fileID: 8400000, guid: d184746465ebc5a4f8ff72dd5278477a, type: 2}
   fogCanvas: {fileID: 131665084}
-  gameOverGameObject: {fileID: 1880895126}
+  gameOverGameObject: {fileID: 1880895131}
   firstCinematic:
   - {fileID: 21300000, guid: 5deb755859883a7498c888b3e25f91da, type: 3}
   - {fileID: 21300000, guid: 60ad902931dcdae44a29bb306152300d, type: 3}
@@ -1905,23 +1905,23 @@ MonoBehaviour:
   imgJump: {fileID: 311148663}
   imgCut: {fileID: 234462965}
   imgPlayerJump: {fileID: 21300000, guid: 6998d0990caefcd4b87ed1d9de627e16, type: 3}
-  imgDarkStart: {fileID: 21300000, guid: 7afaedf1216989c48a9fb0d949f098f4, type: 3}
+  imgDarkStart: {fileID: 21300000, guid: 209fc0c8e72d7cb46b5ba574611772fa, type: 3}
   imgDarkWall: {fileID: 21300000, guid: 98f4fc70c94f0ba44b23ba42bcb8f223, type: 3}
   imgDarkTreeStump: {fileID: 21300000, guid: 8c52d2966b70d6a4898b3930a5f91e98, type: 3}
   imgDarkCompleteWall: {fileID: 21300000, guid: 3b75ea799213ed1499b48bafcfb52234,
     type: 3}
   imgDarkFloor: {fileID: 21300000, guid: e145f07cc79cbdb45988ab06abc59b01, type: 3}
-  imgDarkEnd: {fileID: 21300000, guid: 10fb22c02d4600e4a8113493b6ce1b87, type: 3}
+  imgDarkEnd: {fileID: 21300000, guid: 687c6674d2421db46887d9b8d110bbdc, type: 3}
   playerDeath:
   - {fileID: 21300000, guid: 99b473c0f397c4649947abbe99b9429e, type: 3}
   - {fileID: 21300000, guid: b471ec3cb151b554c8d51789f3b327e1, type: 3}
-  imgLightStart: {fileID: 21300000, guid: 209fc0c8e72d7cb46b5ba574611772fa, type: 3}
+  imgLightStart: {fileID: 21300000, guid: 7afaedf1216989c48a9fb0d949f098f4, type: 3}
   imgLightWall: {fileID: 21300000, guid: bddfaddfc6037f04da06f4e6af5667d0, type: 3}
   imgLightTreeStump: {fileID: 21300000, guid: 9bf9c65a7d401ae408cfe4b4578339ba, type: 3}
   imgLightCompleteWall: {fileID: 21300000, guid: c09ba85200b548a45a6d55e2e134d4d3,
     type: 3}
   imgLightFloor: {fileID: 21300000, guid: 8b3e493fb75a80f46bbe63df5252aaae, type: 3}
-  imgLightEnd: {fileID: 21300000, guid: 687c6674d2421db46887d9b8d110bbdc, type: 3}
+  imgLightEnd: {fileID: 21300000, guid: 10fb22c02d4600e4a8113493b6ce1b87, type: 3}
   jumpSprite: {fileID: 21300000, guid: eabe9d1fb35f397448f2acc57ff431b0, type: 3}
   cutSprite: {fileID: 21300000, guid: dad8a460fa90e1748bdd6498caa95f04, type: 3}
   attackSprite: {fileID: 21300000, guid: 0cee9968e221d0749821e922a0b38308, type: 3}
@@ -1931,6 +1931,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b7f85f6e21d5f8148b8ffcf41ff4f4c2, type: 3}
   - {fileID: 21300000, guid: f0c8c8a85310fe84ba1e90484f6ef607, type: 3}
   cam: {fileID: 519420031}
+  isGameOver: 0
   level: 1
 --- !u!4 &902122904
 Transform:
@@ -2706,6 +2707,79 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1360893132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1360893133}
+  - component: {fileID: 1360893135}
+  - component: {fileID: 1360893134}
+  m_Layer: 5
+  m_Name: img_playerDeath
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1360893133
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360893132}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1621414593}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 50}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1360893134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360893132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 8378b77a210947340b1bd2097c6e25ad, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1360893135
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360893132}
+  m_CullTransparentMesh: 0
 --- !u!1 &1368308805
 GameObject:
   m_ObjectHideFlags: 0
@@ -3325,6 +3399,7 @@ RectTransform:
   m_Children:
   - {fileID: 234286757}
   - {fileID: 453874828}
+  - {fileID: 1360893133}
   m_Father: {fileID: 1880895130}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3586,6 +3661,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btn_play: {fileID: 453874824}
+  playerDeath: {fileID: 1360893134}
+  playerDeathAnimation:
+  - {fileID: 21300000, guid: 99b473c0f397c4649947abbe99b9429e, type: 3}
+  - {fileID: 21300000, guid: b471ec3cb151b554c8d51789f3b327e1, type: 3}
 --- !u!1 &1908155293
 GameObject:
   m_ObjectHideFlags: 0
