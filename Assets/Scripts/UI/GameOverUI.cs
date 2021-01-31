@@ -26,6 +26,9 @@ namespace com.romainimberti.ggj2020
         [SerializeField]
         public List<Sprite> playerDeathAnimation;
 
+        [SerializeField]
+        private GameObject gameOverText;
+
         #endregion
         #region Public
 
@@ -36,6 +39,11 @@ namespace com.romainimberti.ggj2020
         #endregion
         #region Methods
         #region Unity
+
+        private void Awake()
+        {
+            LeanTween.scale(gameOverText, Vector3.one * 1.03f, 2f).setEaseInOutQuad().setLoopPingPong(-1);
+        }
 
         private void OnEnable()
         {
