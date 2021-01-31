@@ -150,6 +150,23 @@ namespace com.romainimberti.ggj2021.game
 
         public void GameOver()
         {
+            AudioManager.Instance.Mute(true, AudioManager.CHANNEL.SECOND_MUSIC);
+            int clip = Random.Range(0, 4);
+            switch (clip)
+            {
+                case 0:
+                    AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SamuraiDeath1);
+                    break;
+                case 1:
+                    AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SamuraiDeath2);
+                    break;
+                case 2:
+                    AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SamuraiDeath3);
+                    break;
+                case 3:
+                    AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SamuraiDeath4);
+                    break;
+            }
             isGameOver = true;
             FrozeAllEnemies();
             player.Disable();
@@ -158,6 +175,7 @@ namespace com.romainimberti.ggj2021.game
             SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
             CoroutineManager.Instance.Wait(0.2f, () =>
             {
+                AudioManager.Instance.PlayAudioClip(AudioManager.SFX.GameOver);
                 playerSprite.sprite = playerDeath[0];
                 CoroutineManager.Instance.Wait(0.5f, () => {
                     playerSprite.sprite = playerDeath[1];

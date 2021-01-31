@@ -76,6 +76,11 @@ namespace com.romainimberti.ggj2021.utilities
             Jump2,
             Jump3,
             Congratulations,
+            GameOver,
+            SamuraiDeath1,
+            SamuraiDeath2,
+            SamuraiDeath3,
+            SamuraiDeath4,
         }
 
         /// <summary>

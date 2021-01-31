@@ -235,6 +235,7 @@ namespace com.romainimberti.ggj2020
         {
             if (alive)
             {
+                GameManager.Instance.Player.EnemyInRange(this, false);
                 AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SpiderDie);
                 Destroy(GetComponent<Collider2D>());
                 alive = false;

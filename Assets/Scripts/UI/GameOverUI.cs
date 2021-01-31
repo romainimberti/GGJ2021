@@ -52,6 +52,25 @@ namespace com.romainimberti.ggj2020
 
         public void PlayDeathAnimation()
         {
+            CoroutineManager.Instance.Wait(0.25f, () =>
+            {
+                int clip = Random.Range(0, 4);
+                switch (clip)
+                {
+                    case 0:
+                        AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SamuraiDeath1);
+                        break;
+                    case 1:
+                        AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SamuraiDeath2);
+                        break;
+                    case 2:
+                        AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SamuraiDeath3);
+                        break;
+                    case 3:
+                        AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SamuraiDeath4);
+                        break;
+                }
+            });
             CoroutineManager.Instance.Wait(0.5f, () =>
             {
                 playerDeath.sprite = playerDeathAnimation[0];
