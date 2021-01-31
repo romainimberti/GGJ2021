@@ -1852,6 +1852,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7fb62a045eaab5f46ada60fa4556b005, type: 2}
   - {fileID: 11400000, guid: 37ee3d95b01c2d24999b9a3dfccc1f40, type: 2}
   - {fileID: 11400000, guid: de1f39b7201b6724797948fe87e3021b, type: 2}
+  - {fileID: 11400000, guid: 0ff1289a86f836246852fff3020691e0, type: 2}
   masterAudioMixer: {fileID: 24100000, guid: 7b6b81be5e5c4aa4fb2ad25e5fc2906d, type: 2}
   AudioChannels:
   - type: 0
