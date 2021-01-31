@@ -49,6 +49,9 @@ namespace com.romainimberti.ggj2021.game
         [SerializeField]
         private List<Sprite> firstCinematic;
 
+        [SerializeField]
+        private GameObject mainMenuBackground;
+
         #endregion
         #region Public
 
@@ -142,6 +145,8 @@ namespace com.romainimberti.ggj2021.game
             base.Awake();
 
             Application.targetFrameRate = 60;
+
+            LeanTween.scale(mainMenuBackground.gameObject, Vector3.one * 1.03f, 5f).setEaseInOutQuad().setLoopPingPong(-1);
 
             menuGameObject.SetActive(true);
             finishGameObject.SetActive(false);

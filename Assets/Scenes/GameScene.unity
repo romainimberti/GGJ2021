@@ -1619,6 +1619,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 60ad902931dcdae44a29bb306152300d, type: 3}
   - {fileID: 21300000, guid: 73ac9a189a1a33c408f6d94ff8c6b4e0, type: 3}
   - {fileID: 21300000, guid: 43ceeacde93b8c348a1eb11dab5c9a15, type: 3}
+  mainMenuBackground: {fileID: 91347416}
   completeWallPrefab: {fileID: 1598797744748027373, guid: dde94828a564ec446b82f9488e672450,
     type: 3}
   wallPrefab: {fileID: 1245924414169070192, guid: e0067ebb2e76a7f43833de919f26280f,
