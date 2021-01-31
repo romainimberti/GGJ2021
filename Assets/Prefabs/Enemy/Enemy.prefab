@@ -51,10 +51,15 @@ MonoBehaviour:
   enemySprites:
   - {fileID: 21300000, guid: d39d58bb0849b3e41a77c8388cf83643, type: 3}
   - {fileID: 21300000, guid: 4d67c269156fe3c41bb415679c98787f, type: 3}
-  - {fileID: 21300000, guid: 44f93082ed7a017418292ae0a11785a9, type: 3}
   - {fileID: 21300000, guid: d474a80e63694a94c96d45e94e46a4c9, type: 3}
   - {fileID: 21300000, guid: 0d0da1351dc3d2747b49b676267df95a, type: 3}
-  - {fileID: 21300000, guid: 44f93082ed7a017418292ae0a11785a9, type: 3}
+  deathSprites:
+  - {fileID: 21300000, guid: 4ca7cd5b3c6a661448e27adfb840828d, type: 3}
+  - {fileID: 21300000, guid: 71c34f5fdf494734cbb54e2c962b4a35, type: 3}
+  - {fileID: 21300000, guid: 83af8f5fb472e104b9a0ad6775781a45, type: 3}
+  - {fileID: 21300000, guid: da8d829476c9aa84baf01594abbd9f0d, type: 3}
+  - {fileID: 21300000, guid: b7daa155778e0e84385274cd85d79be7, type: 3}
+  - {fileID: 21300000, guid: ada80bb91439ae94882f1d51a6f1208a, type: 3}
   movementSpeed: 35
   freeze: 0
 --- !u!212 &-6020682515467843339

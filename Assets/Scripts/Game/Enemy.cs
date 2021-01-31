@@ -24,6 +24,9 @@ namespace com.romainimberti.ggj2020
         [SerializeField]
         private List<Sprite> enemySprites;
 
+        [SerializeField]
+        private List<Sprite> deathSprites;
+
         #endregion
         #region Public
 
@@ -69,7 +72,7 @@ namespace com.romainimberti.ggj2020
 
         private void Awake()
         {
-            startingIndexForSprint = Random.Range(0, 100) < 50 ? 0 : 3;
+            startingIndexForSprint = Random.Range(0, 100) < 50 ? 0 : 2;
             currentSprite = startingIndexForSprint;
             enemySpriteRenderer = GetComponent<SpriteRenderer>();
             enemySpriteRenderer.sprite = enemySprites[startingIndexForSprint];
@@ -131,7 +134,7 @@ namespace com.romainimberti.ggj2020
                     {
                         spriteTempo = 0;
                         currentSprite++;
-                        if (currentSprite == 2 || currentSprite == 5)
+                        if (currentSprite % 2 == 0)
                             currentSprite = startingIndexForSprint;
                         enemySpriteRenderer.sprite = enemySprites[currentSprite];
                         lastPosition = transform.position;
@@ -225,11 +228,26 @@ namespace com.romainimberti.ggj2020
 
         public void Die()
         {
-            AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SpiderDie);
-            Destroy(GetComponent<Collider2D>());
-            alive = false;
-            spriteRenderer.sprite = enemySprites[startingIndexForSprint + 2];
-            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            if (alive)
+            {
+                AudioManager.Instance.PlayAudioClip(AudioManager.SFX.SpiderDie);
+                Destroy(GetComponent<Collider2D>());
+                alive = false;
+                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                int startingIndexDeath = startingIndexForSprint == 0 ? 0 : 3;
+                spriteRenderer.sprite = deathSprites[startingIndexDeath];
+                startingIndexDeath++;
+                CoroutineManager.Instance.Wait(0.1f, () =>
+                {
+                    spriteRenderer.sprite = deathSprites[startingIndexDeath];
+                    startingIndexDeath++;
+                    CoroutineManager.Instance.Wait(0.1f, () =>
+                    {
+                        spriteRenderer.sprite = deathSprites[startingIndexDeath];
+                    });
+                });
+            }
+
         }
 
         #endregion
