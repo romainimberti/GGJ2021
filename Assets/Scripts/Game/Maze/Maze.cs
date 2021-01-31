@@ -197,7 +197,8 @@ namespace com.romainimberti.ggj2020.game.maze
                 }
             }
 
-            int nbOfEnemies = Random.Range(1, possibleSpawns.Count < 10 ? possibleSpawns.Count : 10);
+            int add = possibleSpawns.Count < 6 ? possibleSpawns.Count : 6;
+            int nbOfEnemies = Random.Range((int)GameManager.Instance.level, (int)GameManager.Instance.level + add);
             for (int i = 0; i < nbOfEnemies; i++)
             {
                 enemies.Add(possibleSpawns[Random.Range(0, possibleSpawns.Count)]);
