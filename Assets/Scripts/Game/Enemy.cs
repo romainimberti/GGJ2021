@@ -92,7 +92,6 @@ namespace com.romainimberti.ggj2020
         private void FixedUpdate()
         {
             Fade();
-
             if (alive && !freeze)
             {
                 Vector3 offset = transform.position - position;
@@ -170,16 +169,19 @@ namespace com.romainimberti.ggj2020
 
         private void Fade(bool animate = true)
         {
-            Vector3 toPosition = GameManager.Instance.Player.transform.position;
-            Vector3 fromPosition = transform.position;
+            if (alive)
+            {
+                Vector3 toPosition = GameManager.Instance.Player.transform.position;
+                Vector3 fromPosition = transform.position;
 
-            playerInRange = PlayerInRange(fromPosition, toPosition, range);
+                playerInRange = PlayerInRange(fromPosition, toPosition, range);
 
-            GameManager.Instance.Player.EnemyInRange(this, playerInRange);
+                GameManager.Instance.Player.EnemyInRange(this, playerInRange);
 
-            //spriteRenderer.enabled = playerInRange;
+                //spriteRenderer.enabled = playerInRange;
 
-            playerLastPosition = toPosition;
+                playerLastPosition = toPosition;
+            }
         }
 
         private void CalculateNewDirection()
@@ -252,7 +254,6 @@ namespace com.romainimberti.ggj2020
                     });
                 });
             }
-
         }
 
         #endregion

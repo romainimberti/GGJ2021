@@ -35,8 +35,9 @@ namespace com.romainimberti.ggj2020.game.maze
         private Vector2Int startTile, endTile;
 
         private List<Vector2Int> enemies = new List<Vector2Int>();
-        [SerializeField]
-        private int minimumDistanceMobStart = 2;
+
+        private int minimumDistanceMobStart = 5;
+        private int minimumDistanceBetweenMobs = 5;
 
         private bool generated = false;
 
@@ -178,30 +179,30 @@ namespace com.romainimberti.ggj2020.game.maze
                     //TODO USE A  VARIABLE
                     if (IsWalkable(currentPos) && Vector2.Distance(currentPos, startTile) > minimumDistanceMobStart)
                     {
-                        Vector3 fromPosition = new Vector3(currentPos.x, currentPos.y, -0.75f);
-                        Vector3 toPosition = new Vector3(startTile.x, startTile.y, -0.75f);
                         bool toCloseFromAnOther = false;
                         for(int i = 0; i < possibleSpawns.Count; i++)
                         {
-                            Vector3 currentPossibility = new Vector3(possibleSpawns[i].x, possibleSpawns[i].y, -0.75f);
-                            if (Enemy.PlayerInRange(fromPosition, currentPossibility, 5))
+                            if (Vector2.Distance(currentPos, possibleSpawns[i]) < minimumDistanceBetweenMobs)
                             {
                                 toCloseFromAnOther = true;
                                 break;
                             }
                         }
-                        if (!Enemy.PlayerInRange(fromPosition, toPosition, 20) && !toCloseFromAnOther)
+                        if (!toCloseFromAnOther)
                             possibleSpawns.Add(currentPos);
-                        //enemies.Add(currentPos);
                     };
                 }
             }
 
-            int add = possibleSpawns.Count < 6 ? possibleSpawns.Count : 6;
-            int nbOfEnemies = Random.Range((int)GameManager.Instance.level, (int)GameManager.Instance.level + add);
+            int nbOfEnemies = Random.Range((int)GameManager.Instance.level, (int)GameManager.Instance.level + (int)GameManager.Instance.level * 3);
+            if (nbOfEnemies >= possibleSpawns.Count)
+                nbOfEnemies = possibleSpawns.Count - 1;
             for (int i = 0; i < nbOfEnemies; i++)
             {
-                enemies.Add(possibleSpawns[Random.Range(0, possibleSpawns.Count)]);
+                int randIndex = Random.Range(0, possibleSpawns.Count);
+                enemies.Add(possibleSpawns[randIndex]);
+                possibleSpawns.RemoveAt(randIndex);
+
             }
         }
 

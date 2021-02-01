@@ -221,6 +221,9 @@ namespace com.romainimberti.ggj2021.game
 
         public void EndGame()
         {
+
+            level = 1;
+
             menuGameObject.SetActive(true);
             finishGameObject.SetActive(false);
             gameOverGameObject.gameObject.SetActive(false);

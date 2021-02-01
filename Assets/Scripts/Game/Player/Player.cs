@@ -85,6 +85,11 @@ namespace com.romainimberti.ggj2020
             GameManager.Instance.MazeFinished();
         }
 
+        private void OnCollisionStay2D(Collision2D collision)
+        {
+            GameManager.Instance.EnableCapacities((int)collision.transform.position.x, (int)collision.transform.position.y);
+        }
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
 
